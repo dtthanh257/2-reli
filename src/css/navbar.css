@@ -28,12 +28,12 @@
 }
 .nav-search {
   width: 36%;
-  min-width: 400px;
+
   position: relative;
 }
 .nav-search input {
   width: 100%;
-  /* width: 400px; */
+
   height: 34px;
   border-radius: 10px;
   padding-left: 36px;

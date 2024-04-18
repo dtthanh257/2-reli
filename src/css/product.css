@@ -30,3 +30,60 @@
   width: 100%;
   justify-content: space-between;
 }
+/* Product cart */
+.product-card {
+  background-color: rgb(255, 255, 255);
+
+  text-align: start;
+}
+.product-card h3 {
+  padding: 26px 40px;
+  gap: 23px;
+}
+.product-card-code {
+  padding: 18px 40px;
+  border-bottom: 1px solid var(--border-color);
+}
+.product-card-info {
+  gap: 4px;
+  justify-content: space-between;
+  font-size: 16.5px;
+}
+.product-card-img {
+  height: 102px;
+  width: 102px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url(../../public/img/assets/techcombank-logo.jpg);
+}
+
+.product-cart-payload {
+  height: 80px;
+  align-items: center;
+  display: flex;
+  padding-left: 40px;
+  border-top: 1px solid var(--border-color);
+}
+.product-cart-payload p {
+  font-size: 20px;
+}
+.product-cart-pay {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #28a24f;
+}
+
+.reli-acti {
+  background-color: white;
+  height: 58px;
+}
+.reli-acti button {
+  background-color: white;
+  flex: 1 1 auto;
+}
+.isTrue {
+  border-bottom: 2px solid var(--primary-color);
+}
