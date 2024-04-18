@@ -58,17 +58,16 @@
   background-image: url(../../public/img/assets/techcombank-logo.jpg);
 }
 
-.product-cart-payload {
+.product-card-payload {
   height: 80px;
   align-items: center;
   display: flex;
   padding-left: 40px;
-  border-top: 1px solid var(--border-color);
 }
-.product-cart-payload p {
+.product-card-payload p {
   font-size: 20px;
 }
-.product-cart-pay {
+.product-card-pay {
   display: flex;
   align-items: center;
   font-size: 24px;
@@ -86,4 +85,14 @@
 }
 .isTrue {
   border-bottom: 2px solid var(--primary-color);
+}
+.product-card-btn {
+  height: 54px !important;
+  width: 224px;
+  border-radius: 2px;
+  color: white;
+  background-color: var(--primary-color);
+  font-size: 18px;
+  font-weight: 500;
+  margin-right: 40px;
 }

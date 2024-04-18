@@ -53,6 +53,11 @@
             Thu gom
           </button>
         </div>
+        <div id="dangbanTrue">
+          <ProductCard buttonLabel="Xác nhận"></ProductCard>
+          <ProductCard buttonLabel="Đã chuẩn bị hàng"></ProductCard>
+          <ProductCard buttonLabel="Giao hàng thành công"></ProductCard>
+        </div>
       </div>
     </div>
     <div class="grid-12"></div>
@@ -76,6 +81,7 @@ export default {
       thugom: false,
       donmua: null,
       donban: null,
+      dangbanTrue: null,
     };
   },
   components: {
@@ -86,6 +92,7 @@ export default {
   mounted() {
     this.donmua = document.querySelector("#donmuaTrue");
     this.donban = document.querySelector("#donbanTrue");
+    this.dangbanTrue = document.querySelector("#dangbanTrue");
   },
   methods: {
     toggleActiBuy() {
@@ -116,11 +123,17 @@ export default {
       this.dangban = true;
       this.thumua = false;
       this.thugom = false;
+      if (this.dangban == true) {
+        this.dangbanTrue.style.display = "block";
+      }
     },
     toggleThuMua() {
       this.thumua = true;
       this.dangban = false;
       this.thugom = false;
+      if (this.thumua == true) {
+        this.dangbanTrue.style.display = "none";
+      }
     },
     toggleThuGom() {
       this.thugom = true;

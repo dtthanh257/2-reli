@@ -19,7 +19,7 @@
       </div>
       <div class="nav-acc flex-row">
         <i class="fa-regular fa-circle-user" style="font-size: 24px"></i>
-        <span>Tài khoản</span>
+        <span style="white-space: nowrap">Tài khoản</span>
         <i class="fa-solid fa-angle-down"></i>
         <AccDroplist></AccDroplist>
       </div>

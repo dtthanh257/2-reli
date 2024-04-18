@@ -17,9 +17,21 @@
           <div class="product-card-price">[Giá sản phẩm]</div>
         </div>
       </div>
-      <div class="product-cart-payload gap-8">
-        <p>Thành tiền:</p>
-        <div class="product-cart-pay">[Giá sản phẩm +phí ship]</div>
+      <div
+        class="flex-row"
+        style="
+          border-top: 1px solid var(--border-color);
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <div class="product-card-payload gap-8">
+          <p style="padding: 0">Thành tiền:</p>
+          <div class="product-card-pay">[Giá sản phẩm + phí ship]</div>
+        </div>
+        <button class="product-card-btn nor-btn" v-if="buttonLabel">
+          {{ buttonLabel }}
+        </button>
       </div>
     </div>
   </div>
@@ -27,5 +39,8 @@
 <script>
 export default {
   name: "ProductCard",
+  props: {
+    buttonLabel: String,
+  },
 };
 </script>
