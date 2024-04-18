@@ -1,0 +1,134 @@
+.login-page {
+  background: #4d6939;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-container {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+.login-logo {
+  width: 252px;
+  height: 440px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(../../public/img/assets/login-logo.jpg);
+}
+.login-put {
+  height: 498px;
+  width: 396px;
+  background-color: #ffffde;
+  align-items: center;
+}
+.login-put h2 {
+  margin-top: 34px;
+}
+.login-textfield {
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+.login-textfield input {
+  outline: none;
+  border: 1px solid #ebebcc;
+  width: 340px;
+  height: 40px;
+  padding-left: 12px;
+}
+.login-textfield input::placeholder {
+  font-size: 10px;
+  color: #dddddd;
+  font-weight: 100;
+}
+.login-button {
+  background-color: #82966b;
+  height: 40px;
+  width: 340px;
+  color: white;
+  border-radius: 3px;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.login-button:hover {
+  background-color: #66b031;
+}
+.login-button:active {
+  background-color: #34581a;
+}
+.login-way {
+  width: 340px;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.login-way a {
+  text-decoration: none;
+  color: #4fd778;
+  font-size: 11px;
+}
+.hr-line {
+  width: fit-content;
+  width: 100%;
+  border-top: 0.3px solid black;
+}
+.login-devider {
+  width: 340px;
+  align-items: center;
+  margin-top: 16px;
+}
+.login-devider span {
+  margin: 0 24px;
+  font-size: 15px;
+}
+.login-with {
+  margin-top: 24px;
+  width: 340px;
+  gap: 18px;
+}
+.login-with button {
+  height: 40px;
+  width: 50%;
+  background-size: cover;
+  box-shadow: 0 0 0 0.9px #bdbdbd;
+  /* border: 1px solid #bdbdbd; */
+  border: none;
+  border-radius: 2px;
+  background-position: center;
+}
+.login-with-fb {
+  background-image: url(../../public/img/assets/login-with-fb.png);
+}
+.login-with-gg {
+  background-image: url(../../public/img/assets/login-with-google.png);
+}
+.link-to-regis a {
+  color: #4d6939;
+  text-decoration: none;
+  font-size: 13px;
+}
+.link-to-regis {
+  text-decoration: none;
+  font-size: 13px;
+  color: #c5c5ab;
+  margin-top: 60px;
+}
+.login-header {
+  width: 100%;
+  height: 100px;
+  align-items: center;
+  padding: 0 48px;
+}
+.header-logo {
+  width: 114px;
+  height: 34px;
+  background-image: url(../../public/img/assets/2reli-header-logo.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

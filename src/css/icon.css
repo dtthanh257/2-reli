@@ -1,0 +1,71 @@
+.icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+}
+.per-sell-icon {
+  width: 18px;
+  height: 18px;
+  background-image: url(../../public/img/icons/per-sell.png);
+}
+.per-buy-icon {
+  width: 18px;
+  height: 18px;
+  background-image: url(../../public/img/icons/donation\ money\,\ hand.png);
+}
+.per-collect-icon {
+  width: 21px;
+  height: 17px;
+  background-image: url(../../public/img/icons/collect-icon.png);
+}
+.nav-notif-icon {
+  width: 28px;
+  height: 28px;
+  background-image: url(../../public/img/icons/notif-icon.png);
+}
+.nav-message-icon {
+  width: 28px;
+  height: 28px;
+  background-image: url(../../public/img/icons/message-icon.png);
+}
+.nav-cart-icon {
+  width: 28px;
+  height: 28px;
+  background-image: url(../../public/img/icons/cart-icon.png);
+}
+.cate-icon-giay {
+  height: 48px;
+  width: 76px;
+  background-image: url(../../public/img/icons/cate-icon-giay.png);
+}
+.cate-icon-quan {
+  height: 72px;
+  width: 48px;
+  background-image: url(../../public/img/icons/cate-icon-quan.png);
+}
+.cate-icon-vay {
+  height: 72px;
+  width: 52px;
+  background-image: url(../../public/img/icons/cate-icon-vay.png);
+}
+.cate-icon-mua {
+  height: 84px;
+  width: 76px;
+  background-image: url(../../public/img/icons/cate-icon-mua.png);
+}
+.cate-icon-shop {
+  height: 68px;
+  width: 66px;
+  background-image: url(../../public/img/icons/cate-icon-shop.png);
+}
+.cate-icon-ao {
+  height: 64px;
+  width: 68px;
+  background-image: url(../../public/img/icons/cate-icon-ao.png);
+}
+.show-arrow-icon {
+  height: 28px;
+  width: 28px;
+  background-image: url(../../public/img/icons/show-arrow-icon.png);
+}

@@ -1,0 +1,32 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 6px;
+  border: 1px solid #bebebe;
+  margin-top: 44px;
+}
+.product:hover {
+  cursor: pointer;
+}
+.product img {
+  height: 130px;
+  width: 140px;
+  border-bottom: 1px solid #bebebe;
+}
+.product p {
+  padding: 0 8px;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.product h3 {
+  padding: 0 8px;
+  font-size: 15px;
+  font-weight: 100;
+}
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}

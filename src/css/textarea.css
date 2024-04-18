@@ -1,0 +1,19 @@
+.text-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.text-area label {
+  font-size: 14.4px;
+  font-weight: bold;
+}
+.text-area textarea {
+  padding: 8px;
+  resize: none;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+}
+.text-area textarea::placeholder {
+  font-family: sans-serif;
+  color: var(--border-color);
+}

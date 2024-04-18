@@ -1,0 +1,111 @@
+.navbar {
+  z-index: 999;
+  min-width: fit-content;
+  display: flex;
+  align-items: self-end;
+  width: 100%;
+  height: 96px;
+  background-color: #4d6939;
+  position: sticky;
+  top: 0;
+  padding: 14px 36px;
+  gap: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.nav-contain {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  width: 100%;
+}
+.nav-logo {
+  height: 34px;
+  min-width: 118px;
+  background-image: url(../../public/img/assets/nav-logo.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.nav-search {
+  width: 36%;
+  min-width: 400px;
+  position: relative;
+}
+.nav-search input {
+  width: 100%;
+  /* width: 400px; */
+  height: 34px;
+  border-radius: 10px;
+  padding-left: 36px;
+  outline: none;
+  border: none;
+}
+.magnify-glass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+}
+.microphone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 12px;
+}
+.nav-icon {
+  gap: 24px;
+  align-items: center;
+}
+.nav-icon button {
+  height: 28px;
+  width: 28px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #4d6939;
+}
+.nav-notif {
+  background-image: url(../../public/img/assets/nav-notif.png);
+}
+.nav-message {
+  background-image: url(../../public/img/assets/nav-message.png);
+}
+.nav-cart {
+  background-image: url(../../public/img/assets/nav-cart.png);
+}
+.nav-activities {
+  gap: 10px;
+}
+.nav-acc {
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+.nav-acc:hover {
+  cursor: pointer;
+}
+
+.nav-about {
+  position: absolute;
+  top: 12%;
+  right: 14%;
+  gap: 24px;
+  font-size: 11.7px;
+}
+.nav-about a {
+  text-decoration: none;
+  color: white;
+}

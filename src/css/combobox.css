@@ -1,0 +1,131 @@
+.combo-box label {
+  font-weight: bold;
+  font-size: 14.4px;
+  margin-bottom: 10px;
+}
+.combo-box {
+  flex: 1;
+  position: relative;
+}
+.combobox-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+}
+.combobox-input:hover {
+  cursor: pointer;
+}
+.combobox-input-icon {
+  color: var(--border-color);
+  /* position: absolute; */
+  top: 50%; /* Đưa icon đến vị trí giữa theo chiều dọc */
+  /* transform: translateY(-50%); */
+  border-left: 1px SOLID var(--border-color);
+  width: 36px;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+}
+.combobox-input-icon:hover {
+  cursor: pointer;
+}
+.combobox-input-container input {
+  padding-left: 8px;
+  width: 100%;
+  flex: 1;
+  height: 40px;
+  border: none;
+
+  border-radius: 2px;
+  outline: none;
+}
+
+.combobox-dropdown-item {
+  padding: 8px 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14.4px;
+}
+.combobox-dropdown-item:last-child {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.combobox-dropdown-item:hover {
+  background-color: #bebebe;
+}
+.combobox-dropdown {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  top: 100%;
+  z-index: 2;
+}
+.combobox-input-container {
+  position: relative;
+}
+.combobox-input-icon--active {
+  border-left: none;
+  transform: rotate(180deg);
+  animation: rotate 0.2s ease-in-out;
+}
+.combobox-input-icon--active-false {
+  transform: rotate(0deg);
+  animation: rotate-x 0.2s ease-in-out;
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+@keyframes rotate-x {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* combobox version 2 */
+.comboboxv2-input-container {
+  border-radius: 5px !important;
+}
+.comboboxv2-input-container input {
+  border-radius: 5px !important;
+}
+.comboboxv2-input-label {
+  position: absolute !important;
+  z-index: 2;
+  background: white;
+  top: 0;
+  transform: translateY(-50%);
+  left: 10px;
+  padding: 0 3px;
+  font-weight: 600 !important;
+}
+.comboboxv2-input {
+  border-radius: 5px !important;
+}
+
+/* combobox version 3 */
+.comboboxv3 {
+  width: 50%;
+}
+.comboboxv3-input-label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(calc(-100% - 20px));
+  font-weight: 500 !important;
+  font-size: 18px !important;
+}
+.comboboxv3-input-icon {
+  border-left: none;
+}

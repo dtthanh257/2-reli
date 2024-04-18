@@ -1,0 +1,20 @@
+.link-to-login {
+  text-decoration: none;
+  font-size: 13px;
+  color: #c5c5ab;
+  margin-top: 45px;
+}
+.link-to-policy {
+  text-decoration: none;
+  font-size: 13px;
+  color: #c5c5ab;
+  word-wrap: break-word;
+  width: 62%;
+  margin-top: 64px;
+}
+.link-to-login a,
+.link-to-policy a {
+  color: #4d6939;
+  text-decoration: none;
+  font-size: 13px;
+}

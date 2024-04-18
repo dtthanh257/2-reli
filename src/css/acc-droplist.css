@@ -1,0 +1,36 @@
+/* .acc-droplist {
+  display: none;
+} */
+.acc-droplist {
+  position: absolute;
+  top: 40px;
+  background-color: white;
+  color: black;
+  align-items: start;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3); /* đổ bóng */
+  display: none !important;
+}
+.acc-droplist::after {
+  content: "";
+  border-style: solid;
+  border-width: 9px 7px;
+  border-color: transparent transparent white transparent;
+  position: absolute;
+  top: -25%;
+  right: 45%;
+  display: none;
+}
+.acc-droplist a {
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  padding: 8px;
+}
+.acc-droplist a:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+.nav-acc:hover .acc-droplist,
+.nav-acc:hover .acc-droplist::after {
+  display: flex !important;
+}

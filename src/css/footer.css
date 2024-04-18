@@ -1,0 +1,49 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 128px;
+  margin-bottom: 128px;
+}
+.footer-contain {
+  width: 60%;
+  justify-content: space-around;
+}
+.footer-contain h2 {
+  font-size: 16px;
+  line-height: 17px;
+}
+.footer a {
+  text-decoration: none;
+  font-size: 12px;
+  color: #777777;
+}
+.link-to-ios {
+  width: 94px;
+  height: 32px;
+  background-image: url(../../public/img/icons/Link\ →\ ios.svg.png);
+}
+.link-to-chplay {
+  width: 94px;
+  height: 32px;
+  background-image: url(../../public/img/icons/Link\ →\ android.svg.png);
+}
+.link-to-fb {
+  width: 36px;
+  height: 32px;
+  background-image: url(../../public/img/icons/link-to-fb.png);
+}
+.link-to-ytb {
+  width: 36px;
+  height: 32px;
+  background-image: url(../../public/img/icons/Link\ →\ youtube.svg.png);
+  background-repeat: no-repeat;
+}
+.link-to-lkn {
+  width: 36px;
+  height: 32px;
+  background-image: url(../../public/img/icons/Link\ →\ linkedin.svg.png);
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

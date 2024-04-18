@@ -1,0 +1,69 @@
+.post-for-sale-title {
+  flex: 1;
+  text-align: start;
+  gap: 12px;
+}
+.post-for-sale-title h2 {
+  font-size: 28px;
+  line-height: 34px;
+  padding-bottom: 38px;
+}
+.post-for-sale-title h3,
+p {
+  font-size: 14.4px;
+  padding-bottom: 12px;
+}
+.post-for-sale-img {
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.pfs-img-icon {
+  width: 122px;
+  height: 122px;
+  background-image: url(../../public/img/icons/post-for-sale-img-icon.png);
+}
+.pfs-product-form {
+  flex: 1;
+  text-align: start;
+  margin-top: 76px;
+  gap: 30px;
+}
+.divider {
+  border: 1px solid var(--border-color);
+  width: 100%;
+  margin: 16px 0;
+}
+.pfs-note {
+  font-size: 14.4px;
+  line-height: 21px;
+  margin-top: 10px;
+  font-style: italic;
+  color: #5c5d5c;
+  font-weight: 500;
+}
+.pfs-button {
+  height: 70px;
+  width: 38%;
+  border-radius: 2px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+.pfs-button-icon {
+  background-image: url(../../public/img/icons/pfs-button-icon.png);
+  height: 28px;
+  width: 28px;
+}
+.pfs-button:hover {
+  background-color: var(--sec-color);
+}
+.pfs-button:active {
+  background-color: var(--active-color);
+}

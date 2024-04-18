@@ -1,0 +1,55 @@
+button {
+  cursor: pointer;
+  border: none;
+}
+
+.home-btn {
+  width: 216px;
+  height: 62px;
+  border-radius: 8px;
+}
+.nav-activities button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 120px;
+  max-height: 36px;
+  border-radius: 4px;
+  background-color: #f4f4ac;
+  font-weight: 600;
+  line-height: 14px;
+  font-size: 13px;
+  color: var(--primary-color);
+}
+.pri-btn {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 24px;
+}
+.sec-btn {
+  background-color: white;
+  color: var(--primary-color);
+  font-size: 24px;
+  border: 3px solid var(--primary-color);
+}
+.profile-set-ava button {
+  width: 120px;
+  height: 40px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  font-size: 16px;
+  color: #5c5d5c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-set-ava button:hover {
+  background-color: #ccc;
+  color: white;
+}
+.profile-set-ava button:active {
+  background-color: #a4a4a4;
+  color: white;
+}

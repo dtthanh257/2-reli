@@ -1,0 +1,84 @@
+.profile-page {
+  margin-top: 44px;
+  background-color: white;
+  padding: 38px 60px;
+  text-align: start;
+  position: relative;
+}
+.profile-page .divider {
+  border: 1px solid #d9d9d9 !important;
+}
+.profile-page h2 {
+  font-size: 28px;
+}
+.profile-page p {
+  padding-top: 16px;
+  font-size: 20px;
+}
+.sex-option-container {
+  width: 50%;
+  position: relative;
+}
+.sex-option-container input {
+  accent-color: var(--primary-color);
+}
+.sex-option-container label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(calc(-100% - 20px));
+  font-weight: 500 !important;
+  font-size: 18px !important;
+}
+.profile-dob {
+  width: 50%;
+  position: relative;
+}
+.profile-dob label {
+  position: absolute;
+  left: 0;
+  transform: translateY(calc(-50%)) translateX(calc(-100% - 20px));
+  font-size: 18px;
+  top: 50%;
+  font-weight: 500;
+}
+.profile-save-btn {
+  width: 50%;
+  margin: 32px 0;
+}
+.nor-btn {
+  min-width: 120px;
+  height: 40px;
+  border-radius: 2px;
+  padding: 12px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14.5px;
+}
+.nor-btn:hover {
+  background-color: var(--sec-color);
+}
+.nor-btn:active {
+  background-color: var(--active-color);
+}
+.profile-page span {
+  margin-top: 62px;
+  margin-bottom: 42px;
+}
+.profile-ava img {
+  height: 128px;
+  width: 128px;
+  border-radius: 50%;
+}
+.profile-set-ava {
+  position: absolute;
+  position: absolute;
+  transform: translateX(50%);
+  /* top: 50%; */
+  right: 12.5%;
+  top: 25%;
+  border-radius: 50%;
+  border-radius: 50%;
+  gap: 20px;
+}

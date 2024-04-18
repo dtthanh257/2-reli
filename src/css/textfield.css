@@ -1,0 +1,76 @@
+.text-field label {
+  font-weight: bold;
+  font-size: 14.4px;
+  line-height: 22px;
+
+  position: relative;
+}
+.text-field {
+  gap: 10px;
+  flex: 1;
+  width: 100%;
+  position: relative;
+}
+.text-field input {
+  padding-left: 8px;
+  border-radius: 2px;
+  border: 1px solid #9b9b9b;
+  border-radius: 2px;
+}
+.text-field input::placeholder {
+  color: var(--border-color);
+}
+
+/* textfield version 2 */
+
+.textfield-label-v2 {
+  position: absolute !important ;
+  top: 0;
+  padding: 0 3px;
+  transform: translateY(-50%);
+  left: 10px;
+  background-color: white;
+  font-weight: 600 !important;
+}
+.textfield-input-v2 {
+  border-radius: 5px !important;
+}
+.textfield-bank-acc input {
+  width: 100%;
+  height: 60px;
+  border: 1px SOLID var(--border-color);
+}
+.textfield-bank-acc {
+  position: relative;
+}
+.bank-logo {
+  height: 35px;
+  width: 35px;
+  background-image: url(../../public/img/assets/techcombank-logo2.png);
+  background-size: contain;
+  border-radius: 5px;
+}
+.bank-input-contain {
+  gap: 8px;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-50% - 22px));
+  left: 10px;
+}
+.textfield-v3 {
+  flex-direction: row !important;
+  /* justify-content: center; */
+  width: 50%;
+}
+.textfield-input-v3 {
+  flex: 1;
+}
+.textfield-lable-v3 {
+  position: absolute !important;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(calc(-100% - 20px));
+  font-weight: 500 !important;
+  font-size: 18px !important;
+}

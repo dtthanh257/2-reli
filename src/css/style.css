@@ -1,0 +1,119 @@
+@import url(./login-page.css);
+@import url(./button.css);
+@import url(./regist-page.css);
+@import url(./navbar.css);
+@import url(./icon.css);
+@import url(./footer.css);
+@import url(./home-page.css);
+@import url(./product.css);
+@import url(./acc-droplist.css);
+@import url(./about-page.css);
+@import url(./postforsale.css);
+@import url(./textfield.css);
+@import url(./textarea.css);
+@import url(./combobox.css);
+@import url(./profile.css);
+@import url(./procurement.css);
+@import url(./product-manage.css);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
+}
+a {
+  text-decoration: none;
+}
+/* @font-face {
+  font-family: Inter fonts;
+  src: url(../../public/fonts/Inter/static/Inter-Light.ttf);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Inter fonts;
+  src: url(../../public/fonts/Inter/static/Inter-Medium.ttf);
+  font-weight: 500;
+  font-style: normal;
+} */
+:root {
+  --active-color: #34581a;
+  --sec-color: #66b031;
+  --primary-color: #4d6939;
+  --border-color: #9b9b9b;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.align-items-start {
+  align-items: start;
+}
+.align-items-center {
+  align-items: center;
+}
+.gap-8 {
+  gap: 8px;
+}
+.gap-12 {
+  gap: 12px;
+}
+.gap-16 {
+  gap: 16px;
+}
+.gap-18 {
+  gap: 18px;
+}
+.gap-20 {
+  gap: 20px;
+}
+.gap-28 {
+  gap: 28px;
+}
+.gap-30 {
+  gap: 30px;
+}
+.gap-32 {
+  gap: 32px;
+}
+.gap-60 {
+  gap: 60px;
+}
+.gap-64 {
+  gap: 64px;
+}
+.gap-128 {
+  gap: 128px;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.jc-sb {
+  justify-content: space-between;
+}
+.js-st {
+  justify-content: start;
+}
+.reli {
+  color: var(--primary-color);
+}
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Chia grid thành 12 cột */
+}
+.w-100 {
+  width: 100%;
+}
+.flex-6 {
+  flex: 6;
+}
+.bg-pri {
+  background-color: var(--primary-color);
+}
