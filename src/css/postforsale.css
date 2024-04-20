@@ -15,7 +15,7 @@ p {
 }
 .post-for-sale-img {
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 16px;
 }
 .pfs-img-icon {
   width: 122px;

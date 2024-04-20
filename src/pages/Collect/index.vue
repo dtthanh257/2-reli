@@ -26,10 +26,12 @@
             <h3>THÊM HÌNH ẢNH TÚI HÀNG</h3>
             <SPAN>Đăng từ 1 - 4 ảnh</SPAN>
             <div class="flex-row jc-sb">
-              <ImgSelect ref="imgSelect" @click="openFileInput"></ImgSelect>
-              <ImgSelect ref="imgSelect" @click="openFileInput"></ImgSelect>
-              <ImgSelect ref="imgSelect" @click="openFileInput"></ImgSelect>
-              <ImgSelect ref="imgSelect" @click="openFileInput"></ImgSelect>
+              <ImgSelect
+                v-for="(index, imgSelectIndex) in imgSelects"
+                :key="index"
+                :ref="'imgSelect' + imgSelectIndex"
+                @click="openFileInput(imgSelectIndex)"
+              ></ImgSelect>
             </div>
             <div
               class="flex-column collect-weight gap-16"
@@ -185,6 +187,7 @@ const Collect = {
   },
   data() {
     return {
+      imgSelects: [0, 1, 2, 3],
       shipMoney: 60000,
       totalMoney: 60000,
       weightPrices: {
@@ -196,8 +199,8 @@ const Collect = {
     };
   },
   methods: {
-    openFileInput() {
-      this.$refs.imgSelect.$refs.fileInput.click();
+    openFileInput(index) {
+      this.$refs["imgSelect" + index][0].$refs.fileInput.click();
     },
     formatCurrency(amount) {
       return amount.toLocaleString("vi-VN", {

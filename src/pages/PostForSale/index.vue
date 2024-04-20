@@ -2,18 +2,30 @@
   <div>
     <Navbar></Navbar>
     <div class="grid-12">
-      <div class="home-cate flex-row">
+      <div class="home-cate flex-row gap-20">
         <div class="post-for-sale-title">
           <h2>Đăng bán sản phẩm</h2>
           <h3>Thêm hình ảnh sản phẩm</h3>
           <p>Đăng từ 1 - 6 ảnh</p>
-          <div class="flex-row post-for-sale-img">
-            <div class="pfs-img-icon icon"></div>
-            <div class="pfs-img-icon icon"></div>
-            <div class="pfs-img-icon icon"></div>
-            <div class="pfs-img-icon icon"></div>
-            <div class="pfs-img-icon icon"></div>
-            <div class="pfs-img-icon icon"></div>
+          <div class="flex-column post-for-sale-img">
+            <div class="flex-row jc-sb">
+              <ImgSelect
+                v-for="(index, imgSelectIndex) in imgSelects.slice(3, 6)"
+                :key="index"
+                :ref="'imgSelect' + imgSelectIndex"
+                @click="openFileInput(imgSelectIndex)"
+                size="120"
+              ></ImgSelect>
+            </div>
+            <div class="flex-row jc-sb">
+              <ImgSelect
+                v-for="(index, imgSelectIndex) in imgSelects.slice(0, 3)"
+                :key="index"
+                :ref="'imgSelect' + imgSelectIndex"
+                @click="openFileInput(imgSelectIndex)"
+                size="120"
+              ></ImgSelect>
+            </div>
           </div>
         </div>
         <div class="pfs-product-form flex-column">
@@ -119,9 +131,12 @@ import Product from "../../components/Product/index.vue";
 import Textfield from "@/components/TextField/index.vue";
 import Textarea from "@/components/Textarea/index.vue";
 import Combobox from "@/components/Combobox/index.vue";
+import ImgSelect from "@/components/ImgSellect/index.vue";
+
 const Postforsale = {
   data() {
     return {
+      imgSelects: [0, 1, 2, 3, 4, 5],
       classify: [
         { id: 1, name: "Áo" },
         { id: 2, name: "Quần" },
@@ -156,6 +171,7 @@ const Postforsale = {
     Textfield,
     Textarea,
     Combobox,
+    ImgSelect,
   },
 };
 export default Postforsale;
