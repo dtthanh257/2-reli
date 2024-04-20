@@ -7,6 +7,7 @@ import Postforsale from "@/pages/PostForSale/index.vue";
 import ProfilePage from "@/pages/Profile/index.vue";
 import Procurement from "@/pages/Procurement/index.vue";
 import ProductManage from "@/pages/ProductManage/index.vue";
+import Collect from "@/pages/Collect/index.vue";
 const routes = [
   // {
   //   path: "/",
@@ -52,6 +53,10 @@ const routes = [
   {
     path: "/productmanage",
     component: ProductManage,
+  },
+  {
+    path: "/collect",
+    component: Collect,
   },
 ];
 

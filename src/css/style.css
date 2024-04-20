@@ -15,6 +15,7 @@
 @import url(./profile.css);
 @import url(./procurement.css);
 @import url(./product-manage.css);
+@import url(./collect-page.css);
 * {
   margin: 0;
   padding: 0;

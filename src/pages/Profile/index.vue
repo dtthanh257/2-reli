@@ -119,7 +119,6 @@ export default {
     handleImageChange(event) {
       var avaDef = document.getElementById("avaDefault");
       var newAva = document.getElementById("newAva");
-      // Khi người dùng chọn ảnh từ máy tính, cập nhật 'src' của hình ảnh
       const file = event.target.files[0];
       if (file) {
         avaDef.style.display = "none";

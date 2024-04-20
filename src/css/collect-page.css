@@ -1,0 +1,44 @@
+.collect-page {
+  text-align: start;
+}
+
+.collect-form h3 {
+  font-size: 14.4px;
+}
+.collect-method-radio {
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
+}
+.collect-form span {
+  font-size: 14.4px;
+  font-weight: 500;
+  color: #5c5d5c;
+  margin: 12px 0;
+}
+.product-img-select img {
+  height: 90px;
+  width: 90px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.collect-img {
+  width: 100%;
+  height: 500px;
+  background-image: url(../../public/img/assets/collect-img-1.png);
+  background-size: contain;
+  background-position: center;
+}
+.collect-weight-choice {
+  background-color: white;
+  height: 40px;
+  width: 90px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+}

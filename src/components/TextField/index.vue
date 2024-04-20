@@ -4,7 +4,7 @@
       :class="{ 'textfield-label-v2': isV2, 'textfield-lable-v3': isV3 }"
       >{{ label }}</label
     >
-    <div class="flex-row gap-20" style="align-items: center">
+    <div class="flex-row gap-20" style="align-items: center; width: 100%">
       <input
         type="text"
         :class="{ 'textfield-input-v2': isV2, 'textfield-input-v3': isV3 }"

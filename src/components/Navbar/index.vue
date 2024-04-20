@@ -13,9 +13,13 @@
         <button class="nav-cart-icon icon"></button>
       </div>
       <div class="nav-activities flex-row">
-        <button><span class="per-sell-icon icon"></span>ĐĂNG BÁN</button>
-        <button><span class="per-buy-icon icon"></span>THU MUA</button>
-        <button><span class="per-collect-icon icon"></span>THU GOM</button>
+        <a href="/postforsale"
+          ><span class="per-sell-icon icon"></span>ĐĂNG BÁN</a
+        >
+        <a href="/procurement"
+          ><span class="per-buy-icon icon"></span>THU MUA</a
+        >
+        <a><span class="per-collect-icon icon"></span>THU GOM</a>
       </div>
       <div class="nav-acc flex-row">
         <i class="fa-regular fa-circle-user" style="font-size: 24px"></i>

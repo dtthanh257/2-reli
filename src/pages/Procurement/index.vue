@@ -8,7 +8,7 @@
           <div class="flex-column align-items-center">
             <div class="flex-row gap-20 w-100" style="margin-bottom: 26px">
               <div class="procurement-img"></div>
-              <div class="flex-column gap-20" style="flex: 1">
+              <div class="flex-column gap-20 jc-sb" style="flex: 1">
                 <Textfield
                   label="TÊN SẢN PHẨM"
                   placeholder="Giới thiệu ngắn gọn về sản phẩm"
@@ -24,22 +24,22 @@
                 <div class="flex-column gap-8">
                   <h3>Thêm hình ảnh đơn hàng</h3>
                   <span>Đăng từ 1 - 4 ảnh</span>
-                  <div class="flex-row gap-20 jc-sb">
+                  <div class="flex-row jc-sb">
                     <button
                       class="pfs-img-icon icon"
-                      style="width: 101px; height: 101px"
+                      style="width: 90px; height: 90px"
                     ></button
                     ><button
                       class="pfs-img-icon icon"
-                      style="width: 101px; height: 101px"
+                      style="width: 90px; height: 90px"
                     ></button
                     ><button
                       class="pfs-img-icon icon"
-                      style="width: 101px; height: 101px"
+                      style="width: 90px; height: 90px"
                     ></button
                     ><button
                       class="pfs-img-icon icon"
-                      style="width: 101px; height: 101px"
+                      style="width: 90px; height: 90px"
                     ></button>
                   </div>
                 </div>

@@ -2,13 +2,12 @@ button {
   cursor: pointer;
   border: none;
 }
-
 .home-btn {
   width: 216px;
   height: 62px;
   border-radius: 8px;
 }
-.nav-activities button {
+.nav-activities a {
   display: flex;
   justify-content: center;
   align-items: center;
