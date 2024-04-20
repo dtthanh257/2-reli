@@ -41,7 +41,7 @@
           </div>
           <div class="flex-row jc-sb w-100">
             <h2>Tài khoản ngân hàng của tôi</h2>
-            <a href="/home">
+            <a href="/profile">
               <button class="pri-btn nor-btn">
                 Thêm tài khoản ngân hàng
               </button></a
