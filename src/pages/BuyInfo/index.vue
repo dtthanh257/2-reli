@@ -116,7 +116,7 @@
                 hàng
               </div>
             </div>
-            <div class="textfield-bank-acc">
+            <div class="textfield-bank-acc" style="width: 50%">
               <label class="textfield-label-v2">Tài khoản ngân hàng</label>
               <input type="text" class="textfield-input-v2" />
               <div
@@ -131,6 +131,41 @@
               </div>
             </div>
           </div>
+          <div
+            class="flex-row"
+            style="border-bottom: 1px solid var(--border-color)"
+          >
+            <div class="flex-column" style="flex: 1"></div>
+            <div
+              class="flex-column"
+              style="flex: 1; gap: 24px; padding: 24px 40px"
+            >
+              <div class="flex-row jc-sb">
+                <div class="product-price-title">Tổng tiền hàng</div>
+                {{ formatCurrency(productPrice) }}
+              </div>
+              <div class="flex-row jc-sb">
+                <div class="product-price-title">Phí vận chuyển</div>
+                {{ formatCurrency(shipPrice) }}
+              </div>
+              <div class="flex-row jc-sb">
+                <div class="product-price-title">Tổng số tiền</div>
+                <div class="product-total-price">
+                  {{ formatCurrency(totalPrice) }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="home-cate flex-row"
+            style="
+              justify-content: end;
+              padding-bottom: 38px;
+              padding-right: 40px;
+            "
+          >
+            <button class="product-order-btn">ĐẶT HÀNG</button>
+          </div>
         </div>
       </div>
     </div>
@@ -143,10 +178,33 @@ import Textfield from "@/components/TextField/index.vue";
 import Footer from "@/components/Footer/index.vue";
 export default {
   name: "BuyInfo",
+  props: {
+    productPrice: {
+      type: Number,
+      default: 0,
+    },
+    shipPrice: {
+      type: Number,
+      default: 0,
+    },
+    totalPrice: {
+      type: Number,
+      default: 0,
+    },
+  },
   components: {
     Navbar,
     Footer,
     Textfield,
+  },
+  methods: {
+    formatCurrency(number) {
+      const formattedNumber = number
+        .toFixed(0)
+        .replace(/\d(?=(\d{3})+$)/g, "$&,");
+      // Thêm đơn vị tiền tệ
+      return formattedNumber + " VNĐ";
+    },
   },
 };
 </script>

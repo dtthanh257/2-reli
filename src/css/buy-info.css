@@ -48,7 +48,7 @@
 }
 .product-pay-method {
   text-align: start;
-  background-color: white;
+  border-bottom: 1px solid var(--border-color);
   padding: 36px 40px;
   gap: 24px;
 }
@@ -56,4 +56,20 @@
   font-size: 23px;
   font-weight: 500;
   color: #4d6939;
+}
+.product-price-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #777777;
+}
+.product-total-price {
+  color: #28a24f;
+  font-size: 22px;
+}
+.product-order-btn {
+  height: 44px;
+  width: 224px;
+  background-color: var(--primary-color);
+  font-size: 14px;
+  color: white;
 }
