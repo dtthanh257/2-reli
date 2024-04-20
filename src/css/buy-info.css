@@ -1,0 +1,59 @@
+.buy-info {
+  background-color: white;
+  text-align: start;
+  gap: 34px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  padding-bottom: 40px;
+}
+.buy-info h3 {
+  font-weight: 600;
+  font-size: 23px;
+  color: #4d6939;
+}
+.buy-product-list {
+  background-color: white;
+}
+.buy-product-list table {
+  width: 100%;
+  padding: 0px 36px;
+}
+
+.buy-product-list th {
+  height: 48px;
+  text-align: start;
+  font-size: 16px;
+  color: #777777;
+  font-weight: 400;
+}
+.buy-product-list tfoot tr td {
+  margin-top: 20px;
+}
+.buy-product-list tbody tr td {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+.product-sell-img {
+  height: 76px;
+  width: 76px;
+  background-image: url(../../public/img/assets/techcombank-logo2.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.product-list-item {
+  align-items: start;
+  gap: 14px;
+}
+.product-pay-method {
+  text-align: start;
+  background-color: white;
+  padding: 36px 40px;
+  gap: 24px;
+}
+.product-pay-method h3 {
+  font-size: 23px;
+  font-weight: 500;
+  color: #4d6939;
+}

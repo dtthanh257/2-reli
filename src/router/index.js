@@ -8,6 +8,7 @@ import ProfilePage from "@/pages/Profile/index.vue";
 import Procurement from "@/pages/Procurement/index.vue";
 import ProductManage from "@/pages/ProductManage/index.vue";
 import Collect from "@/pages/Collect/index.vue";
+import BuyInfo from "@/pages/BuyInfo/index.vue";
 const routes = [
   // {
   //   path: "/",
@@ -57,6 +58,10 @@ const routes = [
   {
     path: "/collect",
     component: Collect,
+  },
+  {
+    path: "/buyinfo",
+    component: BuyInfo,
   },
 ];
 
