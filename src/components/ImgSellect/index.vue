@@ -18,7 +18,6 @@
       class="newImg"
       :src="imageUrl"
       alt=""
-      style="display: none"
     />
   </div>
 </template>

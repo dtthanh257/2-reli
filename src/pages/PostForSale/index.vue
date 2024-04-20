@@ -10,7 +10,7 @@
           <div class="flex-column post-for-sale-img">
             <div class="flex-row jc-sb">
               <ImgSelect
-                v-for="(index, imgSelectIndex) in imgSelects.slice(3, 6)"
+                v-for="(imgSelectIndex, index) in imgSelects.slice(0, 3)"
                 :key="index"
                 :ref="'imgSelect' + imgSelectIndex"
                 @click="openFileInput(imgSelectIndex)"
@@ -19,7 +19,7 @@
             </div>
             <div class="flex-row jc-sb">
               <ImgSelect
-                v-for="(index, imgSelectIndex) in imgSelects.slice(0, 3)"
+                v-for="(imgSelectIndex, index) in imgSelects.slice(3, 6)"
                 :key="index"
                 :ref="'imgSelect' + imgSelectIndex"
                 @click="openFileInput(imgSelectIndex)"
@@ -172,6 +172,14 @@ const Postforsale = {
     Textarea,
     Combobox,
     ImgSelect,
+  },
+  methods: {
+    openFileInput(imgSelectIndex) {
+      const imgSelect = this.$refs["imgSelect" + imgSelectIndex][0];
+      if (imgSelect) {
+        imgSelect.$refs.fileInput.click();
+      }
+    },
   },
 };
 export default Postforsale;

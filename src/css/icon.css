@@ -69,3 +69,6 @@
   width: 28px;
   background-image: url(../../public/img/icons/show-arrow-icon.png);
 }
+.newImg {
+  display: none;
+}

@@ -165,7 +165,63 @@
         Gửi yêu cầu thu gom
       </button>
     </div>
-
+    <div
+      class="grid-12"
+      style="
+        background-color: #f3f2f2;
+        padding-bottom: 60px;
+        padding-top: 12px;
+        margin-top: 60px;
+      "
+    >
+      <div class="precurement-produce flex-column home-cate gap-60">
+        <h2>QUY TRÌNH THU MUA CÙNG 2RELI</h2>
+        <div class="flex-row gap-20" style="width: 70%; align-items: center">
+          <img
+            class="precurement-produce-img"
+            src="../../../public/img/assets/procduce-package.png"
+            alt=""
+          />
+          <div class="flex-column" style="gap: 16px">
+            <h3>Đóng gói sản phẩm</h3>
+            <p>
+              2Reli sẽ đặt đơn vị vận chuyển đến để lấy hàng vào thời gian phù
+              hợp. Bạn hãy ghi mã số đơn hàng trên túi hàng để 2Reli có thể nhận
+              diện.
+            </p>
+          </div>
+        </div>
+        <div class="flex-row gap-20" style="width: 70%; align-items: center">
+          <img
+            class="precurement-produce-img"
+            src="../../../public/img/assets/procduce-glass.png"
+            alt=""
+          />
+          <div class="flex-column" style="gap: 16px">
+            <h3>Kiểm định & Báo giá</h3>
+            <p>
+              2Reli sẽ kiểm định chất lượng và gửi báo giá cho bạn trong vòng 5
+              ngày để bạn kiểm tra và xác nhận.
+            </p>
+          </div>
+        </div>
+        <div class="flex-row gap-20" style="width: 70%; align-items: center">
+          <img
+            class="precurement-produce-img"
+            src="../../../public/img/assets/procduce-money-bag.png"
+            alt=""
+          />
+          <div class="flex-column" style="gap: 16px">
+            <h3>Thanh toán & Đăng bán</h3>
+            <p>
+              2Reli sẽ thanh toán hoá đơn ngay tức thì kể từ khi nhận được xác
+              nhận từ bạn. Sau đó, sản phẩm của bạn sẽ được 2Reli đăng bán với
+              tick xanh.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <Footer></Footer>
   </div>
 </template>
