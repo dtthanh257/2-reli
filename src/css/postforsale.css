@@ -42,12 +42,12 @@ p {
   font-weight: 500;
 }
 .pfs-button {
-  height: 70px;
-  width: 38%;
+  height: 66px;
+  width: 36%;
   border-radius: 2px;
   background-color: var(--primary-color);
   color: white;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   display: flex;
   justify-content: center;

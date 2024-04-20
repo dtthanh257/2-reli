@@ -76,19 +76,38 @@
         <h2>BẠN CỨ YÊN TÂM MUA BÁN</h2>
         <div class="flex-row jc-sb gap-128">
           <div class="flex-column align-items-center gap-32">
-            <h3>THANH TOÁN</h3>
+            <h3 style="white-space: nowrap">THANH TOÁN</h3>
             <div class="about-policy-img1 icon"></div>
-            <p>Chính sách đổi trả bảo vệ quyền lợi của bạn</p>
+            <div class="flex-column" style="gap: 4px">
+              <p style="white-space: nowrap; padding: 0">Chính sách đổi trả</p>
+              <p style="white-space: nowrap; padding: 0">
+                bảo vệ quyền lợi của bạn
+              </p>
+            </div>
           </div>
           <div class="flex-column align-items-center gap-32">
-            <h3>KIỂM ĐỊNH</h3>
+            <h3 style="white-space: nowrap">KIỂM ĐỊNH</h3>
             <div class="about-policy-img2 icon"></div>
-            <p>2Reli đảm bảo chất lượng của món đồ bằng tick xanh</p>
+            <div class="flex-column" style="gap: 4px">
+              <p style="white-space: nowrap; padding: 0">
+                2Reli đảm bảo chất lượng
+              </p>
+              <p style="white-space: nowrap; padding: 0">
+                của món đồ bằng tick xanh
+              </p>
+            </div>
           </div>
           <div class="flex-column align-items-center gap-32">
-            <h3>DỌN TỦ DỄ DÀNG</h3>
+            <h3 style="white-space: nowrap">DỌN TỦ DỄ DÀNG</h3>
             <div class="about-policy-img3 icon"></div>
-            <p>2Reli nhận đồ của bạn ở hầu hết tình trạng</p>
+            <div class="flex-column" style="gap: 4px">
+              <p style="white-space: nowrap; padding: 0">
+                2Reli nhận đồ của bạn
+              </p>
+              <p style="white-space: nowrap; padding: 0">
+                ở hầu hết tình trạng
+              </p>
+            </div>
           </div>
         </div>
       </div>

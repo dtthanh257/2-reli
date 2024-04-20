@@ -4,10 +4,10 @@
     <div class="flex-column">
       <div class="grid-12">
         <div class="home-cate procurement-contain">
-          <h2 style="text-align: start">Thu mua sản phẩm</h2>
+          <h2 style="text-align: start; color: black">THU MUA SẢN PHẨM</h2>
           <div class="flex-column align-items-center">
             <div class="flex-row gap-20 w-100" style="margin-bottom: 26px">
-              <div class="procurement-img"></div>
+              <div class="procurement-img" style="flex: 1"></div>
               <div class="flex-column gap-20 jc-sb" style="flex: 1">
                 <Textfield
                   label="TÊN SẢN PHẨM"
@@ -22,31 +22,22 @@
                   style="flex: 0"
                 ></Textfield>
                 <div class="flex-column gap-8">
-                  <h3>Thêm hình ảnh đơn hàng</h3>
+                  <h3 style="font-size: 14.4px">THÊM HÌNH ẢNH ĐƠN HÀNG</h3>
                   <span>Đăng từ 1 - 4 ảnh</span>
                   <div class="flex-row jc-sb">
-                    <button
-                      class="pfs-img-icon icon"
-                      style="width: 90px; height: 90px"
-                    ></button
-                    ><button
-                      class="pfs-img-icon icon"
-                      style="width: 90px; height: 90px"
-                    ></button
-                    ><button
-                      class="pfs-img-icon icon"
-                      style="width: 90px; height: 90px"
-                    ></button
-                    ><button
-                      class="pfs-img-icon icon"
-                      style="width: 90px; height: 90px"
-                    ></button>
+                    <ImgSelect
+                      v-for="index in 4"
+                      :key="index"
+                      :ref="'imgSelect' + index"
+                      @click="openFileInput(index)"
+                      size="106"
+                    ></ImgSelect>
                   </div>
                 </div>
               </div>
             </div>
             <div class="flex-row gap-20">
-              <div class="flex-column gap-30">
+              <div class="flex-column gap-30" style="flex: 1">
                 <h3>Thông tin cá nhân</h3>
                 <Textfield
                   isV2="true"
@@ -54,18 +45,22 @@
                   height="50"
                 ></Textfield>
                 <div class="flex-row gap-20">
-                  <Combobox
+                  <Textfield
                     isV2="true"
                     label="Tỉnh/Thành phố"
                     height="50"
-                  ></Combobox>
-                  <Combobox
+                  ></Textfield>
+                  <Textfield
                     isV2="true"
                     label="Quận/Huyện"
                     height="50"
-                  ></Combobox>
+                  ></Textfield>
                 </div>
-                <Combobox isV2="true" label="Phường/Xã" height="50"></Combobox>
+                <Textfield
+                  isV2="true"
+                  label="Phường/Xã"
+                  height="50"
+                ></Textfield>
                 <Textfield
                   isV2="true"
                   label="Địa chỉ cụ thể"
@@ -150,9 +145,12 @@
                 </div>
               </div>
             </div>
-            <button class="procurement-button btn nor-btn">
+            <button
+              class="procurement-button btn nor-btn"
+              style="font-weight: 600"
+            >
               <div class="procurement-button-icon icon"></div>
-              Gửi yêu cầu thu mua
+              GỬI YÊU CẦU THU MUA
             </button>
           </div>
         </div>
@@ -176,7 +174,7 @@
             />
             <div class="flex-column" style="gap: 16px">
               <h3>Đóng gói sản phẩm</h3>
-              <p>
+              <p style="line-height: 20px">
                 2Reli sẽ đặt đơn vị vận chuyển đến để lấy hàng vào thời gian phù
                 hợp. Bạn hãy ghi mã số đơn hàng trên túi hàng để 2Reli có thể
                 nhận diện.
@@ -191,7 +189,7 @@
             />
             <div class="flex-column" style="gap: 16px">
               <h3>Kiểm định & Báo giá</h3>
-              <p>
+              <p style="line-height: 20px">
                 2Reli sẽ kiểm định chất lượng và gửi báo giá cho bạn trong vòng
                 5 ngày để bạn kiểm tra và xác nhận.
               </p>
@@ -205,13 +203,14 @@
             />
             <div class="flex-column" style="gap: 16px">
               <h3>Thanh toán & Đăng bán</h3>
-              <p>
+              <p style="line-height: 20px">
                 2Reli sẽ thanh toán hoá đơn ngay tức thì kể từ khi nhận được xác
                 nhận từ bạn. Sau đó, sản phẩm của bạn sẽ được 2Reli đăng bán với
                 tick xanh.
               </p>
             </div>
           </div>
+          F
         </div>
       </div>
     </div>
@@ -224,8 +223,10 @@ import Footer from "@/components/Footer/index.vue";
 import Textfield from "@/components/TextField/index.vue";
 import Combobox from "@/components/Combobox/index.vue";
 import Textarea from "@/components/Textarea/index.vue";
+import ImgSelect from "@/components/ImgSellect/index.vue";
 const Procument = {
   components: {
+    ImgSelect,
     Navbar,
     Textfield,
     Combobox,

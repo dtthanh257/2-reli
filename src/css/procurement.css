@@ -1,6 +1,6 @@
 .procurement-img {
   height: 342px;
-  width: 468px;
+  width: 100%;
   background-image: url(../../public/img/assets/procurement-img.png);
   background-position: center;
   background-repeat: no-repeat;

@@ -184,7 +184,7 @@
           />
           <div class="flex-column" style="gap: 16px">
             <h3>Đóng gói sản phẩm</h3>
-            <p>
+            <p style="line-height: 20px">
               2Reli sẽ đặt đơn vị vận chuyển đến để lấy hàng vào thời gian phù
               hợp. Bạn hãy ghi mã số đơn hàng trên túi hàng để 2Reli có thể nhận
               diện.
@@ -199,7 +199,7 @@
           />
           <div class="flex-column" style="gap: 16px">
             <h3>Kiểm định & Báo giá</h3>
-            <p>
+            <p style="line-height: 20px">
               2Reli sẽ kiểm định chất lượng và gửi báo giá cho bạn trong vòng 5
               ngày để bạn kiểm tra và xác nhận.
             </p>
@@ -213,7 +213,7 @@
           />
           <div class="flex-column" style="gap: 16px">
             <h3>Thanh toán & Đăng bán</h3>
-            <p>
+            <p style="line-height: 20px">
               2Reli sẽ thanh toán hoá đơn ngay tức thì kể từ khi nhận được xác
               nhận từ bạn. Sau đó, sản phẩm của bạn sẽ được 2Reli đăng bán với
               tick xanh.

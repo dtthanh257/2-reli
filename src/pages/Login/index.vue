@@ -22,14 +22,14 @@
             <a href="">Đăng nhập với SMS</a>
           </div>
           <div class="flex-row login-devider">
-            <div class="hr-line"></div>
+            <!-- <div class="hr-line"></div>
             <span>HOẶC</span>
-            <div class="hr-line"></div>
+            <div class="hr-line"></div> -->
           </div>
-          <div class="flex-row login-with">
+          <!-- <div class="flex-row login-with">
             <button class="login-with-fb"></button>
             <button class="login-with-gg"></button>
-          </div>
+          </div> -->
           <div class="link-to-regis">
             Bạn mới biết đến 2Reli? <a href="/register">Đăng ký</a>
           </div>

@@ -4,7 +4,7 @@
     <div class="grid-12">
       <div class="home-cate flex-row gap-20">
         <div class="post-for-sale-title">
-          <h2>Đăng bán sản phẩm</h2>
+          <h2>ĐĂNG BÁN SẢN PHẨM</h2>
           <h3>Thêm hình ảnh sản phẩm</h3>
           <p>Đăng từ 1 - 6 ảnh</p>
           <div class="flex-column post-for-sale-img">

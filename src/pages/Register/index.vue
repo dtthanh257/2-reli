@@ -6,17 +6,30 @@
     <div class="login-page r-flex">
       <div class="login-container">
         <div class="login-logo"></div>
-        <div class="login-put flex-column">
+        <div class="login-put flex-column" style="gap: 24px">
           <h2>Đăng ký</h2>
-          <div class="login-textfield flex-column">
-            <input type="text" placeholder="Số điện thoại" />
+          <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
+            <div class="register-title">Số điện thoại (*)</div>
+            <input type="text" placeholder="" />
           </div>
-          <button class="login-button flex-row">ĐĂNG NHẬP</button>
+          <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
+            <div class="register-title">Số điện thoại (*)</div>
+            <input type="text" placeholder="" />
+          </div>
+          <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
+            <div class="register-title">Số điện thoại (*)</div>
+            <input type="text" placeholder="" />
+          </div>
+          <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
+            <div class="register-title">Số điện thoại (*)</div>
+            <input type="text" placeholder="" />
+          </div>
+          <button class="login-button flex-row">TẠO TÀI KHOẢN</button>
           <!-- <div class="flex-row login-way">
           <a href="">Quên mật khẩu</a>
           <a href="">Đăng nhập với SMS</a>
         </div> -->
-          <div class="flex-row login-devider">
+          <!-- <div class="flex-row login-devider">
             <div class="hr-line"></div>
             <span>HOẶC</span>
             <div class="hr-line"></div>
@@ -24,12 +37,12 @@
           <div class="flex-row login-with">
             <button class="login-with-fb"></button>
             <button class="login-with-gg"></button>
-          </div>
-          <div class="link-to-policy">
+          </div> -->
+          <div class="link-to-policy" style="margin-top: 12px">
             Bằng việc đăng kí, bạn đã đồng ý với 2Reli về
             <a href="">Điều khoản & Chính sách</a>
           </div>
-          <div class="link-to-login">
+          <div class="link-to-login" style="margin: 42px; margin-top: 8px">
             Bạn mới biết đến 2Reli? <a href="/login">Đăng nhập</a>
           </div>
         </div>

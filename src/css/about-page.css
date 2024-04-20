@@ -9,10 +9,11 @@
   background-image: url(../../public/img/assets/about-img.png);
 }
 .about-cont {
-  height: 365px;
+  height: fit-content;
   width: 100%;
   background-color: var(--primary-color);
   padding: 74px 0;
+  text-align: justify;
 }
 .about-cont .home-cate {
   padding-top: 0;
@@ -33,6 +34,7 @@
   background-image: url(../../public/img/assets/about-page2.png);
 }
 .about-title {
+  color: black;
   font-weight: 600;
   font-size: 36px;
   line-height: 40px;
@@ -61,12 +63,13 @@
   color: var(--primary-color);
 }
 .about-discover-text h2 {
+  line-height: 40px;
   font-size: 22px;
   font-weight: bold;
 }
 .about-discover-text p {
   font-size: 22px;
-  line-height: 48px;
+  line-height: 40px;
   text-align: start;
 }
 .about-discover-img2 {
@@ -93,7 +96,7 @@
   font-weight: 600;
 }
 .about-policy p {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 300;
 }
 .about-policy .home-cate {
