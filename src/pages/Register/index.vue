@@ -10,21 +10,35 @@
           <h2>Đăng ký</h2>
           <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
             <div class="register-title">Số điện thoại (*)</div>
-            <input type="text" placeholder="" />
+            <input
+              type="text"
+              placeholder=""
+              v-model="this.formRegis.PhoneNumber"
+            />
           </div>
           <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
-            <div class="register-title">Số điện thoại (*)</div>
-            <input type="text" placeholder="" />
+            <div class="register-title">Họ và tên (*)</div>
+            <input type="text" placeholder="" v-model="this.formRegis.Name" />
           </div>
           <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
-            <div class="register-title">Số điện thoại (*)</div>
-            <input type="text" placeholder="" />
+            <div class="register-title">Tên đăng nhập (*)</div>
+            <input
+              type="text"
+              placeholder=""
+              v-model="this.formRegis.Nickname"
+            />
           </div>
           <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
-            <div class="register-title">Số điện thoại (*)</div>
-            <input type="text" placeholder="" />
+            <div class="register-title">Mật khẩu (*)</div>
+            <input
+              type="text"
+              placeholder=""
+              v-model="this.formRegis.Nickname"
+            />
           </div>
-          <button class="login-button flex-row">TẠO TÀI KHOẢN</button>
+          <button class="login-button flex-row" @click="registerUser()">
+            TẠO TÀI KHOẢN
+          </button>
           <!-- <div class="flex-row login-way">
           <a href="">Quên mật khẩu</a>
           <a href="">Đăng nhập với SMS</a>
@@ -53,9 +67,34 @@
 </template>
 <script>
 import Footer from "@/components/Footer/index.vue";
+import UserService from "@/";
 const Register = {
+  data() {
+    return {
+      formRegis: {
+        Name: "",
+        Nickname: "",
+        PhoneNumber: "",
+        Password: "",
+      },
+    };
+  },
   components: {
     Footer,
+  },
+  method: {
+    async registerUser() {
+      const userRegis = {
+        Name: this.formRegis.Name,
+        Nickname: this.formRegis.Nickname,
+        PhoneNumber: this.formRegis.PhoneNumber,
+        Password: this.formRegis.Password,
+      };
+      var raw = JSON.stringify(userRegis);
+      UserService.registerUser(raw).then(() => {
+        console.log("Đăng ký thành công");
+      });
+    },
   },
 };
 export default Register;
