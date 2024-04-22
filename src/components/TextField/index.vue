@@ -9,7 +9,12 @@
         type="text"
         :class="{ 'textfield-input-v2': isV2, 'textfield-input-v3': isV3 }"
         :placeholder="placeholder"
-        :style="{ height: height + 'px', width: width + '%' }"
+        v-model="inputValue"
+        :style="{
+          height: height + 'px',
+          width: width + '%',
+          'padding-bottom': pb + 'px',
+        }"
       />
       <div class="vnd" v-if="width == 50">VNĐ</div>
     </div>
@@ -27,6 +32,10 @@ const Textfield = {
       type: Number,
       default: 30,
     },
+    pb: {
+      type: Number,
+      default: 0,
+    },
     placeholder: {
       type: String,
       default: "",
@@ -39,7 +48,20 @@ const Textfield = {
       type: Boolean,
       default: false,
     },
+    input: String,
+  },
+  computed: {
+    inputValue: {
+      get() {
+        return this.input;
+      },
+      set(value) {
+        // some logic
+        this.$emit("update:input", value);
+      },
+    },
   },
 };
+
 export default Textfield;
 </script>

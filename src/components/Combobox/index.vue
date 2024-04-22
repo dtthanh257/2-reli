@@ -87,6 +87,17 @@ export default {
     },
     width: Number,
   },
+  // computed: {
+  //   computedInputValue: {
+  //     get() {
+  //       return this.input;
+  //     },
+  //     set(value) {
+  //       // some logic
+  //       this.$emit("update:input", value);
+  //     },
+  //   },
+  // },
   mounted() {
     document.addEventListener("click", this.closeDropdownOnClickOutside);
   },

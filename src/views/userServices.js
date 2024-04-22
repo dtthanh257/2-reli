@@ -6,9 +6,15 @@ class UserService {
       url: "https://localhost:44385/api/Users",
       headers: {
         accepts: "*/*",
-        "Content-Type": "application/json-patch+json",
+        "Content-Type": "application/json",
       },
       data: data,
+    });
+  }
+  async getUser() {
+    return await axios({
+      method: "get",
+      url: "https://localhost:44385/api/Users",
     });
   }
 }

@@ -19,7 +19,9 @@
         <a href="/procurement"
           ><span class="per-buy-icon icon"></span>THU MUA</a
         >
-        <a><span class="per-collect-icon icon"></span>THU GOM</a>
+        <a href="/collect"
+          ><span class="per-collect-icon icon"></span>THU GOM</a
+        >
       </div>
       <div class="nav-acc flex-row">
         <i class="fa-regular fa-circle-user" style="font-size: 24px"></i>

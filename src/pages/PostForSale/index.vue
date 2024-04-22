@@ -30,37 +30,41 @@
         </div>
         <div class="pfs-product-form flex-column">
           <Textfield
+            v-model:input="this.productFrom.product_name"
             label="TÊN SẢN PHẨM"
             placeholder="Giới thiệu ngắn gọn về sản phẩm"
             height="40"
           ></Textfield>
-          <Textarea
+          <Textfield
+            v-model:input="this.productFrom.product_descr"
             label="MÔ TẢ SẢN PHẨM"
             placeholder="Mô tả ngắn gọn về sản phẩm"
             height="64"
-          ></Textarea>
-          <Textarea
+            pb="20"
+          ></Textfield>
+          <Textfield
+            v-model:input="this.productFrom.product_status"
             label="TÌNH TRẠNG SẢN PHẨM"
             placeholder="Sản phẩm mới sử dụng một lần..."
             height="78"
+            pb="30"
           >
-          </Textarea>
+          </Textfield>
           <div class="flex-row gap-20">
             <Combobox
               label="PHÂN LOẠI SẢN PHẨM"
               :options="options"
-              @input="handleInput"
               :items="classify"
             ></Combobox>
             <Combobox
               label="KÍCH CỠ SẢN PHẨM"
               :options="options"
-              @input="handleInput"
               :items="size"
             ></Combobox>
           </div>
           <div class="flex-row gap-20">
             <Textfield
+              v-model:input="this.productFrom.product_quantity"
               label="SỐ LƯỢNG SẢN PHẨM"
               placeholder="Nhập số lượng sản phẩm"
               height="40"
@@ -115,7 +119,7 @@
         </div>
       </div>
       <div class="home-cate" style="display: flex; justify-content: center">
-        <button class="pfs-button">
+        <button class="pfs-button" @click="addProduct()">
           <div class="pfs-button-icon icon"></div>
           ĐĂNG BÁN SẢN PHẨM
         </button>
@@ -129,13 +133,22 @@ import Navbar from "../../components/Navbar/index.vue";
 import Footer from "../../components/Footer/index.vue";
 import Product from "../../components/Product/index.vue";
 import Textfield from "@/components/TextField/index.vue";
-import Textarea from "@/components/Textarea/index.vue";
+// import Textarea from "@/components/Textarea/index.vue";
 import Combobox from "@/components/Combobox/index.vue";
 import ImgSelect from "@/components/ImgSellect/index.vue";
-
+import ProductService from "@/views/productServices.js";
 const Postforsale = {
   data() {
     return {
+      productFrom: {
+        product_name: "",
+        product_descr: "",
+        product_status: "",
+        product_type: "",
+        product_size: "",
+        product_quantity: "",
+        product_price: "",
+      },
       imgSelects: [0, 1, 2, 3, 4, 5],
       classify: [
         { id: 1, name: "Áo" },
@@ -169,7 +182,7 @@ const Postforsale = {
     Footer,
     Product,
     Textfield,
-    Textarea,
+    // Textarea,
     Combobox,
     ImgSelect,
   },
@@ -179,6 +192,13 @@ const Postforsale = {
       if (imgSelect) {
         imgSelect.$refs.fileInput.click();
       }
+    },
+    async addProduct() {
+      var raw = JSON.stringify(this.productFrom);
+      console.log(raw);
+      await ProductService.addProduct(raw).then(() => {
+        console.log("Đăng sản phẩm thành công");
+      });
     },
   },
 };

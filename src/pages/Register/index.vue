@@ -31,9 +31,10 @@
           <div class="login-textfield flex-column" style="margin: 0; gap: 12px">
             <div class="register-title">Mật khẩu (*)</div>
             <input
-              type="text"
+              type="password"
+              style="padding-right: 12px"
               placeholder=""
-              v-model="this.formRegis.Nickname"
+              v-model="this.formRegis.Password"
             />
           </div>
           <button class="login-button flex-row" @click="registerUser()">
@@ -67,7 +68,7 @@
 </template>
 <script>
 import Footer from "@/components/Footer/index.vue";
-import UserService from "@/";
+import UserService from "@/views/userServices.js";
 const Register = {
   data() {
     return {
@@ -82,16 +83,19 @@ const Register = {
   components: {
     Footer,
   },
-  method: {
+  methods: {
     async registerUser() {
       const userRegis = {
-        Name: this.formRegis.Name,
-        Nickname: this.formRegis.Nickname,
-        PhoneNumber: this.formRegis.PhoneNumber,
-        Password: this.formRegis.Password,
+        name: this.formRegis.Name,
+        nickname: this.formRegis.Nickname,
+        phone_number: this.formRegis.PhoneNumber,
+        password: this.formRegis.Password,
       };
+      console.log("Ấn tạo tài khoản");
       var raw = JSON.stringify(userRegis);
-      UserService.registerUser(raw).then(() => {
+      console.log(raw);
+      // console.log(UserService.getUser());
+      await UserService.registerUser(raw).then(() => {
         console.log("Đăng ký thành công");
       });
     },
