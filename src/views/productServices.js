@@ -14,6 +14,17 @@ class ProductService {
       throw error;
     }
   }
+  async getProductToDemo(startRecord, count) {
+    try {
+      const response = await axios.get(
+        `https://localhost:44385/api/SellProduct/${startRecord}/${count}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching product: ", error);
+      throw error;
+    }
+  }
   async addProduct(data) {
     return await axios({
       method: "post",

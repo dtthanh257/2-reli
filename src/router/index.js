@@ -9,6 +9,7 @@ import Procurement from "@/pages/Procurement/index.vue";
 import ProductManage from "@/pages/ProductManage/index.vue";
 import Collect from "@/pages/Collect/index.vue";
 import BuyInfo from "@/pages/BuyInfo/index.vue";
+import ProductDetail from "@/pages/ProductDetail/index.vue";
 const routes = [
   // {
   //   path: "/",
@@ -62,6 +63,10 @@ const routes = [
   {
     path: "/buyinfo",
     component: BuyInfo,
+  },
+  {
+    path: "/productdetail",
+    component: ProductDetail,
   },
 ];
 

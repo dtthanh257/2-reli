@@ -16,15 +16,26 @@
 }
 .product p {
   padding: 0 8px;
-  font-size: 20px;
+  font-size: 19px;
   margin-bottom: 8px;
+  font-weight: 500;
+  max-width: 130px;
+  white-space: nowrap;
+  color: var(--primary-color);
 }
 .product h3 {
+  width: 140px;
   padding: 0 8px;
   font-size: 15px;
-  font-weight: 100;
+  font-weight: 300;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
 }
 .product-list {
+  gap: 20px;
   display: flex;
   flex-wrap: wrap;
   width: 100%;

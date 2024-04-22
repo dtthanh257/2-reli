@@ -91,33 +91,10 @@
           <div class="flex-row product-list">
             <Product
               thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
+              v-for="product in productDemo"
+              :key="product.id"
+              :name="product.product_name"
+              :price="formatPrice(product.product_price)"
             ></Product>
           </div>
         </div>
@@ -146,33 +123,10 @@
           <div class="flex-row product-list">
             <Product
               thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
-            ></Product>
-            <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
-              name="Váy của 2reli"
-              price="100000VNĐ"
+              v-for="product in productDemo"
+              :key="product.id"
+              :name="product.product_name"
+              :price="formatPrice(product.product_price)"
             ></Product>
           </div>
         </div>
@@ -185,6 +139,7 @@
 import Navbar from "../../components/Navbar/index.vue";
 import Footer from "../../components/Footer/index.vue";
 import Product from "../../components/Product/index.vue";
+import ProductService from "@/views/productServices";
 const Home = {
   components: {
     Navbar,
@@ -193,16 +148,49 @@ const Home = {
   },
   data() {
     return {
+      productDemo: [],
+      allProduct: [],
       showArrowIconFavo: false, // Trạng thái mặc định, không xoay
       showArrowIconRecom: false,
     };
   },
+  mounted() {
+    this.getProductToDemo(1, 6);
+    this.getAllProduct(1, 12);
+  },
   methods: {
     toggleArrowShowFavo() {
-      this.showArrowIconFavo = !this.showArrowIconFavo; // Đảo trạng thái khi ấn vào
+      this.showArrowIconFavo = !this.showArrowIconFavo;
+      if (this.showArrowIconFavo == false) {
+        this.getProductToDemo(1, 6); // Gọi lại hàm getProductToDemo với tham số 1, 6
+      } else {
+        this.getProductToDemo(1, 12); // Gọi lại hàm getProductToDemo với tham số 1, 12
+      }
+      // Đảo trạng thái khi ấn vào
     },
     toggleArrorShowRecom() {
       this.showArrowIconRecom = !this.showArrowIconRecom;
+      if (this.showArrowIconRecom == false) {
+        this.getProductToDemo(1, 6); // Gọi lại hàm getProductToDemo với tham số 1, 6
+      } else {
+        this.getProductToDemo(1, 12); // Gọi lại hàm getProductToDemo với tham số 1, 12
+      }
+    },
+    async getProductToDemo(startRecord, count) {
+      this.productDemo = await ProductService.getProductToDemo(
+        startRecord,
+        count
+      );
+      console.log(this.productDemo);
+    },
+    async getAllProduct(startRecord, count) {
+      this.allProduct = await ProductService.getProductToDemo(
+        startRecord,
+        count
+      );
+    },
+    formatPrice(price) {
+      return price.toLocaleString("vi-VN") + " VNĐ"; // Format giá tiền với đơn vị "VNĐ"
     },
   },
 };
