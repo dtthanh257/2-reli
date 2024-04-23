@@ -42,11 +42,27 @@ export default {
       const newImg = this.$refs.newImg;
       defaultImg.style.display = "none";
       newImg.style.display = "block";
+      const file1 = event.target.files[0];
+      if (file1) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.imageUrl = e.target.result;
+        };
+        reader.readAsDataURL(file1);
+      }
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
-          this.imageUrl = e.target.result;
+          // Tạo một Blob từ URL dữ liệu
+          const blob = new Blob([e.target.result]);
+
+          // Đọc dữ liệu blob và log ra console
+          const blobReader = new FileReader();
+          blobReader.onload = () => {
+            console.log(blobReader.result); // Dữ liệu blob sẽ được log ra console
+          };
+          blobReader.readAsArrayBuffer(blob);
         };
         reader.readAsDataURL(file);
       }
