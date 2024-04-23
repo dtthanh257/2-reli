@@ -36,6 +36,13 @@ class ProductService {
       data: data,
     });
   }
+  // Hàm lấy thông tin sản phẩm theo id sản phẩm
+  async getProductById(productId) {
+    const response = await axios.get(
+      `https://localhost:44385/api/SellProduct/${productId}`
+    );
+    return response.data;
+  }
 
   //   // Phương thức tải lên tệp lên Google Drive
   //   async uploadFileToDrive(filePath, fileName) {

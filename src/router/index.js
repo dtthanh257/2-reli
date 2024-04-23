@@ -65,8 +65,10 @@ const routes = [
     component: BuyInfo,
   },
   {
-    path: "/productdetail",
+    path: "/productdetail/:id",
+    name: "ProductDetail",
     component: ProductDetail,
+    props: true, // Đặt props: true để truyền các tham số từ URL vào component
   },
 ];
 

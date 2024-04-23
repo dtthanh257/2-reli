@@ -93,6 +93,7 @@
               thumbnail="/img/icons/apple-touch-icon-60x60.png"
               v-for="product in productDemo"
               :key="product.id"
+              :productId="product.id"
               :name="product.product_name"
               :price="formatPrice(product.product_price)"
             ></Product>

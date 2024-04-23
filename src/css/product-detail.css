@@ -1,0 +1,140 @@
+.product-detail-list {
+  flex: 1;
+  text-align: start;
+  max-width: 50%;
+}
+.product-detail {
+  background-color: #f5f5f5;
+}
+.product-detail-container {
+  background-color: white;
+  padding: 40px 40px;
+}
+.product-detail-name {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 28px;
+  /* padding-bottom: 26px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+}
+.product-detail-price {
+  font-size: 30px;
+  font-weight: 600;
+  color: #28a24f;
+}
+.product-detail-item {
+  font-size: 17px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+.product-detail-button button {
+  flex: 1;
+  height: 54px;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  /* border-radius: 3px; */
+}
+.product-detail-carticon {
+  height: 40%;
+}
+.product-detail-cart {
+  background-color: white;
+  border: 1px solid #28a24f;
+}
+.product-detail-buy {
+  color: white;
+  background-color: var(--primary-color);
+}
+.quantity-box {
+  display: flex;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  align-items: center;
+}
+.quantity-less {
+  border-right: 1px solid var(--border-color);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  cursor: pointer;
+}
+.quantity-more {
+  border-left: 1px solid var(--border-color);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  cursor: pointer;
+}
+.quantity {
+  padding: 0 8px;
+}
+.quantity-left {
+  font-size: 15px;
+  color: #28a24f;
+}
+.product-detail-cart:hover {
+  background-color: #e4e4e4;
+}
+.product-detail-cart:active {
+  background-color: #cecdcd;
+  color: white;
+}
+.product-detail-buy:hover {
+  background-color: var(--sec-color);
+}
+.product-detail-buy:active {
+  background-color: var(--active-color);
+}
+.seller-ava {
+  height: 102px;
+  background-image: url(../../public/img/assets/about-img2.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 102px;
+}
+.seller-account {
+  background-color: white;
+  padding: 28px 40px;
+  text-align: start;
+}
+.seller-message {
+  height: 48px;
+  padding: 16px 36px;
+  background-color: white;
+  border: 2px solid #28a24f;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.seller-name {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+}
+.seller-message:hover {
+  background-color: #e4e4e4;
+}
+.seller-message:active {
+  background-color: #cecdcd;
+  color: white;
+}
+.product-detail-name {
+  font-size: 23px !important;
+  font-weight: 500 !important;
+}
+.product-detail-price {
+  font-size: 30px !important;
+  color: #28a24f !important;
+  font-weight: 600;
+}

@@ -1,9 +1,11 @@
 /* eslint-disable */
 <template>
   <div class="product">
-    <img :src="thumbnail" alt="Product Thumbnail" />
-    <h3>{{ name }}</h3>
-    <p>{{ price }}</p>
+    <router-link :to="'/productdetail/' + productId">
+      <img :src="thumbnail" alt="Product Thumbnail" />
+      <h3>{{ name }}</h3>
+      <p>{{ price }}</p>
+    </router-link>
   </div>
 </template>
 
@@ -20,6 +22,10 @@ const Product = {
     },
     price: {
       type: String,
+      required: true,
+    },
+    productId: {
+      type: Number,
       required: true,
     },
   },

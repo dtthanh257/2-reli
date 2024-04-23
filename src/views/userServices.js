@@ -17,6 +17,10 @@ class UserService {
       url: "https://localhost:44385/api/Users",
     });
   }
+  async getUserById(userId) {
+    const res = await axios.get(`https://localhost:44385/api/Users/${userId}`);
+    return res;
+  }
 }
 
 export default new UserService();
