@@ -25,7 +25,7 @@
       </div>
       <div class="nav-acc flex-row">
         <i class="fa-regular fa-circle-user" style="font-size: 24px"></i>
-        <span style="white-space: nowrap">Tài khoản</span>
+        <span style="white-space: nowrap">{{ account }}</span>
         <i class="fa-solid fa-angle-down"></i>
         <AccDroplist></AccDroplist>
       </div>
@@ -38,9 +38,34 @@
 </template>
 <script>
 import AccDroplist from "../AccountDroplist/index.vue";
+import { ref, onMounted } from "vue"; // Import các hàm từ Vue 3
+
 const Navbar = {
   components: {
     AccDroplist,
+  },
+  setup() {
+    // Sử dụng ref để tạo một biến có thể thay đổi
+    const account = ref("Tài khoản");
+
+    // Kiểm tra JWT trong localStorage và gán giá trị cho biến account khi cần thiết
+    const checkJWT = () => {
+      const jwt = localStorage.getItem("jwt");
+      if (jwt) {
+        const username = localStorage.getItem("nickname");
+        account.value = username;
+      }
+    };
+
+    // Sử dụng hàm onMounted để gọi hàm checkJWT khi component được mount
+    onMounted(() => {
+      checkJWT();
+    });
+
+    // Trả về biến account để sử dụng trong template
+    return {
+      account,
+    };
   },
 };
 export default Navbar;

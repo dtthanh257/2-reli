@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar></Navbar>
+    <Navbar :account="this.account"></Navbar>
     <div class="home-container">
       <div class="home-intro flex-row justify-content-center">
         <div class="flex-column justify-content-center">
@@ -141,6 +141,7 @@ import Navbar from "../../components/Navbar/index.vue";
 import Footer from "../../components/Footer/index.vue";
 import Product from "../../components/Product/index.vue";
 import ProductService from "@/views/productServices";
+import { useRouter } from "vue-router";
 const Home = {
   components: {
     Navbar,
@@ -153,11 +154,32 @@ const Home = {
       allProduct: [],
       showArrowIconFavo: false, // Trạng thái mặc định, không xoay
       showArrowIconRecom: false,
+      account: "",
+    };
+  },
+  setup() {
+    const router = useRouter();
+
+    // Kiểm tra xem có JWT trong localStorage hay không
+    const checkJWT = () => {
+      const jwt = localStorage.getItem("jwt");
+      if (!jwt) {
+        // Nếu không có JWT, chuyển hướng người dùng đến trang đăng nhập
+        router.push("/login");
+      } else {
+        const username = localStorage.getItem("nickname");
+        return username;
+      }
+    };
+
+    return {
+      checkJWT,
     };
   },
   mounted() {
     this.getProductToDemo(1, 6);
     this.getAllProduct(1, 12);
+    this.account = this.checkJWT();
   },
   methods: {
     toggleArrowShowFavo() {

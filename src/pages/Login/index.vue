@@ -10,26 +10,25 @@
           <h2>Đăng nhập</h2>
           <div class="login-textfield flex-column">
             <input
+              v-model="LoginData.username"
               type="text"
               placeholder="Email/Số điện thoại/Tên đăng nhập"
             />
 
-            <input type="text" placeholder="Mật khẩu" />
+            <input
+              v-model="LoginData.password"
+              type="text"
+              placeholder="Mật khẩu"
+            />
           </div>
-          <div class="login-button flex-row">ĐĂNG NHẬP</div>
+          <div class="login-button flex-row" @click="submitLogin">
+            ĐĂNG NHẬP
+          </div>
           <div class="flex-row login-way">
             <a href="">Quên mật khẩu</a>
             <a href="">Đăng nhập với SMS</a>
           </div>
-          <div class="flex-row login-devider">
-            <!-- <div class="hr-line"></div>
-            <span>HOẶC</span>
-            <div class="hr-line"></div> -->
-          </div>
-          <!-- <div class="flex-row login-with">
-            <button class="login-with-fb"></button>
-            <button class="login-with-gg"></button>
-          </div> -->
+          <div class="flex-row login-devider"></div>
           <div class="link-to-regis">
             Bạn mới biết đến 2Reli? <a href="/register">Đăng ký</a>
           </div>
@@ -41,9 +40,48 @@
 </template>
 <script>
 import Footer from "@/components/Footer/index.vue";
+import LoginService from "@/views/loginServices.js";
+import { useRouter } from "vue-router";
 const Login = {
   components: {
     Footer,
+  },
+  data() {
+    return {
+      LoginData: {
+        username: "",
+        password: "",
+      },
+    };
+  },
+  setup() {
+    const router = useRouter();
+    const redirectToHome = () => {
+      router.push({ path: "/home" });
+    };
+    return {
+      redirectToHome,
+    };
+  },
+  methods: {
+    async submitLogin() {
+      const loginDataSubmit = {
+        nickname: this.LoginData.username,
+        password: this.LoginData.password,
+      };
+
+      try {
+        const res = await LoginService.loginSubmit(loginDataSubmit);
+        console.log("Đăng nhập thành công");
+        console.log(res.data);
+        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("nickname", res.data.nickname);
+        localStorage.setItem("jwt", res.data.jwt);
+        this.redirectToHome();
+      } catch (error) {
+        console.error("Đăng nhập thất bại:", error);
+      }
+    },
   },
 };
 export default Login;

@@ -63,6 +63,7 @@ export default {
             console.log(blobReader.result); // Dữ liệu blob sẽ được log ra console
           };
           blobReader.readAsArrayBuffer(blob);
+          this.$emit("file-loaded", e.target.result);
         };
         reader.readAsDataURL(file);
       }
