@@ -23,21 +23,11 @@
             <div class="product-detail-item product-detail-price">
               {{ this.productPrice }}
             </div>
-            <div class="product-detail-item">
-              Mô tả sản phẩm: {{ this.productDescr }}
-            </div>
-            <div class="product-detail-item">
-              Tình trạng: {{ this.productStatus }}
-            </div>
-            <div class="product-detail-item">
-              Loại sản phẩm: {{ this.productType }}
-            </div>
-            <div class="product-detail-item">
-              Thương hiệu: {{ this.productBrand }}
-            </div>
-            <div class="product-detail-item">
-              Kích cỡ: {{ this.productSize }}
-            </div>
+            <div class="product-detail-item">Mô tả sản phẩm: {{ this.productDescr }}</div>
+            <div class="product-detail-item">Tình trạng: {{ this.productStatus }}</div>
+            <div class="product-detail-item">Loại sản phẩm: {{ this.productType }}</div>
+            <div class="product-detail-item">Thương hiệu: {{ this.productBrand }}</div>
+            <div class="product-detail-item">Kích cỡ: {{ this.productSize }}</div>
             <div class="product-detail-item">
               Vận chuyển từ: {{ this.productAddress }}
             </div>
@@ -48,14 +38,11 @@
                 <div class="quantity">{{ this.buyQuantity }}</div>
                 <div class="quantity-more" @click="plusQuantity()">+</div>
               </div>
-              <div class="quantity-left">
-                Còn {{ this.productQuantity }} sản phẩm
-              </div>
+              <div class="quantity-left">Còn {{ this.productQuantity }} sản phẩm</div>
             </div>
             <div class="product-detail-button flex-row gap-20">
               <button class="product-detail-cart gap-8">
-                <i class="fa-solid fa-cart-shopping"></i
-                ><span>Thêm vào giỏ hàng</span>
+                <i class="fa-solid fa-cart-shopping"></i><span>Thêm vào giỏ hàng</span>
               </button>
               <button class="product-detail-buy">Mua ngay</button>
             </div>
@@ -109,9 +96,8 @@ export default {
       type: Number,
       default: 1,
     },
-  }, // Khai báo props để nhận id từ URL
+  },
   mounted() {
-    // Trong phương thức mounted, bạn có thể sử dụng id để lấy thông tin sản phẩm từ cơ sở dữ liệu hoặc từ API
     const productId = this.id;
     this.getProductInfo(productId);
     // Gọi API hoặc truy vấn cơ sở dữ liệu để lấy thông tin sản phẩm dựa trên productId
@@ -151,27 +137,20 @@ export default {
       }
     },
     formatCurrency(number) {
-      // Chuyển số thành chuỗi và ngược lại
+      // Chuyển số thành chuỗi
       const strNumber = String(number);
       // Tách phần nguyên và phần thập phân (nếu có)
       const parts = strNumber.split(".");
       // Phần nguyên (số tiền chính)
       let integerPart = parts[0];
-      // Phần thập phân (nếu có)
       let decimalPart = parts.length > 1 ? parts[1] : "";
-
-      // Thêm dấu phẩy ngăn cách phần ngàn
       integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-      // Kết hợp lại phần nguyên và thập phân (nếu có)
       let formattedNumber = integerPart;
       if (decimalPart !== "") {
         formattedNumber += "," + decimalPart;
       }
-
       // Thêm đơn vị tiền tệ
       formattedNumber += " VNĐ";
-
       return formattedNumber;
     },
   },
