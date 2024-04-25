@@ -90,6 +90,13 @@ const Register = {
         nickname: this.formRegis.Nickname,
         phone_number: this.formRegis.PhoneNumber,
         password: this.formRegis.Password,
+        email: "",
+        province: "",
+        district: "",
+        ward: "",
+        address: "",
+        dob: "2024-04-24T22:11:55.552Z",
+        gender: 0,
       };
       console.log("Ấn tạo tài khoản");
       var raw = JSON.stringify(userRegis);

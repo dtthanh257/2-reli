@@ -7,14 +7,40 @@
         <p>Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
         <div class="divider" style="margin-bottom: 48px"></div>
         <div class="flex-column align-items-center gap-28">
-          <Textfield label="Tên đăng nhập" isV3="true" height="40"></Textfield>
-          <Textfield label="Họ và tên" isV3="true" height="40"></Textfield>
-          <Textfield label="Email" isV3="true" height="40"></Textfield>
-          <Textfield label="Số điện thoại" isV3="true" height="40"></Textfield>
+          <Textfield
+            label="Tên đăng nhập"
+            :isReadOnly="isReadonly"
+            :readOnlyValue="this.userInfo.nickname"
+            isV3="true"
+            height="40"
+          ></Textfield>
+          <Textfield
+            :inputValue="this.userInfo.name"
+            label="Họ và tên"
+            isV3="true"
+            height="40"
+          ></Textfield>
+          <Textfield
+            v-model="this.userInfo.email"
+            label="Email"
+            isV3="true"
+            height="40"
+          ></Textfield>
+          <Textfield
+            :readOnlyValue="this.userInfo.phone_number"
+            label="Số điện thoại"
+            isV3="true"
+            height="40"
+          ></Textfield>
           <Combobox label="Tỉnh/Thành phố" isV3="true" :items="date"></Combobox>
           <Combobox label="Quận/Huyện" isV3="true"></Combobox>
           <Combobox label="Phường/Xã" isV3="true"></Combobox>
-          <Textfield label="Địa chỉ cụ thể" isV3="true" height="40"></Textfield>
+          <Textfield
+            :readOnlyValue="this.userInfo.address"
+            label="Địa chỉ cụ thể"
+            isV3="true"
+            height="40"
+          ></Textfield>
           <div class="flex-row sex-option-container gap-28">
             <label for="">Giới tính</label>
             <div class="flex-row gap-8">
@@ -37,7 +63,9 @@
             <Combobox isV3="true" width="120"></Combobox>
           </div>
           <div class="profile-save-btn">
-            <button class="pri-btn nor-btn">Lưu</button>
+            <button class="pri-btn nor-btn" @click="updateProfile(this.userId)">
+              Lưu
+            </button>
           </div>
           <div class="flex-row jc-sb w-100">
             <h2>Tài khoản ngân hàng của tôi</h2>
@@ -91,6 +119,7 @@ import Navbar from "@/components/Navbar/index.vue";
 import Textfield from "@/components/TextField/index.vue";
 import Combobox from "@/components/Combobox/index.vue";
 import Footer from "@/components/Footer/index.vue";
+import UserService from "@/views/userServices";
 export default {
   components: {
     Navbar,
@@ -109,7 +138,25 @@ export default {
         { id: 1, name: 4 },
         { id: 1, name: 5 },
       ],
+      userInfo: {
+        name: "",
+        nickname: "",
+        email: "",
+        phone_number: "",
+        province: "",
+        district: "",
+        ward: "",
+        address: "",
+        dob: "2024-04-24T23:33:27.609Z",
+      },
+      isReadonly: true,
+      userId: "",
     };
+  },
+  mounted() {
+    // Gọi hàm fetchUserInfo khi component được mounted
+    this.fetchUserInfo();
+    this.userId = localStorage.getItem("id");
   },
   methods: {
     openFileInput() {
@@ -130,6 +177,47 @@ export default {
         };
         reader.readAsDataURL(file);
       }
+    },
+    async fetchUserInfo() {
+      // Kiểm tra xem có jwt trong localStorage không
+      const jwt = localStorage.getItem("jwt");
+      if (jwt) {
+        const id = localStorage.getItem("id");
+        const res = await UserService.getUserById(id);
+        console.log(res);
+        this.userInfo.name = res.data.name;
+        this.userInfo.nickname = res.data.nickname;
+        this.userInfo.email = res.data.email;
+        this.userInfo.phone_number = res.data.phone_Number;
+        this.userInfo.province = res.data.province;
+        this.userInfo.ward = res.data.ward;
+        this.userInfo.address = res.data.address;
+        this.userInfo.dob = res.data.dob;
+      }
+    },
+    updateProfile(userId) {
+      const updatedUser = {
+        name: this.userInfo.name,
+        nickname: this.userInfo.nickname,
+        email: this.userInfo.email,
+        phone_number: this.userInfo.phone_number,
+        province: this.userInfo.province,
+        district: this.userInfo.district,
+        ward: this.userInfo.ward,
+        address: this.userInfo.address,
+        dob: "2024-04-24T23:36:35.207Z",
+        gender: this.userInfo.gender,
+      };
+      UserService.updateUser(userId, updatedUser)
+        .then((response) => {
+          console.log(response.data);
+          console.log("Cập nhật thông tin thành công");
+          console.log(this.userInfo);
+        })
+        .catch((error) => {
+          console.error(error);
+          // Xử lý khi có lỗi xảy ra
+        });
     },
   },
 };

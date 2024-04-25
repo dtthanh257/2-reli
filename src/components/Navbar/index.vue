@@ -28,6 +28,10 @@
         <span style="white-space: nowrap">{{ account }}</span>
         <i class="fa-solid fa-angle-down"></i>
         <AccDroplist></AccDroplist>
+        <!-- <div class="acc-droplist flex-column">
+          <a href="/profile" style="white-space: nowrap">Tài khoản của tôi</a>
+          <a href="/login">Đăng xuất</a>
+        </div> -->
       </div>
       <div class="flex-row nav-about">
         <a href="/about">Về 2Reli</a>

@@ -141,7 +141,7 @@ import Navbar from "../../components/Navbar/index.vue";
 import Footer from "../../components/Footer/index.vue";
 import Product from "../../components/Product/index.vue";
 import ProductService from "@/views/productServices";
-import { useRouter } from "vue-router";
+// import { useRouter } from "vue-router";
 const Home = {
   components: {
     Navbar,
@@ -158,15 +158,12 @@ const Home = {
     };
   },
   setup() {
-    const router = useRouter();
+    // const router = useRouter();
 
     // Kiểm tra xem có JWT trong localStorage hay không
     const checkJWT = () => {
       const jwt = localStorage.getItem("jwt");
-      if (!jwt) {
-        // Nếu không có JWT, chuyển hướng người dùng đến trang đăng nhập
-        router.push("/login");
-      } else {
+      if (jwt) {
         const username = localStorage.getItem("nickname");
         return username;
       }

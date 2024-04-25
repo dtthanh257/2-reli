@@ -210,7 +210,6 @@
               </p>
             </div>
           </div>
-          F
         </div>
       </div>
     </div>
