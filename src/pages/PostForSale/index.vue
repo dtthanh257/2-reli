@@ -14,6 +14,7 @@
                 :key="index"
                 :ref="'imgSelect' + imgSelectIndex"
                 @click="openFileInput(imgSelectIndex)"
+                @image-selected="addImageUrl"
                 size="120"
               ></ImgSelect>
             </div>
@@ -22,6 +23,7 @@
                 v-for="(imgSelectIndex, index) in imgSelects.slice(3, 6)"
                 :key="index"
                 :ref="'imgSelect' + imgSelectIndex"
+                @image-selected="addImageUrl"
                 @click="openFileInput(imgSelectIndex)"
                 size="120"
               ></ImgSelect>
@@ -30,20 +32,20 @@
         </div>
         <div class="pfs-product-form flex-column">
           <Textfield
-            v-model:input="this.productFrom.product_name"
+            v-model:input="this.productForm.product_name"
             label="TÊN SẢN PHẨM"
             placeholder="Giới thiệu ngắn gọn về sản phẩm"
             height="40"
           ></Textfield>
           <Textfield
-            v-model:input="this.productFrom.product_descr"
+            v-model:input="this.productForm.product_descr"
             label="MÔ TẢ SẢN PHẨM"
             placeholder="Mô tả ngắn gọn về sản phẩm"
             height="64"
             pb="20"
           ></Textfield>
           <Textfield
-            v-model:input="this.productFrom.product_status"
+            v-model:input="this.productForm.product_status"
             label="TÌNH TRẠNG SẢN PHẨM"
             placeholder="Sản phẩm mới sử dụng một lần..."
             height="78"
@@ -64,7 +66,7 @@
           </div>
           <div class="flex-row gap-20">
             <Textfield
-              v-model:input="this.productFrom.product_quantity"
+              v-model:input="this.productForm.product_quantity"
               label="SỐ LƯỢNG SẢN PHẨM"
               placeholder="Nhập số lượng sản phẩm"
               height="40"
@@ -94,13 +96,40 @@
             <div class="divider"></div>
           </div>
           <h2>Thông tin người bán</h2>
-          <Textfield label="Tên người bán" height="40" isV2="true"></Textfield>
+          <Textfield
+            v-model:input="this.userInfo.userName"
+            label="Tên người bán"
+            isReadOnly="true"
+            height="40"
+            isV2="true"
+          ></Textfield>
           <div class="flex-row gap-20">
-            <Combobox label="Tỉnh/Thành phố" isV2="true"></Combobox>
-            <Combobox label="Quận/Huyện" isV2="true"></Combobox>
+            <Textfield
+              v-model:input="this.userInfo.province"
+              height="40"
+              label="Tỉnh/Thành phố"
+              isV2="true"
+            ></Textfield>
+            <Textfield
+              v-model:input="this.userInfo.district"
+              height="40"
+              label="Quận/Huyện"
+              isV2="true"
+            ></Textfield>
           </div>
-          <Textfield label="Địa chỉ cụ thể" height="40" isV2="true"></Textfield>
-          <Textfield label="Số điện thoại" height="40" isV2="true"></Textfield>
+          <Textfield
+            v-model:input="this.userInfo.address"
+            label="Địa chỉ cụ thể"
+            height="40"
+            isV2="true"
+          ></Textfield>
+          <Textfield
+            isReadOnly="true"
+            v-model:input="this.userInfo.phone_number"
+            label="Số điện thoại"
+            height="40"
+            isV2="true"
+          ></Textfield>
           <div class="textfield-bank-acc">
             <label class="textfield-label-v2">Tài khoản ngân hàng</label>
             <input type="text" class="textfield-input-v2" />
@@ -137,10 +166,11 @@ import Textfield from "@/components/TextField/index.vue";
 import Combobox from "@/components/Combobox/index.vue";
 import ImgSelect from "@/components/ImgSellect/index.vue";
 import ProductService from "@/views/productServices.js";
+import UserService from "@/views/userServices.js";
 const Postforsale = {
   data() {
     return {
-      productFrom: {
+      productForm: {
         product_name: "",
         product_descr: "",
         product_status: "",
@@ -148,6 +178,14 @@ const Postforsale = {
         product_size: "",
         product_quantity: "",
         product_price: "",
+        user_id: "",
+      },
+      userInfo: {
+        userName: "",
+        province: "",
+        district: "",
+        address: "",
+        phone_number: "",
       },
       imgSelects: [0, 1, 2, 3, 4, 5],
       classify: [
@@ -175,6 +213,7 @@ const Postforsale = {
         { label: "Option 4", value: "option-4" },
         { label: "Option 5", value: "option-5" },
       ],
+      imageUrls: [],
     };
   },
   components: {
@@ -186,7 +225,27 @@ const Postforsale = {
     Combobox,
     ImgSelect,
   },
+  created() {
+    // Kiểm tra xem có id trong localStorage không
+    const userId = localStorage.getItem("id");
+    if (userId) {
+      // Gọi hàm lấy thông tin người dùng từ id
+      this.getUserInfo();
+    }
+  },
   methods: {
+    async getUserInfo() {
+      var id = localStorage.getItem("id");
+      const res = await UserService.getUserById(id);
+      console.log(res);
+      this.productForm.user_id = id;
+      this.userInfo.userName = res.data.nickname;
+      this.userInfo.province = res.data.province;
+      this.userInfo.district = res.data.district;
+      this.userInfo.address = res.data.address;
+      this.userInfo.phone_number = res.data.phone_Number;
+      console.log(this.userInfo);
+    },
     openFileInput(imgSelectIndex) {
       const imgSelect = this.$refs["imgSelect" + imgSelectIndex][0];
       if (imgSelect) {
@@ -194,11 +253,24 @@ const Postforsale = {
       }
     },
     async addProduct() {
-      var raw = JSON.stringify(this.productFrom);
+      var raw = JSON.stringify(this.productForm);
       console.log(raw);
       await ProductService.addProduct(raw).then(() => {
         console.log("Đăng sản phẩm thành công");
+        this.addProductImg();
       });
+    },
+    addImageUrl(imageUrl) {
+      const imageData = { imageData: imageUrl };
+      this.imageUrls.push(imageData);
+      console.log(this.imageUrls);
+    },
+    async addProductImg() {
+      if (this.imageUrls.length != 0) {
+        for (let i = 0; i < this.imageUrls.length; i++) {
+          await ProductService.addProductImage(this.imageUrls[i]);
+        }
+      } else console.log("Bạn chưa đăng ảnh nào");
     },
   },
 };

@@ -43,7 +43,17 @@ class ProductService {
     );
     return response.data;
   }
-
+  async addProductImage(data) {
+    return await axios({
+      method: "post",
+      url: "https://localhost:44385/api/SellProduct/images",
+      headers: {
+        accepts: "*/*",
+        "Content-Type": "application/json",
+      },
+      data: data,
+    });
+  }
   //   // Phương thức tải lên tệp lên Google Drive
   //   async uploadFileToDrive(filePath, fileName) {
   //     // Thông tin xác thực OAuth 2.0 của bạn

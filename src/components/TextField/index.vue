@@ -10,7 +10,6 @@
         :class="{ 'textfield-input-v2': isV2, 'textfield-input-v3': isV3 }"
         :placeholder="placeholder"
         :readonly="isReadOnly"
-        :value="readOnlyValue"
         v-model="inputValue"
         :style="{
           height: height + 'px',
