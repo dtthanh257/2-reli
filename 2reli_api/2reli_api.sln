@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2reli_api", "2reli_api\2reli_api.csproj", "{7042D3FB-7418-4F72-9807-8465DB753D7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7042D3FB-7418-4F72-9807-8465DB753D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7042D3FB-7418-4F72-9807-8465DB753D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7042D3FB-7418-4F72-9807-8465DB753D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7042D3FB-7418-4F72-9807-8465DB753D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04243A68-AD1E-4DE1-B3BA-7CFB5654776D}
+	EndGlobalSection
+EndGlobal

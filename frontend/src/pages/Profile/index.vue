@@ -10,33 +10,47 @@
           <Textfield
             label="Tên đăng nhập"
             :isReadOnly="isReadonly"
-            :readOnlyValue="this.userInfo.nickname"
+            v-model:input="this.userInfo.nickname"
             isV3="true"
             height="40"
           ></Textfield>
           <Textfield
-            :inputValue="this.userInfo.name"
+            v-model:input="this.userInfo.name"
             label="Họ và tên"
             isV3="true"
             height="40"
           ></Textfield>
           <Textfield
-            v-model="this.userInfo.email"
+            v-model:input="this.userInfo.email"
             label="Email"
             isV3="true"
             height="40"
           ></Textfield>
           <Textfield
-            :readOnlyValue="this.userInfo.phone_number"
+            v-model:input="this.userInfo.phone_number"
+            isReadonly="true"
             label="Số điện thoại"
             isV3="true"
             height="40"
           ></Textfield>
-          <Combobox label="Tỉnh/Thành phố" isV3="true" :items="date"></Combobox>
-          <Combobox label="Quận/Huyện" isV3="true"></Combobox>
-          <Combobox label="Phường/Xã" isV3="true"></Combobox>
           <Textfield
-            :readOnlyValue="this.userInfo.address"
+            v-model:input="this.userInfo.province"
+            label="Tỉnh/Thành phố"
+            isV3="true"
+            :items="date"
+          ></Textfield>
+          <Textfield
+            v-model:input="this.userInfo.district"
+            label="Quận/Huyện"
+            isV3="true"
+          ></Textfield>
+          <Textfield
+            v-model:input="this.userInfo.ward"
+            label="Phường/Xã"
+            isV3="true"
+          ></Textfield>
+          <Textfield
+            v-model:input="this.userInfo.address"
             label="Địa chỉ cụ thể"
             isV3="true"
             height="40"
@@ -44,15 +58,33 @@
           <div class="flex-row sex-option-container gap-28">
             <label for="">Giới tính</label>
             <div class="flex-row gap-8">
-              <input type="radio" name="sex" id="" />
+              <input
+                type="radio"
+                name="sex"
+                id=""
+                value="0"
+                v-model="this.userInfo.gender"
+              />
               Nam
             </div>
             <div class="flex-row gap-8">
-              <input type="radio" name="sex" id="" />
+              <input
+                type="radio"
+                name="sex"
+                id=""
+                value="1"
+                v-model="this.userInfo.gender"
+              />
               Nữ
             </div>
             <div class="flex-row gap-8">
-              <input type="radio" name="sex" id="" />
+              <input
+                type="radio"
+                name="sex"
+                id=""
+                value="2"
+                v-model="this.userInfo.gender"
+              />
               Khác
             </div>
           </div>
@@ -147,6 +179,7 @@ export default {
         district: "",
         ward: "",
         address: "",
+        gender: "",
         dob: "2024-04-24T23:33:27.609Z",
       },
       isReadonly: true,
@@ -190,8 +223,10 @@ export default {
         this.userInfo.email = res.data.email;
         this.userInfo.phone_number = res.data.phone_Number;
         this.userInfo.province = res.data.province;
+        this.userInfo.district = res.data.district;
         this.userInfo.ward = res.data.ward;
         this.userInfo.address = res.data.address;
+        this.userInfo.gender = res.data.gender;
         this.userInfo.dob = res.data.dob;
       }
     },
