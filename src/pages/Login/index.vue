@@ -17,7 +17,7 @@
 
             <input
               v-model="LoginData.password"
-              type="text"
+              type="password"
               placeholder="Mật khẩu"
             />
           </div>

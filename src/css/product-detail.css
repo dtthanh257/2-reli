@@ -138,3 +138,19 @@
   color: #28a24f !important;
   font-weight: 600;
 }
+.product-detail-img-small {
+  aspect-ratio: 1/1;
+  width: 20%;
+  background-image: url(../../public/img/assets/about-img.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+.product-detail-img-main {
+  aspect-ratio: 1/1;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}

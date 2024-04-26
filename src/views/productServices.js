@@ -43,6 +43,13 @@ class ProductService {
     );
     return response.data;
   }
+  //Hàm lấy thông tin ảnh của sản phẩm
+  async getProductImg(productId) {
+    const response = await axios.get(
+      `https://localhost:44385/api/SellProduct/images/${productId}`
+    );
+    return response;
+  }
   async addProductImage(data) {
     return await axios({
       method: "post",

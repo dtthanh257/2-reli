@@ -6,6 +6,19 @@
     >
     <div class="flex-row gap-20" style="align-items: center; width: 100%">
       <input
+        v-if="readOnly"
+        type="text"
+        :class="{ 'textfield-input-v2': isV2, 'textfield-input-v3': isV3 }"
+        :placeholder="placeholder"
+        :readonly="isReadOnly"
+        v-model="inputValue"
+        :style="{
+          height: height + 'px',
+          width: width + '%',
+          'padding-bottom': pb + 'px',
+        }"
+      />
+      <input
         type="text"
         :class="{ 'textfield-input-v2': isV2, 'textfield-input-v3': isV3 }"
         :placeholder="placeholder"

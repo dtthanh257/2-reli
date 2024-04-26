@@ -79,6 +79,7 @@
           </div>
           <div class="flex-row gap-20">
             <Textfield
+              v-model:input="this.productForm.product_price"
               label="GIÁ BÁN SẢN PHẨM"
               placeholder="Nhập giá bán"
               height="40"
