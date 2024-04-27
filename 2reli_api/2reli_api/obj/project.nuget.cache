@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Nmo2hkQnLnMxyCF+ouXxza+jqtmwQqqouu92Ey36uyJLSp1yyiNUIBWVALfdVjLkDSfnmzA9tGsodoAxE9Ihyg==",
+  "dgSpecHash": "dXFwOs3WtGByRG2khB2+WUdXtDDDlMBZFDYdJ0EBAC4MqioiUy1aYLGFtHH8AtiLL27Y/V0TcglGZFMfurgq4Q==",
   "success": true,
-  "projectFilePath": "D:\\Documents\\2rell\\2reli_api\\2reli_api\\2reli_api.csproj",
+  "projectFilePath": "D:\\Documents\\2rell\\2-rell\\2reli_api\\2reli_api\\2reli_api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dtt25\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\dtt25\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.4\\microsoft.aspnetcore.authentication.jwtbearer.8.0.4.nupkg.sha512",

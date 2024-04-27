@@ -24,7 +24,19 @@
         >
       </div>
       <div class="nav-acc flex-row">
-        <i class="fa-regular fa-circle-user" style="font-size: 24px"></i>
+        <div
+          v-if="avatar"
+          class="nav-ava"
+          style="
+            background-size: contain;
+            width: 24px;
+            height: 24px;
+            background-position: center;
+            border-radius: 50%;
+          "
+          :style="{ backgroundImage: avatar ? 'url(' + avatar + ')' : '' }"
+        ></div>
+        <i v-else class="fa-regular fa-circle-user" style="font-size: 24px"></i>
         <span style="white-space: nowrap">{{ account }}</span>
         <i class="fa-solid fa-angle-down"></i>
         <AccDroplist></AccDroplist>
@@ -42,6 +54,7 @@
 </template>
 <script>
 import AccDroplist from "../AccountDroplist/index.vue";
+import UserService from "@/views/userServices.js";
 import { ref, onMounted } from "vue"; // Import các hàm từ Vue 3
 
 const Navbar = {
@@ -51,12 +64,23 @@ const Navbar = {
   setup() {
     // Sử dụng ref để tạo một biến có thể thay đổi
     const account = ref("Tài khoản");
-
+    const avatar = ref(null);
     // Kiểm tra JWT trong localStorage và gán giá trị cho biến account khi cần thiết
-    const checkJWT = () => {
+    const checkJWT = async () => {
       const jwt = localStorage.getItem("jwt");
       if (jwt) {
         const username = localStorage.getItem("nickname");
+        const userId = localStorage.getItem("id"); // Lấy ID từ localStorage
+
+        // Gọi API để lấy avatar của người dùng
+        try {
+          const res = await UserService.getUserAva(userId);
+          avatar.value = res.data; // Lưu avatar vào biến avatar
+          console.log(avatar.value);
+        } catch (error) {
+          console.error("Error fetching user avatar:", error);
+        }
+
         account.value = username;
       }
     };
@@ -69,6 +93,7 @@ const Navbar = {
     // Trả về biến account để sử dụng trong template
     return {
       account,
+      avatar,
     };
   },
 };

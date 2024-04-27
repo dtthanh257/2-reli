@@ -1043,11 +1043,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\2rell\\2reli_api\\2reli_api\\2reli_api.csproj",
+      "projectUniqueName": "D:\\Documents\\2rell\\2-rell\\2reli_api\\2reli_api\\2reli_api.csproj",
       "projectName": "2reli_api",
-      "projectPath": "D:\\Documents\\2rell\\2reli_api\\2reli_api\\2reli_api.csproj",
+      "projectPath": "D:\\Documents\\2rell\\2-rell\\2reli_api\\2reli_api\\2reli_api.csproj",
       "packagesPath": "C:\\Users\\dtt25\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\2rell\\2reli_api\\2reli_api\\obj\\",
+      "outputPath": "D:\\Documents\\2rell\\2-rell\\2reli_api\\2reli_api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dtt25\\AppData\\Roaming\\NuGet\\NuGet.Config",

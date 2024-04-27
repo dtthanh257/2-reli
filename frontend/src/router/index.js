@@ -10,6 +10,7 @@ import ProductManage from "@/pages/ProductManage/index.vue";
 import Collect from "@/pages/Collect/index.vue";
 import BuyInfo from "@/pages/BuyInfo/index.vue";
 import ProductDetail from "@/pages/ProductDetail/index.vue";
+import Cart from "@/pages/Cart/index.vue";
 const routes = [
   // {
   //   path: "/",
@@ -69,6 +70,12 @@ const routes = [
     name: "ProductDetail",
     component: ProductDetail,
     props: true, // Đặt props: true để truyền các tham số từ URL vào component
+  },
+  {
+    path: "/cart/:id",
+    component: Cart,
+    name: "Cart",
+    props: true,
   },
 ];
 

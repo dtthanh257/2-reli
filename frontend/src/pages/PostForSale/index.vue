@@ -180,6 +180,7 @@ const Postforsale = {
         product_quantity: "",
         product_price: "",
         user_id: "",
+        sell_status: 0
       },
       userInfo: {
         userName: "",

@@ -124,6 +124,70 @@ namespace _2reli_api.Controllers
                 return StatusCode(500, $"Error updating user: {ex.Message}");
             }
         }
+        
+        [HttpPost("upload-avatar")]
+        public async Task<IActionResult> UploadAvatar(UserAva userava)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
 
+                    // Check if the user already has an avatar
+                    var checkAvatarSql = "SELECT COUNT(*) FROM user_ava WHERE user_id = @User_id";
+                    var avatarCount = await connection.ExecuteScalarAsync<int>(checkAvatarSql, new { userava.User_id });
+
+                    if (avatarCount > 0)
+                    {
+                        // Update the existing avatar
+                        var updateAvatarSql = "UPDATE user_ava SET user_ava = @User_ava WHERE user_id = @User_id";
+                        await connection.ExecuteAsync(updateAvatarSql, new { userava.User_ava, userava.User_id });
+                    }
+                    else
+                    {
+                        // Insert a new avatar
+                        var insertAvatarSql = "INSERT INTO user_ava (user_ava, user_id) VALUES (@User_ava, @User_id)";
+                        await connection.ExecuteAsync(insertAvatarSql, new { userava.User_ava, userava.User_id });
+                    }
+
+                    return Ok("Avatar uploaded successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error uploading avatar: " + ex.Message);
+            }
+        }
+        /// <summary>
+        /// Lấy ra ava người dùng tương ứng với id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("{userId}/avatar")]
+        public async Task<IActionResult> GetAvatar(int userId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    var sql = "SELECT user_ava FROM user_ava WHERE user_id = @User_id";
+                    var userAvatar = await connection.QueryFirstOrDefaultAsync<string>(sql, new { User_id = userId });
+
+                    if (userAvatar == null)
+                    {
+                        return Ok(null);
+                    }
+
+                    return Ok(userAvatar);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error fetching avatar: " + ex.Message);
+            }
+        }
     }
 }

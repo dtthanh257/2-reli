@@ -162,7 +162,7 @@
     <div class="flex-row" style="justify-content: center">
       <button class="procurement-button btn nor-btn">
         <div class="procurement-button-icon icon"></div>
-        Gửi yêu cầu thu gom
+        GỬI YÊU CẦU THU GOM
       </button>
     </div>
     <div

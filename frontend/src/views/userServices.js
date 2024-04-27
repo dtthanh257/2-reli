@@ -38,6 +38,13 @@ class UserService {
       throw error;
     }
   }
+  //Trả về ava người dùng
+  async getUserAva(userId) {
+    return await axios({
+      method: "get",
+      url: ` https://localhost:44385/api/Users/${userId}/avatar`,
+    });
+  }
 }
 
 export default new UserService();

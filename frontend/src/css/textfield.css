@@ -74,3 +74,6 @@
   font-weight: 500 !important;
   font-size: 18px !important;
 }
+.align-items-center input {
+  font-size: 15px;
+}
