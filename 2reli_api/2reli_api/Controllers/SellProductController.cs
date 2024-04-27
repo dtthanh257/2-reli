@@ -147,39 +147,6 @@ namespace _2reli_api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error adding product image: {ex.Message}");
             }
         }
-        /// <summary>
-        /// Thêm sản phẩm vào giỏ hàng
-        /// </summary>
-        /// <param name="cart"></param>
-        /// <returns></returns>
-        [HttpPost("add")]
-        public async Task<IActionResult> AddToCart(Cart cart)
-        {
-            try
-            {
-                using (var connection = new MySqlConnection(_connectionString))
-                {
-                    await connection.OpenAsync();
-
-                    var sql = @"INSERT INTO cart (user_id, product_id, quantity, product_price) 
-                                VALUES (@User_id, @Product_id, @Quantity, @Product_price)";
-                    var parameters = new
-                    {
-                        cart.User_id,
-                        cart.Product_id,
-                        cart.Quantity,
-                        cart.Product_price
-                    };
-
-                    await connection.ExecuteAsync(sql, parameters);
-
-                    return Ok("Product added to cart successfully");
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error adding product to cart: {ex.Message}");
-            }
-        }
+        
     }
 }

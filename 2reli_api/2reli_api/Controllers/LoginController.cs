@@ -41,9 +41,9 @@ namespace _2reli_api.Controllers
                 var cookieOptions = new CookieOptions
                 {
                     HttpOnly = false,
-                    Expires = DateTimeOffset.Now.AddDays(7), // Thời gian sống của cookie
-                    SameSite = SameSiteMode.None, // Cài đặt SameSite tùy thuộc vào yêu cầu của ứng dụng
-                    Secure = false // Đảm bảo cookie chỉ được gửi qua HTTPS
+                    Expires = DateTimeOffset.Now.AddDays(7), 
+                    SameSite = SameSiteMode.None, 
+                    Secure = false 
                 };
                 Response.Cookies.Append("userData", user.Id.ToString(), cookieOptions);
                 Response.Cookies.Append("Jwt", token, cookieOptions);

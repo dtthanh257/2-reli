@@ -24,7 +24,7 @@
               {{ this.productName }}
             </div>
             <div class="product-detail-item product-detail-price">
-              {{ this.productPrice }}
+              {{ this.singlePrice }}
             </div>
             <div class="product-detail-item">
               Mô tả sản phẩm: {{ this.productDescr }}
@@ -56,7 +56,7 @@
               </div>
             </div>
             <div class="product-detail-button flex-row gap-20">
-              <button class="product-detail-cart gap-8">
+              <button class="product-detail-cart gap-8" @click="addToCart">
                 <i class="fa-solid fa-cart-shopping"></i
                 ><span>Thêm vào giỏ hàng</span>
               </button>
@@ -86,10 +86,12 @@ import Footer from "@/components/Footer/index.vue";
 import Navbar from "@/components/Navbar/index.vue";
 import ProductService from "@/views/productServices";
 import UserService from "@/views/userServices";
+import CartService from "@/views/cartServices.js";
 export default {
   name: "ProductDetail",
   data() {
     return {
+      singlePrice: "",
       sellerName: "Tên người bán",
       sellerNickname: "nickname",
       productName: "",
@@ -104,6 +106,16 @@ export default {
       buyQuantity: 1,
       smallImageUrls: [],
       mainImg: "",
+      productForm: {
+        user_id: "",
+        product_id: "",
+        product_name: "",
+        quantity: "",
+        product_price: "",
+        product_status: 0,
+        product_type: "",
+        product_seller: "",
+      },
     };
   },
   props: {
@@ -135,13 +147,15 @@ export default {
       this.sellerName = res2.data.name;
       this.sellerNickname = res2.data.nickname;
       this.productName = res.product_name;
-      this.productPrice = this.formatCurrency(parseInt(res.product_price));
+      this.productPrice = parseInt(res.product_price);
       this.productDescr = res.product_descr;
       this.productStatus = res.product_status;
       this.productBrand = res.product_brand;
+      this.productType = res.product_type;
       this.productSize = res.product_size;
       this.productAddress = res.product_addr;
       this.productQuantity = parseInt(res.product_quantity) - this.buyQuantity;
+      this.singlePrice = this.formatCurrency(this.productPrice);
     },
     // Lấy thông tin về ảnh của sản phẩm
     async getProductImage(productId) {
@@ -153,12 +167,18 @@ export default {
       if (this.productQuantity > 0) {
         this.buyQuantity += 1;
         this.productQuantity -= 1;
+        this.singlePrice = this.formatCurrency(
+          this.productPrice * this.buyQuantity
+        );
       }
     },
     minusQuantity() {
       if (this.buyQuantity > 1) {
         this.buyQuantity -= 1;
         this.productQuantity += 1;
+        this.singlePrice = this.formatCurrency(
+          this.productPrice * this.buyQuantity
+        );
       }
     },
     formatCurrency(number) {
@@ -180,6 +200,19 @@ export default {
     },
     changeMainImage(imageUrl) {
       this.mainImg = imageUrl;
+    },
+    async addToCart() {
+      this.productForm.user_id = localStorage.getItem("id");
+      this.productForm.product_id = this.id;
+      this.productForm.quantity = this.buyQuantity;
+      this.productForm.product_price = "" + this.productPrice;
+      this.productForm.product_status = 0;
+      this.productForm.product_type = this.productType;
+      this.productForm.product_name = this.productName;
+      this.productForm.product_seller = this.sellerNickname;
+      const raw = JSON.stringify(this.productForm);
+      await CartService.addToCart(raw);
+      console.log("Thêm vào giỏ hàng thành công");
     },
   },
 };
