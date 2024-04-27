@@ -163,6 +163,7 @@
               color: white;
               font-weight: 500;
             "
+            @click="this.addToBuyOderList"
           >
             Mua hàng
           </button>
@@ -177,6 +178,7 @@ import Footer from "../../components/Footer/index.vue";
 import Navbar from "../../components/Navbar/index.vue";
 import CartService from "@/views/cartServices.js";
 import ProductService from "@/views/productServices";
+import BuyOrderService from "@/views/buyOderService.js";
 const Cart = {
   components: {
     Footer,
@@ -194,6 +196,14 @@ const Cart = {
       selectAll: false,
       totalchecked: 0,
       totalPrice: "",
+      buyOderForm: {
+        seller_name: "",
+        product_name: "",
+        product_quantity: "",
+        product_price: "",
+        product_status: 0,
+        buyer_id: 0,
+      },
     };
   },
   mounted() {
@@ -284,6 +294,32 @@ const Cart = {
     },
     updateSelectAll() {
       this.selectAll = this.allItemsSelected;
+    },
+    async addToBuyOderList() {
+      try {
+        for (let i = 0; i < this.cartItem.length; i++) {
+          const item = this.cartItem[i];
+          if (item.selected) {
+            // Thêm các thông tin sản phẩm vào buyOderForm
+            this.buyOderForm.seller_name = item.product_seller;
+            this.buyOderForm.product_name = item.product_name;
+            this.buyOderForm.product_quantity = item.quantity;
+            this.buyOderForm.product_price =
+              "" + parseInt(item.product_price) * item.quantity;
+            this.buyOderForm.product_status = 0;
+            this.buyOderForm.buyer_id = localStorage.getItem("id");
+            // Gọi API để thêm vào danh sách đơn hàng
+            await this.addToBuyOderListAPI(this.buyOderForm);
+          }
+        }
+        // Sau khi thêm vào danh sách đơn hàng thành công, làm các việc khác nếu cần
+      } catch (error) {
+        console.log("Error adding products to buy order:", error);
+      }
+    },
+    async addToBuyOderListAPI(formData) {
+      const response = await BuyOrderService.addItemToBuyOder(formData);
+      console.log(response.data);
     },
   },
 };

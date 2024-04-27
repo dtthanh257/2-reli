@@ -42,5 +42,26 @@ namespace _2reli_api.Controllers
                 return StatusCode(500, $"Error adding product to buy order: {ex.Message}");
             }
         }
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetBuyOrdersByUserId(int userId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    var sql = "SELECT * FROM buy_order WHERE buyer_id = @Buyer_id";
+                    var parameters = new { Buyer_id = userId };
+
+                    var buyOrders = await connection.QueryAsync(sql, parameters);
+                    return Ok(buyOrders);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error retrieving buy orders: {ex.Message}");
+            }
+        }
     }
 }

@@ -3,7 +3,7 @@
     <div class="product-card-code">Mã đơn hàng</div>
 
     <div class="flex-column">
-      <h3>[Tên đăng nhập người bán]</h3>
+      <h3>{{ seller_name }}</h3>
 
       <div
         class="flex-row gap-20"
@@ -11,10 +11,12 @@
       >
         <div class="product-card-img"></div>
         <div class="product-card-info flex-column">
-          <div class="product-card-name">[Tên sản phẩm]</div>
-          <div class="product-card-quantity">x[Số lượng sản phẩm]</div>
-          <div class="product-card-status">Trạng thái:</div>
-          <div class="product-card-price">[Giá sản phẩm]</div>
+          <div class="product-card-name">{{ product_name }}</div>
+          <div class="product-card-quantity">x {{ quantity }}</div>
+          <div class="product-card-status">
+            Trạng thái: {{ product_status }}
+          </div>
+          <div class="product-card-price">{{ product_price }}</div>
         </div>
       </div>
       <div
@@ -41,6 +43,11 @@ export default {
   name: "ProductCard",
   props: {
     buttonLabel: String,
+    product_name: String,
+    product_price: String,
+    product_status: Number,
+    quantity: Number,
+    seller_name: String,
   },
 };
 </script>

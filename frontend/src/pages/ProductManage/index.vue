@@ -70,6 +70,7 @@
 import Navbar from "@/components/Navbar/index.vue";
 import Footer from "@/components/Footer/index.vue";
 import ProductCard from "@/components/ProductCard/index.vue";
+import BuyOrderService from "@/views/buyOderService";
 export default {
   name: "ProductManage",
   data() {
@@ -82,6 +83,7 @@ export default {
       donmua: null,
       donban: null,
       dangbanTrue: null,
+      buyOderItem: [],
     };
   },
   components: {
@@ -93,6 +95,7 @@ export default {
     this.donmua = document.querySelector("#donmuaTrue");
     this.donban = document.querySelector("#donbanTrue");
     this.dangbanTrue = document.querySelector("#dangbanTrue");
+    this.buyOderItem = this.getOrderList();
   },
   methods: {
     toggleActiBuy() {
@@ -139,6 +142,12 @@ export default {
       this.thugom = true;
       this.dangban = false;
       this.thumua = false;
+    },
+    async getOrderList(userId) {
+      userId = localStorage.getItem("id");
+      const res = BuyOrderService.getByOrderById(userId);
+      console.log(res);
+      return res.data;
     },
   },
 };
