@@ -203,6 +203,7 @@ const Cart = {
         product_price: "",
         product_status: 0,
         buyer_id: 0,
+        product_id: "",
       },
     };
   },
@@ -308,6 +309,7 @@ const Cart = {
               "" + parseInt(item.product_price) * item.quantity;
             this.buyOderForm.product_status = 0;
             this.buyOderForm.buyer_id = localStorage.getItem("id");
+            this.buyOderForm.product_id = item.product_id;
             // Gọi API để thêm vào danh sách đơn hàng
             await this.addToBuyOderListAPI(this.buyOderForm);
           }

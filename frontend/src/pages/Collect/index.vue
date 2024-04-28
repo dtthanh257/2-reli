@@ -11,16 +11,32 @@
             <h3>Lựa chọn hình thức thu gom</h3>
             <div class="collect-method-radio">
               <div class="flex-row" style="gap: 8px">
-                <input type="radio" name="collect-method" id="" />Quyên góp vào
-                quỹ 2Reli
+                <input
+                  type="radio"
+                  name="collect-method"
+                  id=""
+                  value="0"
+                  v-model="this.collectForm.collect_way"
+                  checked
+                />Quyên góp vào quỹ 2Reli
               </div>
               <div class="flex-row gap-8">
-                <input type="radio" name="collect-method" id="" />Sử dụng vào
-                mục đích tái chế
+                <input
+                  type="radio"
+                  v-model="this.collectForm.collect_way"
+                  name="collect-method"
+                  id=""
+                  value="1"
+                />Sử dụng vào mục đích tái chế
               </div>
               <div class="flex-row gap-8">
-                <input type="radio" name="collect-method" id="" />Giao toàn
-                quyền cho 2Reli xử lý
+                <input
+                  type="radio"
+                  v-model="this.collectForm.collect_way"
+                  name="collect-method"
+                  id=""
+                  value="2"
+                />Giao toàn quyền cho 2Reli xử lý
               </div>
             </div>
             <h3>THÊM HÌNH ẢNH TÚI HÀNG</h3>
@@ -30,7 +46,9 @@
                 v-for="(index, imgSelectIndex) in imgSelects"
                 :key="index"
                 :ref="'imgSelect' + imgSelectIndex"
+                @image-selected="addImageUrl"
                 @click="openFileInput(imgSelectIndex)"
+                size="100"
               ></ImgSelect>
             </div>
             <div
@@ -65,37 +83,53 @@
                   16-20kg
                 </div>
               </div>
+              <Textfield
+                v-model:input="this.collectForm.product_name"
+                label="TÊN SẢN PHẨM"
+                height="50"
+              ></Textfield>
             </div>
             <h3 style="margin: 26px 0">THÔNG TIN CÁ NHÂN</h3>
             <div class="flex-column" style="gap: 30px">
-              <Textfield isV2="true" height="50" label="Họ và tên"></Textfield>
+              <Textfield
+                :isReadOnly="true"
+                isV2="true"
+                height="50"
+                label="Họ và tên"
+                v-model:input="this.userInfo.name"
+              ></Textfield>
               <div class="flex-row gap-20">
                 <Textfield
                   isV2="true"
                   height="50"
                   label="Tỉnh/Thành phố"
+                  v-model:input="this.userInfo.province"
                 ></Textfield>
                 <Textfield
                   isV2="true"
                   height="50"
+                  v-model:input="this.userInfo.district"
                   label="Quận/Huyện"
                 ></Textfield>
               </div>
-              <Textfield isV2="true" height="50" label="Phường/Xã"></Textfield>
+              <Textfield
+                v-model:input="this.userInfo.ward"
+                isV2="true"
+                height="50"
+                label="Phường/Xã"
+              ></Textfield>
               <Textfield
                 isV2="true"
                 height="50"
+                v-model:input="this.userInfo.address"
                 label="Địa chỉ cụ thể"
               ></Textfield>
               <Textfield
                 isV2="true"
+                v-model:input="this.userInfo.phone_Number"
+                :isReadOnly="true"
                 height="50"
                 label="Số điện thoại"
-              ></Textfield>
-              <Textfield
-                isV2="true"
-                label="Thời gian lấy hàng"
-                height="50"
               ></Textfield>
             </div>
             <div class="flex-column">
@@ -160,7 +194,10 @@
       </div>
     </div>
     <div class="flex-row" style="justify-content: center">
-      <button class="procurement-button btn nor-btn">
+      <button
+        class="procurement-button btn nor-btn"
+        @click="this.addCollectProduct"
+      >
         <div class="procurement-button-icon icon"></div>
         GỬI YÊU CẦU THU GOM
       </button>
@@ -230,6 +267,8 @@ import Navbar from "@/components/Navbar/index.vue";
 import Footer from "@/components/Footer/index.vue";
 import ImgSelect from "@/components/ImgSellect/index.vue";
 import Textfield from "@/components/TextField/index.vue";
+import UserService from "@/views/userServices";
+import CollectService from "@/views/collectServices.js";
 const Collect = {
   components: {
     Navbar,
@@ -240,6 +279,7 @@ const Collect = {
   mounted() {
     this.shipMoney = this.formatCurrency(60000);
     this.totalMoney = this.formatCurrency(60000);
+    this.getUserInfo();
   },
   data() {
     return {
@@ -252,8 +292,17 @@ const Collect = {
         "11-15kg": 180000,
         "16-20kg": 240000,
       },
+      userInfo: {},
+      collectForm: {
+        collect_way: 0,
+        price: "",
+        product_name: "",
+        user_id: "",
+      },
+      imageUrls: [],
     };
   },
+
   methods: {
     openFileInput(index) {
       this.$refs["imgSelect" + index][0].$refs.fileInput.click();
@@ -284,6 +333,36 @@ const Collect = {
         bankAcc.style.display = "flex";
       } else {
         bankAcc.style.display = "none";
+      }
+    },
+    async getUserInfo() {
+      const userId = localStorage.getItem("id");
+      const res = await UserService.getUserById(userId);
+      this.userInfo = res.data;
+    },
+    async addCollectProduct() {
+      this.collectForm.price = this.totalMoney;
+      this.collectForm.user_id = localStorage.getItem("id");
+      const raw = JSON.stringify(this.collectForm);
+      await CollectService.addCollectProduct(raw);
+      console.log("Đăng sản phẩm thu gom thành công");
+      this.addProductImg();
+    },
+    addImageUrl(imageUrl) {
+      const imageData = { imageData: imageUrl };
+      this.imageUrls.push(imageData);
+      console.log(this.imageUrls);
+    },
+    async addProductImg() {
+      try {
+        if (this.imageUrls.length != 0) {
+          for (let i = 0; i < this.imageUrls.length; i++) {
+            await CollectService.addCollectProductImg(this.imageUrls[i]);
+          }
+          console.log(this.imageUrls);
+        } else console.log("Bạn chưa đăng ảnh nào");
+      } catch (error) {
+        console.log(error);
       }
     },
   },

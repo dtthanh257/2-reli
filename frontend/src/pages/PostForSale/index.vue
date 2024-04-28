@@ -180,7 +180,7 @@ const Postforsale = {
         product_quantity: "",
         product_price: "",
         user_id: "",
-        sell_status: 0
+        sell_status: 0,
       },
       userInfo: {
         userName: "",
@@ -268,11 +268,15 @@ const Postforsale = {
       console.log(this.imageUrls);
     },
     async addProductImg() {
-      if (this.imageUrls.length != 0) {
-        for (let i = 0; i < this.imageUrls.length; i++) {
-          await ProductService.addProductImage(this.imageUrls[i]);
-        }
-      } else console.log("Bạn chưa đăng ảnh nào");
+      try {
+        if (this.imageUrls.length != 0) {
+          for (let i = 0; i < this.imageUrls.length; i++) {
+            await ProductService.addProductImage(this.imageUrls[i]);
+          }
+        } else console.log("Bạn chưa đăng ảnh nào");
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
