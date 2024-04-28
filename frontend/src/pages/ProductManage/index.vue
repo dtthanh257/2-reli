@@ -143,7 +143,7 @@
         </div>
 
         <div id="thumuaTrue">thu mua</div>
-        <div id="thugomTrue">Thu gom</div>
+        <div id="thugomTrue" style="display: none">Thu gom</div>
       </div>
     </div>
     <div class="grid-12"></div>
@@ -159,6 +159,7 @@ import ProductCard from "@/components/ProductCard/index.vue";
 import BuyOrderService from "@/views/buyOderService";
 import ProductService from "@/views/productServices";
 import UserService from "@/views/userServices";
+import CollectService from "@/views/collectServices";
 // import Vue from "vue";
 
 export default {
@@ -251,6 +252,7 @@ export default {
         this.thumuaTrue.style.display = "none";
         this.thugomTrue.style.display = "block";
       }
+      this.getCollectProductById();
     },
     async getOrderList(userId) {
       userId = localStorage.getItem("id");
@@ -301,6 +303,12 @@ export default {
     async updateProductStatus(id) {
       await BuyOrderService.updateStatus(id);
       this.getSellOrder();
+    },
+    async getCollectProductById() {
+      const id = localStorage.getItem("id");
+      const res = await CollectService.getCollectProductByUserId(id);
+      console.log(res);
+      return res;
     },
   },
 };

@@ -22,5 +22,16 @@ class CollectService {
       data: data,
     });
   }
+  async getCollectProductByUserId(userId) {
+    try {
+      return await axios({
+        method: "get",
+        url: `https://localhost:44385/api/CollectProduct/collectProduct/${userId}`,
+        headers: { accepts: "*/*", "Content-Type": "application/json" },
+      });
+    } catch (error) {
+      console.log("Cannot find cart item");
+    }
+  }
 }
 export default new CollectService();

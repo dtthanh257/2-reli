@@ -68,6 +68,26 @@ namespace _2reli_api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error adding product image: {ex.Message}");
             }
         }
+        [HttpGet("collectProduct/${userId}")]
+        public async Task<IActionResult> GetCollectProductsByUserId(int userId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
 
+                    var sql = "SELECT * FROM collect_product WHERE user_id = @UserId";
+                    var parameters = new { UserId = userId };
+
+                    var collectProducts = await connection.QueryAsync(sql, parameters);
+                    return Ok(collectProducts);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error retrieving collect products: {ex.Message}");
+            }
+        }
     }
 }
