@@ -11,8 +11,9 @@
         <button class="nav-notif-icon icon"></button>
         <button class="nav-message-icon icon"></button>
         <button class="nav-cart-icon icon"></button>
+        <a :href="linkToCart" class="nav-bx-cart icon"></a>
       </div>
-      <div class="nav-activities flex-row" v-if="!avatar">
+      <div class="nav-activities flex-row" v-if="checkjwt">
         <a href="/postforsale"
           ><span class="per-sell-icon icon"></span>ĐĂNG BÁN</a
         >
@@ -24,6 +25,11 @@
         >
       </div>
 
+      <div class="nav-activities flex-row" v-else>
+        <a href="/login"><span class="per-sell-icon icon"></span>ĐĂNG BÁN</a>
+        <a href="/login"><span class="per-buy-icon icon"></span>THU MUA</a>
+        <a href="/login"><span class="per-collect-icon icon"></span>THU GOM</a>
+      </div>
       <div class="nav-acc flex-row">
         <div
           v-if="avatar"
@@ -66,13 +72,16 @@ const Navbar = {
     // Sử dụng ref để tạo một biến có thể thay đổi
     const account = ref("Tài khoản");
     const avatar = ref(null);
+    const linkToCart = ref("");
+    const checkjwt = ref("");
     // Kiểm tra JWT trong localStorage và gán giá trị cho biến account khi cần thiết
     const checkJWT = async () => {
       const jwt = localStorage.getItem("jwt");
       if (jwt) {
+        checkjwt.value = true;
         const username = localStorage.getItem("nickname");
         const userId = localStorage.getItem("id"); // Lấy ID từ localStorage
-
+        linkToCart.value = "/cart/" + userId;
         // Gọi API để lấy avatar của người dùng
         try {
           const res = await UserService.getUserAva(userId);
@@ -81,9 +90,8 @@ const Navbar = {
         } catch (error) {
           console.error("Error fetching user avatar:", error);
         }
-
         account.value = username;
-      }
+      } else checkjwt.value = false;
     };
 
     // Sử dụng hàm onMounted để gọi hàm checkJWT khi component được mount
@@ -95,7 +103,17 @@ const Navbar = {
     return {
       account,
       avatar,
+      linkToCart,
+      checkjwt,
     };
+  },
+  methods: {
+    checkAccount() {
+      const check = localStorage.getItem("jwt");
+      if (check) {
+        return true;
+      } else return false;
+    },
   },
 };
 export default Navbar;

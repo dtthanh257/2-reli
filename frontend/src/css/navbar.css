@@ -109,3 +109,9 @@
   text-decoration: none;
   color: white;
 }
+.nav-bx-cart {
+  background-image: url(../../public/img/icons/bx_cart.png);
+  height: 28px;
+  width: 28px;
+  cursor: pointer;
+}
