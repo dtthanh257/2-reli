@@ -76,7 +76,7 @@
         <h2>BẠN CỨ YÊN TÂM MUA BÁN</h2>
         <div class="flex-row jc-sb gap-128">
           <div class="flex-column align-items-center gap-32">
-            <h3 style="white-space: nowrap">THANH TOÁN</h3>
+            <h3 style="white-space: nowrap; color: white">THANH TOÁN</h3>
             <div class="about-policy-img1 icon"></div>
             <div class="flex-column" style="gap: 4px">
               <p style="white-space: nowrap; padding: 0">Chính sách đổi trả</p>
@@ -86,7 +86,7 @@
             </div>
           </div>
           <div class="flex-column align-items-center gap-32">
-            <h3 style="white-space: nowrap">KIỂM ĐỊNH</h3>
+            <h3 style="white-space: nowrap; color: white">KIỂM ĐỊNH</h3>
             <div class="about-policy-img2 icon"></div>
             <div class="flex-column" style="gap: 4px">
               <p style="white-space: nowrap; padding: 0">
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class="flex-column align-items-center gap-32">
-            <h3 style="white-space: nowrap">DỌN TỦ DỄ DÀNG</h3>
+            <h3 style="white-space: nowrap; color: white">DỌN TỦ DỄ DÀNG</h3>
             <div class="about-policy-img3 icon"></div>
             <div class="flex-column" style="gap: 4px">
               <p style="white-space: nowrap; padding: 0">

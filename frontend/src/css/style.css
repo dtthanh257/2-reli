@@ -31,6 +31,10 @@
 a {
   text-decoration: none;
 }
+h2,
+h3 {
+  color: black;
+}
 /* @font-face {
   font-family: Inter fonts;
   src: url(../../public/fonts/Inter/static/Inter-Light.ttf);

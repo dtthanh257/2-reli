@@ -13,10 +13,12 @@
                   label="TÊN SẢN PHẨM"
                   placeholder="Giới thiệu ngắn gọn về sản phẩm"
                   height="40"
+                  v-model:input="this.productForm.product_name"
                   style="flex: 0"
                 ></Textfield>
                 <Textfield
                   label="MÔ TẢ SẢN PHẨM"
+                  v-model:input="this.productForm.product_descr"
                   placeholder="Mô tả ngắn gọn về sản phẩm"
                   height="40"
                   style="flex: 0"
@@ -29,6 +31,7 @@
                       v-for="index in 4"
                       :key="index"
                       :ref="'imgSelect' + index"
+                      @image-selected="addImageUrl"
                       @click="openFileInput(index)"
                       size="106"
                     ></ImgSelect>
@@ -42,16 +45,20 @@
                 <Textfield
                   isV2="true"
                   label="Họ và tên"
+                  v-model:input="this.userInfo.name"
+                  :isReadOnly="true"
                   height="50"
                 ></Textfield>
                 <div class="flex-row gap-20">
                   <Textfield
                     isV2="true"
+                    v-model:input="this.userInfo.province"
                     label="Tỉnh/Thành phố"
                     height="50"
                   ></Textfield>
                   <Textfield
                     isV2="true"
+                    v-model:input="this.userInfo.district"
                     label="Quận/Huyện"
                     height="50"
                   ></Textfield>
@@ -59,17 +66,21 @@
                 <Textfield
                   isV2="true"
                   label="Phường/Xã"
+                  v-model:input="this.userInfo.ward"
                   height="50"
                 ></Textfield>
                 <Textfield
                   isV2="true"
                   label="Địa chỉ cụ thể"
+                  v-model:input="this.userInfo.address"
                   height="50"
                 ></Textfield>
                 <Textfield
                   isV2="true"
                   label="Số điện thoại"
                   height="50"
+                  v-model:input="this.userInfo.phone_Number"
+                  :isReadOnly="true"
                 ></Textfield>
                 <Textfield
                   isV2="true"
@@ -92,15 +103,18 @@
                 <Textfield
                   label="SỐ LƯỢNG SẢN PHẨM"
                   height="40"
+                  v-model:input="this.productForm.product_quantity"
                   placeholder="Nhập số lượng sản phẩm"
                   style="flex: 0"
                 ></Textfield>
                 <div class="flex-column">
-                  <Textarea
+                  <Textfield
                     label="KÊ KHAI TÌNH TRẠNG SẢN PHẨM"
                     placeholder="Sản phẩm mới sử dụng một lần..."
+                    v-model:input="this.productForm.product_status"
                     height="90"
-                  ></Textarea>
+                    pb="40"
+                  ></Textfield>
                   <div class="pfs-note">
                     Lưu ý: 2Reli không thu mua những sản phẩm bị rách, biến
                     dạng, hư hỏng không sử dụng được,...
@@ -110,6 +124,7 @@
                   <Textfield
                     label="MỨC GIÁ BẠN MONG MUỐN NHẬN ĐƯỢC"
                     placeholder="Nhập giá tiền"
+                    v-model:input="this.productForm.product_price"
                     width="50"
                     height="40"
                   ></Textfield>
@@ -130,12 +145,24 @@
                     NẾU SẢN PHẨM KHÔNG ĐẠT CHẤT LƯỢNG KIỂM ĐỊNH, BẠN MONG MUỐN:
                   </h3>
                   <div class="input-radio">
-                    <input type="radio" name="product-quality" id="" />
+                    <input
+                      type="radio"
+                      name="product-quality"
+                      id=""
+                      value="0"
+                      v-model="this.productForm.turn_way"
+                    />
                     <label for="">Nhận lại sản phẩm</label>
                     <div class="product-gb">Bạn trả phí ship</div>
                   </div>
                   <div class="input-radio">
-                    <input type="radio" name="product-quality" id="" />
+                    <input
+                      type="radio"
+                      name="product-quality"
+                      id=""
+                      value="1"
+                      v-model="this.productForm.turn_way"
+                    />
                     <label>Quyên góp vào Quỹ 2Reli</label>
                   </div>
                   <div class="pfs-note">
@@ -148,6 +175,7 @@
             <button
               class="procurement-button btn nor-btn"
               style="font-weight: 600"
+              @click="this.addProcurementProduct"
             >
               <div class="procurement-button-icon icon"></div>
               GỬI YÊU CẦU THU MUA
@@ -223,6 +251,8 @@ import Textfield from "@/components/TextField/index.vue";
 import Combobox from "@/components/Combobox/index.vue";
 import Textarea from "@/components/Textarea/index.vue";
 import ImgSelect from "@/components/ImgSellect/index.vue";
+import UserService from "@/views/userServices";
+import ProcurementService from "@/views/procurementService.js";
 const Procument = {
   components: {
     ImgSelect,
@@ -231,6 +261,63 @@ const Procument = {
     Combobox,
     Footer,
     Textarea,
+  },
+  data() {
+    return {
+      userInfo: {},
+      productForm: {
+        product_name: "",
+        product_descr: "",
+        product_quantity: "",
+        product_status: "",
+        product_price: "",
+        turn_way: 0,
+        user_id: "",
+        product_handle: 0,
+      },
+      imageUrls: [],
+    };
+  },
+  async mounted() {
+    await this.getUserInfoById();
+  },
+  methods: {
+    openFileInput(index) {
+      this.$refs["imgSelect" + index][0].$refs.fileInput.click();
+    },
+    async getUserInfoById() {
+      const id = localStorage.getItem("id");
+      const res = await UserService.getUserById(id);
+      this.userInfo = res.data;
+      console.log(this.userInfo);
+    },
+    async addProcurementProduct() {
+      const id = localStorage.getItem("id");
+      this.productForm.user_id = id;
+      const raw = JSON.stringify(this.productForm);
+      await ProcurementService.addProcurementProduct(raw);
+      console.log("thêm sản phẩm thu mua thành công");
+      this.addProductImg();
+    },
+    addImageUrl(imageUrl) {
+      const imageData = { imageData: imageUrl };
+      this.imageUrls.push(imageData);
+      console.log(this.imageUrls);
+    },
+    async addProductImg() {
+      try {
+        if (this.imageUrls.length != 0) {
+          for (let i = 0; i < this.imageUrls.length; i++) {
+            await ProcurementService.addProcurementProductImg(
+              this.imageUrls[i]
+            );
+          }
+          console.log(this.imageUrls);
+        } else console.log("Bạn chưa đăng ảnh nào");
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 export default Procument;

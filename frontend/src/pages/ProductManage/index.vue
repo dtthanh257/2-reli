@@ -25,7 +25,15 @@
         class="flex-column home-cate gap-20"
         style="margin-bottom: 40px"
       >
+        <div
+          class="flex-row"
+          v-if="this.buyOderItem.length == 0"
+          style="display: flex; justify-content: center; padding: 100px 0"
+        >
+          Bạn chưa có mua đơn nào
+        </div>
         <ProductCard
+          v-else
           v-for="(index, i) in buyOderItem"
           :key="index"
           :order_id="index.id"
@@ -65,6 +73,15 @@
         </div>
         <div id="dangbanTrue">
           <div
+            class="flex-row"
+            v-if="this.sellOrderItem.length == 0"
+            style="display: flex; justify-content: center; padding: 100px 0"
+          >
+            Bạn chưa có đơn hàng nào được mua
+          </div>
+
+          <div
+            v-else
             class="product-card flex-column"
             style="margin-top: 30px"
             v-for="(index, i) in sellOrderItem"
@@ -142,11 +159,110 @@
           </div>
         </div>
 
-        <div id="thumuaTrue">thu mua</div>
-        <div id="thugomTrue" style="display: none">Thu gom</div>
+        <div id="thumuaTrue">
+          <div
+            class="flex-row"
+            v-if="this.procurementItem.length == 0"
+            style="display: flex; justify-content: center; padding: 100px 0"
+          >
+            Bạn chưa có đơn thu mua nào
+          </div>
+          <div
+            v-else
+            class="product-card flex-column"
+            style="margin-top: 30px"
+            v-for="(index, i) in procurementItem"
+            :key="index"
+          >
+            <div class="product-card-code">Mã đơn hàng {{ index.id }}</div>
+
+            <div class="flex-column">
+              <div
+                class="flex-row gap-20"
+                style="padding-left: 40px; padding: 45px 40px"
+              >
+                <div
+                  class="product-card-img"
+                  :style="{
+                    'background-image': 'url(' + procurementImgUrl[i] + ')',
+                  }"
+                ></div>
+                <div class="product-card-info flex-column">
+                  <div class="product-card-name">{{ index.product_name }}</div>
+                  <div class="product-card-quantity">
+                    x {{ index.product_quantity }}
+                  </div>
+                  <div class="product-card-status">
+                    Trạng thái:
+                    <span v-if="index.product_handle == 0"
+                      >Đã gửi yêu cầu / Đang kiểm định</span
+                    >
+                    <span v-if="index.product_handle != 0"
+                      >Đã kiểm định, chờ xác nhận</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex-row"
+                style="
+                  border-top: 1px solid var(--border-color);
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <div class="product-card-payload gap-8">
+                  <p style="padding: 0">Thành tiền:</p>
+                  <div class="product-card-pay">--</div>
+                </div>
+                <button
+                  class="product-card-btn nor-btn"
+                  v-if="index.product_handle == 1"
+                  @click="this.updateProductStatus(index.id)"
+                >
+                  XÁC NHẬN
+                </button>
+                <button
+                  class="product-card-btn nor-btn"
+                  v-if="index.product_handle == 1"
+                  @click="this.updateProductStatus(index.id)"
+                >
+                  ĐÃ CHUẨN BỊ HÀNG
+                </button>
+                <button
+                  class="product-card-btn nor-btn"
+                  v-if="index.product_status == 2"
+                  @click="this.updateProductStatus(index.id)"
+                >
+                  GIAO HÀNG THÀNH CÔNG
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="thugomTrue" style="display: none">
+          <div
+            class="flex-row"
+            v-if="this.collectItem.length == 0"
+            style="display: flex; justify-content: center; padding: 100px 0"
+          >
+            Bạn chưa có đơn thu gom nào
+          </div>
+          <ProductCard
+            v-else
+            style="margin-top: 30px"
+            v-for="(index, i) in collectItem"
+            :key="index"
+            :order_id="index.id"
+            :product_name="index.product_name"
+            :product_status="0"
+            :quantity="1"
+            :product_price="index.price"
+            :imgUrl="this.collectImgUrl[i]"
+          ></ProductCard>
+        </div>
       </div>
     </div>
-    <div class="grid-12"></div>
     <Footer
       style="background-color: #f2f2f3; margin-bottom: 0; padding-bottom: 128px"
     ></Footer>
@@ -160,6 +276,8 @@ import BuyOrderService from "@/views/buyOderService";
 import ProductService from "@/views/productServices";
 import UserService from "@/views/userServices";
 import CollectService from "@/views/collectServices";
+import ProcurementService from "@/views/procurementService.js";
+
 // import Vue from "vue";
 
 export default {
@@ -180,7 +298,11 @@ export default {
       imgUrl: [],
       user_name: "",
       sellOrderItem: [],
+      procurementItem: [],
+      collectItem: [],
       sellImgUrl: [],
+      collectImgUrl: [],
+      procurementImgUrl: [],
     };
   },
   components: {
@@ -242,6 +364,7 @@ export default {
         this.thumuaTrue.style.display = "block";
         this.thugomTrue.style.display = "none";
       }
+      this.getProcurementProduct();
     },
     toggleThuGom() {
       this.thugom = true;
@@ -307,8 +430,32 @@ export default {
     async getCollectProductById() {
       const id = localStorage.getItem("id");
       const res = await CollectService.getCollectProductByUserId(id);
-      console.log(res);
-      return res;
+      this.collectItem = res.data;
+      console.log(res.data);
+      for (let i = 0; i < this.collectItem.length; i++) {
+        await this.getCollectProductImgUrl(this.collectItem[i].id);
+      }
+    },
+    async getCollectProductImgUrl(productId) {
+      const res = await CollectService.getCollectProductImg(productId);
+      console.log(productId);
+      console.log(res.data[0]);
+      this.collectImgUrl.push(res.data[0]);
+    },
+    async getProcurementProduct() {
+      const id = localStorage.getItem("id");
+      const res = await ProcurementService.getProcurementProduct(id);
+      this.procurementItem = res.data;
+      console.log(this.procurementItem);
+      for (let i = 0; i < this.procurementItem.length; i++) {
+        await this.getProcurementProductImgUrl(this.procurementItem[i].id);
+      }
+    },
+    async getProcurementProductImgUrl(productId) {
+      const res = await ProcurementService.getProcurementProductImg(productId);
+      console.log(productId);
+      console.log(res.data[0]);
+      this.procurementImgUrl.push(res.data[0]);
     },
   },
 };

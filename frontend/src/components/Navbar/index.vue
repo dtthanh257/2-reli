@@ -12,7 +12,7 @@
         <button class="nav-message-icon icon"></button>
         <button class="nav-cart-icon icon"></button>
       </div>
-      <div class="nav-activities flex-row">
+      <div class="nav-activities flex-row" v-if="!avatar">
         <a href="/postforsale"
           ><span class="per-sell-icon icon"></span>ĐĂNG BÁN</a
         >
@@ -23,6 +23,7 @@
           ><span class="per-collect-icon icon"></span>THU GOM</a
         >
       </div>
+
       <div class="nav-acc flex-row">
         <div
           v-if="avatar"
