@@ -159,9 +159,13 @@ export default {
     },
     // Lấy thông tin về ảnh của sản phẩm
     async getProductImage(productId) {
-      const res = await ProductService.getProductImg(productId);
-      this.smallImageUrls = res.data;
-      this.mainImg = res.data[0];
+      try {
+        const res = await ProductService.getProductImg(productId);
+        this.smallImageUrls = res.data;
+        this.mainImg = res.data[0];
+      } catch (error) {
+        console.log("chưa có ảnh nào");
+      }
     },
     plusQuantity() {
       if (this.productQuantity > 0) {
