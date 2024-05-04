@@ -14,7 +14,7 @@ namespace _2reli_api.Controllers
         {
             var connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
             var connecttion = new MySqlConnection(connectionString);
-            var sql = "SELECT * FROM sell_product";
+            var sql = "SELECT * FROM sell_product ORDER BY id DESC";
             var result = await connecttion.QueryAsync<SellProduct>(sql);
             return result;
         }
