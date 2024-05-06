@@ -12,13 +12,13 @@ namespace _2reli_api.Controllers
         [HttpGet]
         public async Task<IEnumerable<SellProduct>> GetUsers()
         {
-            var connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
+            var connectionString = "Server=89.116.121.36;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
             var connecttion = new MySqlConnection(connectionString);
             var sql = "SELECT * FROM sell_product ORDER BY id DESC";
             var result = await connecttion.QueryAsync<SellProduct>(sql);
             return result;
         }
-        private readonly string _connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
+        private readonly string _connectionString = "Server=89.116.121.36;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
         /// <summary>
         /// Lấy ảnh của sản phẩm theo id
         /// </summary>

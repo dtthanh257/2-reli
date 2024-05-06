@@ -10,7 +10,7 @@ namespace _2reli_api.Controllers
     [ApiController]
     public class ProcurementController : ControllerBase
     {
-        public readonly string _connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
+        public readonly string _connectionString = "Server=89.116.121.36;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
         [HttpPost]
         public IActionResult AddProcurement([FromBody] Procurement procurement)
         {
