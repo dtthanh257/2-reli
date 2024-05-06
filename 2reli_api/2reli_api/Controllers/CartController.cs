@@ -10,7 +10,7 @@ namespace _2reli_api.Controllers
     public class CartController : ControllerBase
     {
 
-        private readonly string _connectionString = "Server=89.116.121.36;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
+        private readonly string _connectionString = "Server=srv515925;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
 
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetCartByUserId(int userId)
