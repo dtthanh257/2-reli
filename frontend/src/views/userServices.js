@@ -38,6 +38,17 @@ class UserService {
       throw error;
     }
   }
+  async changeUserAva(data) {
+    return await axios({
+      method: "post",
+      url: "https://localhost:44385/api/Users/upload-avatar",
+      headers: {
+        accepts: "*/*",
+        "Content-Type": "application/json",
+      },
+      data: data,
+    });
+  }
   //Trả về ava người dùng
   async getUserAva(userId) {
     return await axios({

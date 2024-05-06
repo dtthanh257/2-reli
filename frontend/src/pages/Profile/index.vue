@@ -162,7 +162,7 @@ export default {
   name: "ProfilePage",
   data() {
     return {
-      imageUrl: "../../../public/img/assets/ava-acc-icon.png",
+      imageUrl: "",
       date: [
         { id: 1, name: 1 },
         { id: 1, name: 2 },
@@ -243,6 +243,11 @@ export default {
         dob: "2024-04-24T23:36:35.207Z",
         gender: this.userInfo.gender,
       };
+      const updateAva = {
+        user_id: userId,
+        user_ava: this.imageUrl,
+      };
+      UserService.changeUserAva(updateAva);
       UserService.updateUser(userId, updatedUser)
         .then((response) => {
           console.log(response.data);

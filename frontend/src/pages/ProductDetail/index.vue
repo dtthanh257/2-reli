@@ -20,8 +20,15 @@
             </div>
           </div>
           <div class="product-detail-list gap-30 flex-column" style="flex: 1">
-            <div class="product-detail-item product-detail-name">
-              {{ this.productName }}
+            <div class="flex-row gap-12" style="align-items: center">
+              <div class="product-detail-item product-detail-name">
+                {{ this.productName }}
+              </div>
+              <div
+                v-if="this.sellerNickname == `2reli`"
+                class="icon icon-tick"
+                style="height: 90%; aspect-ratio: 1/1"
+              ></div>
             </div>
             <div class="product-detail-item product-detail-price">
               {{ this.singlePrice }}
@@ -69,9 +76,19 @@
     <div class="grid-12">
       <div class="home-cate">
         <div class="seller-account flex-row gap-20">
-          <div class="seller-ava"></div>
+          <div
+            class="seller-ava"
+            :style="{ backgroundImage: 'url(' + sellerAva + ')' }"
+          ></div>
           <div class="flex-column jc-sb gap-12">
-            <div class="seller-name">{{ this.sellerName }}</div>
+            <div class="flex-row gap-8">
+              <div class="seller-name">{{ this.sellerName }}</div>
+              <div
+                v-if="this.sellerNickname === '2reli'"
+                class="icon icon-tick"
+                style="height: 90%; aspect-ratio: 1/1"
+              ></div>
+            </div>
             <div class="seller-nickname">@{{ this.sellerNickname }}</div>
             <button class="seller-message">Chat ngay</button>
           </div>
@@ -94,6 +111,7 @@ export default {
       singlePrice: "",
       sellerName: "Tên người bán",
       sellerNickname: "nickname",
+      sellerAva: "",
       productName: "",
       productPrice: "",
       productDescr: "",
@@ -140,10 +158,10 @@ export default {
     //Lấy thông tin của sản phẩm
     async getProductInfo(productId) {
       const res = await ProductService.getProductById(productId);
-      console.log(res);
       var userId = res.user_id;
       const res2 = await UserService.getUserById(userId);
-      console.log(res2.data);
+      const sellerAvaRes = await UserService.getUserAva(userId);
+      this.sellerAva = sellerAvaRes.data;
       this.sellerName = res2.data.name;
       this.sellerNickname = res2.data.nickname;
       this.productName = res.product_name;
@@ -167,6 +185,7 @@ export default {
         console.log("chưa có ảnh nào");
       }
     },
+
     plusQuantity() {
       if (this.productQuantity > 0) {
         this.buyQuantity += 1;

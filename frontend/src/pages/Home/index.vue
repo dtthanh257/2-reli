@@ -90,7 +90,6 @@
           </div>
           <div class="flex-row product-list">
             <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
               v-for="product in productDemo"
               :key="product.id"
               :productId="product.id"
@@ -123,9 +122,9 @@
           </div>
           <div class="flex-row product-list">
             <Product
-              thumbnail="/img/icons/apple-touch-icon-60x60.png"
               v-for="product in productDemo"
               :key="product.id"
+              :productId="product.id"
               :name="product.product_name"
               :price="formatPrice(product.product_price)"
             ></Product>
@@ -141,7 +140,6 @@ import Navbar from "../../components/Navbar/index.vue";
 import Footer from "../../components/Footer/index.vue";
 import Product from "../../components/Product/index.vue";
 import ProductService from "@/views/productServices";
-// import { useRouter } from "vue-router";
 const Home = {
   components: {
     Navbar,
@@ -155,11 +153,10 @@ const Home = {
       showArrowIconFavo: false, // Trạng thái mặc định, không xoay
       showArrowIconRecom: false,
       account: "",
+      productThumbnails: [],
     };
   },
   setup() {
-    // const router = useRouter();
-
     // Kiểm tra xem có JWT trong localStorage hay không
     const checkJWT = () => {
       const jwt = localStorage.getItem("jwt");
@@ -174,43 +171,39 @@ const Home = {
     };
   },
   mounted() {
-    this.getProductToDemo(1, 6);
-    this.getAllProduct(1, 12);
+    this.getProductToDemo(6);
+    this.getAllProduct(12);
     this.account = this.checkJWT();
   },
   methods: {
     toggleArrowShowFavo() {
       this.showArrowIconFavo = !this.showArrowIconFavo;
       if (this.showArrowIconFavo == false) {
-        this.getProductToDemo(1, 6); // Gọi lại hàm getProductToDemo với tham số 1, 6
+        this.getProductToDemo(6);
       } else {
-        this.getProductToDemo(1, 12); // Gọi lại hàm getProductToDemo với tham số 1, 12
+        this.getProductToDemo(12);
       }
       // Đảo trạng thái khi ấn vào
     },
     toggleArrorShowRecom() {
       this.showArrowIconRecom = !this.showArrowIconRecom;
       if (this.showArrowIconRecom == false) {
-        this.getProductToDemo(1, 6); // Gọi lại hàm getProductToDemo với tham số 1, 6
+        this.getProductToDemo(6);
       } else {
-        this.getProductToDemo(1, 12); // Gọi lại hàm getProductToDemo với tham số 1, 12
+        this.getProductToDemo(12);
       }
     },
-    async getProductToDemo(startRecord, count) {
-      this.productDemo = await ProductService.getProductToDemo(
-        startRecord,
-        count
-      );
-      console.log(this.productDemo);
+    async getProductToDemo(count) {
+      this.productDemo = await ProductService.getProductToDemo(count);
     },
-    async getAllProduct(startRecord, count) {
-      this.allProduct = await ProductService.getProductToDemo(
-        startRecord,
-        count
-      );
+    async getAllProduct(count) {
+      this.allProduct = await ProductService.getProductToDemo(count);
     },
     formatPrice(price) {
-      return price.toLocaleString("vi-VN") + " VNĐ"; // Format giá tiền với đơn vị "VNĐ"
+      const formattedPrice = price
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return formattedPrice + " VNĐ";
     },
   },
 };

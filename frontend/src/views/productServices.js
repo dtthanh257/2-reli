@@ -14,10 +14,10 @@ class ProductService {
       throw error;
     }
   }
-  async getProductToDemo(startRecord, count) {
+  async getProductToDemo(count) {
     try {
       const response = await axios.get(
-        `https://localhost:44385/api/SellProduct/${startRecord}/${count}`
+        `https://localhost:44385/api/SellProduct/demoproduct/${count}`
       );
       return response.data;
     } catch (error) {
@@ -61,6 +61,17 @@ class ProductService {
       data: data,
     });
   }
+  async getProductThumbnail(productId) {
+    try {
+      const response = await axios.get(
+        `https://localhost:44385/api/SellProduct/imagesThumbnail/${productId}`
+      );
+      return response;
+    } catch (error) {
+      console.log("Sản phẩm chưa có ảnh nào");
+    }
+  }
+
   //   // Phương thức tải lên tệp lên Google Drive
   //   async uploadFileToDrive(filePath, fileName) {
   //     // Thông tin xác thực OAuth 2.0 của bạn

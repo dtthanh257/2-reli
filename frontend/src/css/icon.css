@@ -72,3 +72,6 @@
 .newImg {
   display: none;
 }
+.icon-tick {
+  background-image: url(../../public/img/icons/mdi_tick-circle.png);
+}
