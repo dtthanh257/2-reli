@@ -3,7 +3,7 @@ class CollectService {
   async addCollectProduct(data) {
     return await axios({
       method: "post",
-      url: "https://localhost:44385/api/CollectProduct",
+      url: "https://localhost:5196/api/CollectProduct",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -14,7 +14,7 @@ class CollectService {
   async addCollectProductImg(data) {
     return await axios({
       method: "post",
-      url: "https://localhost:44385/api/CollectProduct/images",
+      url: "https://localhost:5196/api/CollectProduct/images",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ class CollectService {
     try {
       return await axios({
         method: "get",
-        url: `https://localhost:44385/api/CollectProduct/collectProduct/${userId}`,
+        url: `https://localhost:5196/api/CollectProduct/collectProduct/${userId}`,
         headers: { accepts: "*/*", "Content-Type": "application/json" },
       });
     } catch (error) {
@@ -37,7 +37,7 @@ class CollectService {
     try {
       return await axios({
         method: "get",
-        url: `https://localhost:44385/api/CollectProduct/images/${productId}`,
+        url: `https://localhost:5196/api/CollectProduct/images/${productId}`,
         headers: { accepts: "*/*", "Content-Type": "application/json" },
       });
     } catch (error) {

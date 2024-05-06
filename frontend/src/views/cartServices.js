@@ -3,7 +3,7 @@ class CartService {
   async addToCart(data) {
     return await axios({
       method: "post",
-      url: "https://localhost:44385/api/Cart/add",
+      url: "https://localhost:5196/api/Cart/add",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -12,14 +12,14 @@ class CartService {
     });
   }
   async getCartInfo(userId) {
-    const res = await axios.get(`https://localhost:44385/api/Cart/${userId}`);
+    const res = await axios.get(`https://localhost:5196/api/Cart/${userId}`);
     return res;
   }
   async deleteCartItem(cartId) {
     try {
       return await axios({
         method: "delete",
-        url: `https://localhost:44385/api/Cart/${cartId}`,
+        url: `https://localhost:5196/api/Cart/${cartId}`,
         headers: { accepts: "*/*", "Content-Type": "application/json" },
       });
     } catch (error) {
