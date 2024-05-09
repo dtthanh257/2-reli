@@ -126,7 +126,7 @@
                 src="../../../public/img/assets/ava-acc-icon.png"
                 alt=""
               />
-              <img id="newAva" :src="imageUrl" alt="" style="display: none" />
+              <img id="newAva" :src="imageUrl" alt="" style="display: none; object-fit:cover"/>
             </div>
             <input
               type="file"

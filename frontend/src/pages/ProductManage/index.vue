@@ -159,7 +159,7 @@
           </div>
         </div>
 
-        <div id="thumuaTrue">
+        <div id="thumuaTrue" style="display: none">
           <div
             class="flex-row"
             v-if="this.procurementItem.length == 0"

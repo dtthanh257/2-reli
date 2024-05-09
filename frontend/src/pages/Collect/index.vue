@@ -8,7 +8,7 @@
         </h2>
         <div class="flex-row gap-20">
           <div class="flex-column collect-form" style="flex: 1">
-            <h3>Lựa chọn hình thức thu gom</h3>
+            <h3>LỰA CHỌN HÌNH THỨC THU GOM</h3>
             <div class="collect-method-radio">
               <div class="flex-row" style="gap: 8px">
                 <input
@@ -40,7 +40,7 @@
               </div>
             </div>
             <h3>THÊM HÌNH ẢNH TÚI HÀNG</h3>
-            <SPAN>Đăng từ 1 - 4 ảnh</SPAN>
+            <SPAN style="c">Đăng từ 1 - 4 ảnh</SPAN>
             <div class="flex-row jc-sb">
               <ImgSelect
                 v-for="(index, imgSelectIndex) in imgSelects"
@@ -169,15 +169,11 @@
                 </div>
               </div>
               <div class="collect-total-amount flex-column">
-                <div class="flex-row jc-sb gap-8">
-                  <div class="collect-money-title">
-                    Phí xử lí không phát thải:
-                  </div>
-                  <div class="collect-money">0</div>
-                </div>
                 <div class="flex-row jc-sb">
                   <div class="collect-money-title">Phí vận chuyển:</div>
-                  <div class="collect-money">{{ shipMoney }}</div>
+                  <div class="collect-money" style="color: black">
+                    {{ shipMoney }}
+                  </div>
                 </div>
                 <div class="flex-row jc-sb">
                   <div class="collect-money-title">Thành tiền:</div>

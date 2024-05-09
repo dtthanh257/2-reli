@@ -25,7 +25,7 @@
                 ></Textfield>
                 <div class="flex-column gap-8">
                   <h3 style="font-size: 14.4px">THÊM HÌNH ẢNH ĐƠN HÀNG</h3>
-                  <span>Đăng từ 1 - 4 ảnh</span>
+                  <span style="color:black">Đăng từ 1 - 4 ảnh</span>
                   <div class="flex-row jc-sb">
                     <ImgSelect
                       v-for="index in 4"

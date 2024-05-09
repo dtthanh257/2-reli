@@ -190,18 +190,12 @@ export default {
       if (this.productQuantity > 0) {
         this.buyQuantity += 1;
         this.productQuantity -= 1;
-        this.singlePrice = this.formatCurrency(
-          this.productPrice * this.buyQuantity
-        );
       }
     },
     minusQuantity() {
       if (this.buyQuantity > 1) {
         this.buyQuantity -= 1;
         this.productQuantity += 1;
-        this.singlePrice = this.formatCurrency(
-          this.productPrice * this.buyQuantity
-        );
       }
     },
     formatCurrency(number) {

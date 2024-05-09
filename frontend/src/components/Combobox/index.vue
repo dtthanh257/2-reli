@@ -11,6 +11,7 @@
         'comboboxv2-input-label': isV2,
         'comboboxv3-input-label': isV3,
       }"
+      style="color:black"
       >{{ label }}</label
     >
     <div

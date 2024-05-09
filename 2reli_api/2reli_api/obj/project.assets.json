@@ -1038,19 +1038,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dtt25\\.nuget\\packages\\": {}
+    "C:\\Users\\Home\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documents\\2rell\\2-rell\\2reli_api\\2reli_api\\2reli_api.csproj",
+      "projectUniqueName": "D:\\Documents\\2-reli\\2reli_api\\2reli_api\\2reli_api.csproj",
       "projectName": "2reli_api",
-      "projectPath": "D:\\Documents\\2rell\\2-rell\\2reli_api\\2reli_api\\2reli_api.csproj",
-      "packagesPath": "C:\\Users\\dtt25\\.nuget\\packages\\",
-      "outputPath": "D:\\Documents\\2rell\\2-rell\\2reli_api\\2reli_api\\obj\\",
+      "projectPath": "D:\\Documents\\2-reli\\2reli_api\\2reli_api\\2reli_api.csproj",
+      "packagesPath": "C:\\Users\\Home\\.nuget\\packages\\",
+      "outputPath": "D:\\Documents\\2-reli\\2reli_api\\2reli_api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dtt25\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Home\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1070,6 +1070,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1128,7 +1133,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

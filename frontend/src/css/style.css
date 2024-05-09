@@ -126,3 +126,11 @@ p {
 .bg-pri {
   background-color: var(--primary-color);
 }
+.vnd {
+  color: #28A24F;
+}
+.flex-row input[type='radio'],
+.flex-column input[type='radio'] {
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}

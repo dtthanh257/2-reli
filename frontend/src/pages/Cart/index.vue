@@ -3,7 +3,10 @@
     <Navbar></Navbar>
     <div class="grid-12" style="background-color: white">
       <div class="home-cate" style="padding: 0">
-        <div class="flex-row" style="align-items: center; padding: 30px 0">
+        <div
+          class="flex-row"
+          style="align-items: center; padding: 30px 0; color: black"
+        >
           <div
             class="flex-row gap-8"
             style="
@@ -127,6 +130,7 @@
             width: 100%;
             flex: 1;
             justify-content: space-between;
+            color: black;
           "
         >
           <div

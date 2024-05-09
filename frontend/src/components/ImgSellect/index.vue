@@ -14,6 +14,7 @@
     />
     <img
       :style="{ width: size + 'px', height: size + 'px' }"
+      style="object-fit: cover"
       ref="newImg"
       class="newImg"
       :src="imageUrl"
