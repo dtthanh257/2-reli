@@ -8,6 +8,7 @@
             class="product-manage-acti-buy flex-row"
             :class="{ 'product-manage-acti--istrue': actiBuy }"
             @click="toggleActiBuy"
+            style="color: black"
           >
             Đơn mua
           </div>
@@ -15,6 +16,7 @@
             class="product-manage-acti-sell flex-row"
             :class="{ 'product-manage-acti--istrue': actiSell }"
             @click="toggleActiSell"
+            style="color: black"
           >
             Đơn bán
           </div>
