@@ -17,7 +17,7 @@ class ProductService {
   async getProductToDemo(count) {
     try {
       const response = await axios.get(
-        `http://localhost:5196/api/SellProduct/demoproduct/${count}`
+        `http://89.116.121.36:5196/api/SellProduct/demoproduct/${count}`
       );
       return response.data;
     } catch (error) {
@@ -28,7 +28,7 @@ class ProductService {
   async addProduct(data) {
     return await axios({
       method: "post",
-      url: "http://localhost:5196/api/SellProduct",
+      url: "http://89.116.121.36:5196/api/SellProduct",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -39,21 +39,21 @@ class ProductService {
   // Hàm lấy thông tin sản phẩm theo id sản phẩm
   async getProductById(productId) {
     const response = await axios.get(
-      `http://localhost:5196/api/SellProduct/${productId}`
+      `http://89.116.121.36:5196/api/SellProduct/${productId}`
     );
     return response.data;
   }
   //Hàm lấy thông tin ảnh của sản phẩm
   async getProductImg(productId) {
     const response = await axios.get(
-      `http://localhost:5196/api/SellProduct/images/${productId}`
+      `http://89.116.121.36:5196/api/SellProduct/images/${productId}`
     );
     return response;
   }
   async addProductImage(data) {
     return await axios({
       method: "post",
-      url: "http://localhost:5196/api/SellProduct/images",
+      url: "http://89.116.121.36:5196/api/SellProduct/images",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ class ProductService {
   async getProductThumbnail(productId) {
     try {
       const response = await axios.get(
-        `http://localhost:5196/api/SellProduct/imagesThumbnail/${productId}`
+        `http://89.116.121.36:5196/api/SellProduct/imagesThumbnail/${productId}`
       );
       return response;
     } catch (error) {
