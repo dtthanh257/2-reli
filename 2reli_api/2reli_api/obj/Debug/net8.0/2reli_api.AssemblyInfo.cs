@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("2reli_api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a38e915623d571835232674462f35da66ed9302")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+951846d1a584028488d9a9d565d77d85357b175a")]
 [assembly: System.Reflection.AssemblyProductAttribute("2reli_api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("2reli_api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -16,9 +16,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAnyOrigin",
         builder =>
         {
-            builder.AllowAnyOrigin()
+            //builder.AllowAnyOrigin()
+            //       .AllowAnyMethod()
+            //       .AllowAnyHeader();
+            builder.WithOrigins("http://2reli.vn")
                    .AllowAnyMethod()
-                   .AllowAnyHeader();
+                   .AllowAnyHeader()
+                   .AllowCredentials();
         });
 });
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
