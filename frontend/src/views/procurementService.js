@@ -3,7 +3,7 @@ class ProcurementService {
   async addProcurementProduct(data) {
     return await axios({
       method: "post",
-      url: "https://localhost:44385/api/Procurement",
+      url: "http://localhost:5196/api/Procurement",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -14,7 +14,7 @@ class ProcurementService {
   async getProcurementProduct(userId) {
     return await axios({
       method: "get",
-      url: `https://localhost:44385/api/Procurement/${userId}`,
+      url: `http://localhost:5196/api/Procurement/${userId}`,
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -24,7 +24,7 @@ class ProcurementService {
   async addProcurementProductImg(data) {
     return await axios({
       method: "post",
-      url: "https://localhost:44385/api/Procurement/images",
+      url: "http://localhost:5196/api/Procurement/images",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ class ProcurementService {
     try {
       return await axios({
         method: "get",
-        url: `https://localhost:44385/api/Procurement/images/${productId}`,
+        url: `http://localhost:5196/api/Procurement/images/${productId}`,
         headers: { accepts: "*/*", "Content-Type": "application/json" },
       });
     } catch (error) {

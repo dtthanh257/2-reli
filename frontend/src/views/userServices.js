@@ -3,7 +3,7 @@ class UserService {
   async registerUser(data) {
     return await axios({
       method: "post",
-      url: "https://localhost:44385/api/Users",
+      url: "http://localhost:5196/api/Users",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -14,18 +14,18 @@ class UserService {
   async getUser() {
     return await axios({
       method: "get",
-      url: "https://localhost:44385/api/Users",
+      url: "http://localhost:5196/api/Users",
     });
   }
   async getUserById(userId) {
-    const res = await axios.get(`https://localhost:44385/api/Users/${userId}`);
+    const res = await axios.get(`http://localhost:5196/api/Users/${userId}`);
     return res;
   }
   async updateUser(userId, userData) {
     try {
       const res = await axios({
         method: "put", // Hoặc "patch" nếu chỉ cập nhật một phần của thông tin người dùng
-        url: `https://localhost:44385/api/Users/${userId}`,
+        url: `http://localhost:5196/api/Users/${userId}`,
         headers: {
           Accept: "*/*",
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ class UserService {
   async changeUserAva(data) {
     return await axios({
       method: "post",
-      url: "https://localhost:44385/api/Users/upload-avatar",
+      url: "http://localhost:5196/api/Users/upload-avatar",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ class UserService {
   async getUserAva(userId) {
     return await axios({
       method: "get",
-      url: ` https://localhost:44385/api/Users/${userId}/avatar`,
+      url: ` http://localhost:5196/api/Users/${userId}/avatar`,
     });
   }
 }
