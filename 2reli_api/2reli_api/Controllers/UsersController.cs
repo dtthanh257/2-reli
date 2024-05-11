@@ -12,13 +12,13 @@ namespace _2reli_api.Controllers
         [HttpGet]
         public async Task<IEnumerable<User>> GetUsers()
         {
-        var connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
+        var connectionString = "Server=srv515925;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
             var connecttion = new MySqlConnection(connectionString);
             var sql = "SELECT * FROM user";
             var result = await connecttion.QueryAsync<User>(sql);
             return result;
         }
-        private readonly string _connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
+        private readonly string _connectionString = "Server=srv515925;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
 
         [HttpPost]
         public async Task<IActionResult> AddUser(User newUser)

@@ -9,7 +9,7 @@ namespace _2reli_api.Controllers
     [ApiController]
     public class CollectProductController : ControllerBase
     {
-        private readonly string _connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
+        private readonly string _connectionString = "Server=srv515925;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
         [HttpPost]
         public async Task<IActionResult> AddCollectProduct(CollectProduct collectProduct)
         {

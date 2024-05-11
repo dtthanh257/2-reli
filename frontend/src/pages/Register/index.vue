@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-column">
+  <div class="flex-column" style="position: relative">
     <Popup
       v-if="this.regisErr == true"
       :title="this.popup.title"

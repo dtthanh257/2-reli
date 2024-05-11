@@ -17,7 +17,7 @@ namespace _2reli_api.Controllers
     public class LoginController : Controller
     {   
         private readonly IConfiguration _configuration;
-        private readonly string _connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
+        private readonly string _connectionString = "Server=srv515925;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
         public class UserRes
         {
             public int id { get; set; }
