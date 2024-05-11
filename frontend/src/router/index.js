@@ -26,6 +26,10 @@ const routes = [
   //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
   // }
   {
+    path: "/", // Route mặc định là "/"
+    redirect: "/home", // Chuyển hướng người dùng từ "/" đến "/home"
+  },
+  {
     path: "/login",
     component: Login,
   },

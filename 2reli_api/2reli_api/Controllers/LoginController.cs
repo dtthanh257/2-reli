@@ -17,7 +17,7 @@ namespace _2reli_api.Controllers
     public class LoginController : Controller
     {   
         private readonly IConfiguration _configuration;
-        private readonly string _connectionString = "Server=srv515925;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
+        private readonly string _connectionString = "Server=localhost;Port=3306;Database=2reli_database;Uid=root;Pwd=1234;";
         public class UserRes
         {
             public int id { get; set; }
@@ -78,7 +78,7 @@ namespace _2reli_api.Controllers
         {
             using (var connection = new MySqlConnection(_connectionString))
             {
-                var query = "SELECT * FROM User WHERE Nickname = @Nickname AND Password = @Password";
+                var query = "SELECT * FROM user WHERE Nickname = @Nickname AND Password = @Password";
                 var parameters = new { Nickname = userLogin.Nickname, Password = userLogin.Password };
                 var result = connection.QueryFirstOrDefault<User>(query, parameters);
                 if (result != null) return result;

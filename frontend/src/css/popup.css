@@ -1,0 +1,61 @@
+.popup {
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 56%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.popup-content {
+    white-space: nowrap;
+    padding: 0 20px;
+}
+.popup-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.popup-container {
+    width: 35%;
+    min-width: fit-content;
+    min-height: fit-content ;
+    display: flex;
+   padding: 20px;
+   gap: 20px;
+    background-color: white;
+}
+.popup-button {
+    background-color: white;
+    height: 34px;
+    padding: 12px;
+    min-width: fit-content;
+    display: flex;
+    align-items: center;
+}
+.popup-button:hover {
+    background-color: #dadada;
+}
+.popup-button:active {
+    background-color: #ccc;
+}
+.login-page{
+    min-height: 800px;
+}
+.popup-icon-success {
+    height: 48px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 1/1;
+    background-image: url(./../../public/img/icons/alert-success.svg);
+}
+.popup-icon-err {
+    height: 48px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    aspect-ratio: 1/1;
+    background-image: url(./../../public/img/icons/process-error.svg);
+}

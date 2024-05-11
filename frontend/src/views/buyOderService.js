@@ -3,7 +3,7 @@ class BuyOrderService {
   async addItemToBuyOder(data) {
     return await axios({
       method: "post",
-      url: "http://89.116.121.36:5000/api/BuyOrder",
+      url: "http://localhost:5196/api/BuyOrder",
       headers: {
         accepts: "*/*",
         "Content-Type": "application/json",
@@ -13,20 +13,20 @@ class BuyOrderService {
   }
   async getByOrderById(userId) {
     const res = await axios.get(
-      `http://89.116.121.36:5000/api/BuyOrder/user/${userId}`
+      `http://localhost:5196/api/BuyOrder/user/${userId}`
     );
     return res;
   }
   async getByOrderBySellerName(sellerName) {
     const res = await axios.get(
-      `http://89.116.121.36:5000/api/BuyOrder/seller/${sellerName}`
+      `http://localhost:5196/api/BuyOrder/seller/${sellerName}`
     );
     return res;
   }
   async updateStatus(id) {
     try {
       const response = await axios.put(
-        `http://89.116.121.36:5000/api/BuyOrder/${id}/update-status`
+        `http://localhost:5196/api/BuyOrder/${id}/update-status`
       );
       return response.data;
     } catch (error) {
