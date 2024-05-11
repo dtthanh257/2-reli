@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("2reli_api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc49cf25a422d44f8be6b578e17276290b1d8548")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1fecf546b033f3c2c71b781512872a7e7a1a1daf")]
 [assembly: System.Reflection.AssemblyProductAttribute("2reli_api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("2reli_api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

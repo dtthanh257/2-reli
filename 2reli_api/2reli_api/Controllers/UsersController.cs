@@ -14,7 +14,7 @@ namespace _2reli_api.Controllers
         {
         var connectionString = "Server=srv515925;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
             var connecttion = new MySqlConnection(connectionString);
-            var sql = "SELECT * FROM User";
+            var sql = "SELECT * FROM user";
             var result = await connecttion.QueryAsync<User>(sql);
             return result;
         }
@@ -29,7 +29,7 @@ namespace _2reli_api.Controllers
                 {
                     await connection.OpenAsync();
 
-                    var sql = @"INSERT INTO User (name, password, phone_number, nickname ) 
+                    var sql = @"INSERT INTO user (name, password, phone_number, nickname ) 
                                 VALUES (@Name, @Password, @Phone_Number, @Nickname)";
                     var parameters = new
                     {
@@ -60,7 +60,7 @@ namespace _2reli_api.Controllers
                 {
                     await connection.OpenAsync();
 
-                    var sql = "SELECT * FROM User WHERE id = @Id";
+                    var sql = "SELECT * FROM user WHERE id = @Id";
 
                     var user = await connection.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
 
