@@ -11,6 +11,7 @@
         public string Product_quantity { get; set; }
         public string Product_price { get;set;} 
         public int User_id { get; set; }
-        public int Sell_status { get; set; }    
+        public int Sell_status { get; set; }        
+        public string Product_brand {  get; set; }  
     }
 }
