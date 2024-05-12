@@ -2,7 +2,11 @@
 <template>
   <div class="product">
     <router-link :to="'/productdetail/' + productId">
-      <img :src="thumbnailUrl" alt="Product Thumbnail" />
+      <img
+        style="object-fit: cover"
+        :src="thumbnailUrl"
+        alt="Product Thumbnail"
+      />
       <h3 style="font-weight: 500">{{ name }}</h3>
       <p>{{ price }}</p>
     </router-link>

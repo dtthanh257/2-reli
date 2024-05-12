@@ -13,7 +13,9 @@
           </div>
           <a href="/about" class="italic">Tìm hiểu thêm...</a>
           <div class="flex-row justify-content-center gap-28">
-            <button class="pri-btn home-btn"><b>MUA SẮM</b></button>
+            <button class="pri-btn home-btn" @click="scrollToTarget()">
+              <b>MUA SẮM</b>
+            </button>
             <button class="sec-btn home-btn"><b>DỌN TỦ</b></button>
           </div>
         </div>
@@ -107,7 +109,7 @@
           padding-bottom: 64px;
         "
       >
-        <div class="home-cate flex-column align-items-start">
+        <div class="home-cate flex-column align-items-start" id="muasam">
           <div class="flex-row w-100 jc-sb">
             <h2>Đề xuất hôm nay</h2>
             <div class="show-more flex-row" @click="toggleArrorShowRecom()">
@@ -262,6 +264,11 @@ const Home = {
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       return formattedPrice + " VNĐ";
+    },
+    scrollToTarget() {
+      const targetSection = document.getElementById("muasam");
+      targetSection.scrollIntoView({ behavior: "smooth" });
+      console.log("Ấn muasam");
     },
   },
 };
