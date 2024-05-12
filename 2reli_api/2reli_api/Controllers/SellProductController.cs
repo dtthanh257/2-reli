@@ -110,9 +110,9 @@ namespace _2reli_api.Controllers
                 using (var connection = new MySqlConnection(_connectionString))
                 {
                     var sql = @"INSERT INTO sell_product 
-                                (product_name, product_descr, product_status, product_type, product_size, product_quantity, product_price,user_id,sell_status) 
+                                (product_name, product_descr, product_status, product_type, product_size, product_quantity, product_price,user_id,sell_status, product_brand) 
                                 VALUES 
-                                (@Product_name, @Product_descr, @Product_status, @Product_type, @Product_size, @Product_quantity, @Product_price, @User_id,@Sell_status)";
+                                (@Product_name, @Product_descr, @Product_status, @Product_type, @Product_size, @Product_quantity, @Product_price, @User_id,@Sell_status, @Product_brand)";
                     await connection.ExecuteAsync(sql, product);
                 }
 
