@@ -88,7 +88,7 @@
               ></div>
             </div>
           </div>
-          <div class="flex-row product-list">
+          <!-- <div class="flex-row product-list">
             <Product
               v-for="product in productDemo"
               :key="product.id"
@@ -96,7 +96,7 @@
               :name="product.product_name"
               :price="formatPrice(product.product_price)"
             ></Product>
-          </div>
+          </div> -->
         </div>
       </div>
       <div
@@ -128,6 +128,64 @@
               :name="product.product_name"
               :price="formatPrice(product.product_price)"
             ></Product>
+          </div>
+        </div>
+      </div>
+      <div class="grid-12">
+        <div class="home-cate flex-row">
+          <div class="flex-column" style="flex: 1; gap: 30px">
+            <h3 style="text-align: start; font-size: 28px">Reliable</h3>
+            <div class="reli-account flex-row" style="gap: 16px">
+              <div class="reli-account-img acc-1"></div>
+              <div class="reli-account-content">
+                <div class="reli-account-name">Vân Phạm</div>
+                <div class="reli-account-nickname">@vanphhhhhh</div>
+                <div class="reli-account-score">105 điểm</div>
+              </div>
+            </div>
+            <div class="reli-account flex-row" style="gap: 16px">
+              <div class="reli-account-img acc-2"></div>
+              <div class="reli-account-content">
+                <div class="reli-account-name">Minh Nguyễn</div>
+                <div class="reli-account-nickname">@baminh</div>
+                <div class="reli-account-score">98 điểm</div>
+              </div>
+            </div>
+            <div class="reli-account flex-row" style="gap: 16px">
+              <div class="reli-account-img acc-3"></div>
+              <div class="reli-account-content">
+                <div class="reli-account-name">Rổng Biển</div>
+                <div class="reli-account-nickname">@dragonsea</div>
+                <div class="reli-account-score">91 điểm</div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-column" style="flex: 1; gap: 30px">
+            <h3 style="text-align: start; font-size: 28px">Bảng xanh</h3>
+            <div class="reli-account flex-row" style="gap: 16px">
+              <div class="reli-account-img acc-4"></div>
+              <div class="reli-account-content">
+                <div class="reli-account-name">Minh Trang</div>
+                <div class="reli-account-nickname">@trang119</div>
+                <div class="reli-account-score">103 điểm</div>
+              </div>
+            </div>
+            <div class="reli-account flex-row" style="gap: 16px">
+              <div class="reli-account-img acc-5"></div>
+              <div class="reli-account-content">
+                <div class="reli-account-name">Hà Nguyễn</div>
+                <div class="reli-account-nickname">@ha.ng</div>
+                <div class="reli-account-score">97 điểm</div>
+              </div>
+            </div>
+            <div class="reli-account flex-row" style="gap: 16px">
+              <div class="reli-account-img acc-6"></div>
+              <div class="reli-account-content">
+                <div class="reli-account-name">Quang Huy</div>
+                <div class="reli-account-nickname">@nqh1602</div>
+                <div class="reli-account-score">80 điểm</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -178,11 +236,11 @@ const Home = {
   methods: {
     toggleArrowShowFavo() {
       this.showArrowIconFavo = !this.showArrowIconFavo;
-      if (this.showArrowIconFavo == false) {
-        this.getProductToDemo(6);
-      } else {
-        this.getProductToDemo(12);
-      }
+      // if (this.showArrowIconFavo == false) {
+      //   this.getProductToDemo(6);
+      // } else {
+      //   this.getProductToDemo(12);
+      // }
       // Đảo trạng thái khi ấn vào
     },
     toggleArrorShowRecom() {
@@ -190,7 +248,7 @@ const Home = {
       if (this.showArrowIconRecom == false) {
         this.getProductToDemo(6);
       } else {
-        this.getProductToDemo(12);
+        this.getProductToDemo(24);
       }
     },
     async getProductToDemo(count) {

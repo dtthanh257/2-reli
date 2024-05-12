@@ -6,8 +6,9 @@
     >
     <div class="flex-row gap-20" style="align-items: center; width: 100%">
       <input
-        v-if="readOnly"
-        type="text"
+        v-if="isNumber == true"
+        type="number"
+        inputmode="numeric"
         :class="{ 'textfield-input-v2': isV2, 'textfield-input-v3': isV3 }"
         :placeholder="placeholder"
         :readonly="isReadOnly"
@@ -19,6 +20,7 @@
         }"
       />
       <input
+        v-else
         type="text"
         :class="{ 'textfield-input-v2': isV2, 'textfield-input-v3': isV3 }"
         :placeholder="placeholder"
@@ -70,6 +72,10 @@ const Textfield = {
       type: String,
       default: "",
     },
+    isNumber: {
+      type: Boolean,
+      default: false,
+    },
     input: String,
   },
   computed: {
@@ -87,3 +93,14 @@ const Textfield = {
 
 export default Textfield;
 </script>
+<style scoped>
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+</style>

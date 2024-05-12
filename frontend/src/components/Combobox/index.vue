@@ -11,7 +11,7 @@
         'comboboxv2-input-label': isV2,
         'comboboxv3-input-label': isV3,
       }"
-      style="color:black"
+      style="color: black"
       >{{ label }}</label
     >
     <div
@@ -27,6 +27,7 @@
         class="combobox-input"
         @click="toggleDropdown"
         v-model="inputValue"
+        @input="emitInputValue"
       />
       <div
         class="combobox-input-icon"
@@ -117,6 +118,7 @@ export default {
     onSelected(item) {
       this.inputValue = item.name;
       this.isDropdownVisible = false;
+      this.$emit("input-value-changed", this.inputValue);
     },
     onFocus() {
       this.isDropdownVisible = true;

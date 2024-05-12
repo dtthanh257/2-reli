@@ -67,6 +67,11 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+.product-img {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .product-card-payload {
   height: 80px;

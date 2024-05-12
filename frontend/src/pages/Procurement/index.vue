@@ -1,6 +1,16 @@
 <template>
   <div>
     <Navbar></Navbar>
+    <Popup
+      style="z-index: 100"
+      v-if="this.validate == true"
+      :title="this.popup.title"
+      :content="this.popup.content"
+      :btn="this.popup.btn"
+      :success="this.popup.success"
+      @close="this.closePopup"
+      @action="this.reloadPage"
+    ></Popup>
     <div class="flex-column">
       <div class="grid-12">
         <div class="home-cate procurement-contain">
@@ -25,7 +35,7 @@
                 ></Textfield>
                 <div class="flex-column gap-8">
                   <h3 style="font-size: 14.4px">THÊM HÌNH ẢNH ĐƠN HÀNG</h3>
-                  <span style="color:black">Đăng từ 1 - 4 ảnh</span>
+                  <span style="color: black">Đăng từ 1 - 4 ảnh</span>
                   <div class="flex-row jc-sb">
                     <ImgSelect
                       v-for="index in 4"
@@ -105,6 +115,7 @@
                   height="40"
                   v-model:input="this.productForm.product_quantity"
                   placeholder="Nhập số lượng sản phẩm"
+                  :isNumber="true"
                   style="flex: 0"
                 ></Textfield>
                 <div class="flex-column">
@@ -123,6 +134,7 @@
                 <div class="flex-column" style="position: relative">
                   <Textfield
                     label="MỨC GIÁ BẠN MONG MUỐN NHẬN ĐƯỢC"
+                    :isNumber="true"
                     placeholder="Nhập giá tiền"
                     v-model:input="this.productForm.product_price"
                     width="50"
@@ -253,6 +265,8 @@ import Textarea from "@/components/Textarea/index.vue";
 import ImgSelect from "@/components/ImgSellect/index.vue";
 import UserService from "@/views/userServices";
 import ProcurementService from "@/views/procurementService.js";
+import Popup from "../../components/Popup/index.vue";
+
 const Procument = {
   components: {
     ImgSelect,
@@ -261,6 +275,7 @@ const Procument = {
     Combobox,
     Footer,
     Textarea,
+    Popup,
   },
   data() {
     return {
@@ -275,7 +290,14 @@ const Procument = {
         user_id: "",
         product_handle: 0,
       },
+      popup: {
+        title: "",
+        content: "",
+        btn: "",
+        success: false,
+      },
       imageUrls: [],
+      validate: false,
     };
   },
   async mounted() {
@@ -294,10 +316,32 @@ const Procument = {
     async addProcurementProduct() {
       const id = localStorage.getItem("id");
       this.productForm.user_id = id;
-      const raw = JSON.stringify(this.productForm);
-      await ProcurementService.addProcurementProduct(raw);
-      console.log("thêm sản phẩm thu mua thành công");
-      this.addProductImg();
+      if (
+        !this.productForm.product_name ||
+        !this.productForm.product_descr ||
+        !this.productForm.product_quantity ||
+        !this.productForm.product_status ||
+        !this.productForm.product_price
+      ) {
+        this.popup.btn = "Đóng";
+        this.popup.title = "Thất bại";
+        this.popup.content =
+          "Hãy điền đầy đủ thông tin cần thiết của sản phẩm!";
+        this.popup.success = false;
+        this.validate = true;
+      } else {
+        this.productForm.product_price =
+          this.productForm.product_price.toString();
+        const raw = JSON.stringify(this.productForm);
+        await ProcurementService.addProcurementProduct(raw);
+        console.log("thêm sản phẩm thu mua thành công");
+        this.addProductImg();
+        this.popup.btn = "TIếp tục";
+        this.popup.title = "Thành công";
+        this.popup.content = "Đăng bán sản phẩm thành công.";
+        this.popup.success = true;
+        this.validate = true;
+      }
     },
     addImageUrl(imageUrl) {
       const imageData = { imageData: imageUrl };
@@ -317,6 +361,12 @@ const Procument = {
       } catch (error) {
         console.log(error);
       }
+    },
+    closePopup() {
+      this.validate = false;
+    },
+    reloadPage() {
+      window.location.reload();
     },
   },
 };

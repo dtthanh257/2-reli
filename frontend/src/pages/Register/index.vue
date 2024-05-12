@@ -7,7 +7,7 @@
       :btn="this.popup.btn"
       :success="this.popup.success"
       @close="this.closePopup"
-      @login="this.loginUser"
+      @action="this.loginUser"
     ></Popup>
     <div class="login-header flex-row">
       <div class="header-logo"></div>
@@ -45,6 +45,20 @@
               placeholder=""
               v-model="this.formRegis.Password"
             />
+          </div>
+          <div
+            class="login-textfield flex-column"
+            style="margin: 0; gap: 12px; width: 340px"
+          >
+            <div class="register-title">Bạn là (*)</div>
+            <div class="flex-row" style="gap: 80px">
+              <div class="input-radio" style="color: #787878">
+                <input type="radio" name="account-type" id="" checked /> Cá nhân
+              </div>
+              <div class="input-radio" style="color: #787878">
+                <input type="radio" name="account-type" id="" /> Shop
+              </div>
+            </div>
           </div>
           <button class="login-button flex-row" @click="registerUser()">
             TẠO TÀI KHOẢN

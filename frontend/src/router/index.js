@@ -12,22 +12,11 @@ import BuyInfo from "@/pages/BuyInfo/index.vue";
 import ProductDetail from "@/pages/ProductDetail/index.vue";
 import Cart from "@/pages/Cart/index.vue";
 const routes = [
-  // {
-  //   path: "/",
-  //   name: "home",
-  //   component: HomeView,
-  // },
-  // {
-  //   path: '/about',
-  //   name: 'about',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  // }
+
   {
     path: "/", // Route mặc định là "/"
-    redirect: "/home", // Chuyển hướng người dùng từ "/" đến "/home"
+    redirect: "/home", 
+  
   },
   {
     path: "/login",
@@ -40,34 +29,49 @@ const routes = [
   {
     path: "/home",
     component: Home,
+    meta: { title: '2Reli | Trang chủ' }
   },
   {
     path: "/about",
     component: About,
+    meta: { title: '2Reli | Về chúng tôi' }
+
   },
   {
     path: "/postforsale",
     component: Postforsale,
+    meta: { title: '2Reli | Đăng bán sản phẩm' }
+
   },
   {
     path: "/profile",
     component: ProfilePage,
+    meta: { title: '2Reli | Thông tin tài khoản' }
+
   },
   {
     path: "/procurement",
     component: Procurement,
+    meta: { title: '2Reli | Thu mua sản phẩm' }
+
   },
   {
     path: "/productmanage",
     component: ProductManage,
+    meta: { title: '2Reli | Quản lý đơn hàng' }
+
   },
   {
     path: "/collect",
     component: Collect,
+    meta: { title: '2Reli | Thu gom sản phẩm' }
+
   },
   {
     path: "/buyinfo",
     component: BuyInfo,
+    meta: { title: '2Reli | Thu gom sản phẩm' }
+
   },
   {
     path: "/productdetail/:id",
@@ -87,5 +91,8 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || '2Reli'
+  next()
+})
 export default router;

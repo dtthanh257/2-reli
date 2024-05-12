@@ -32,11 +32,11 @@
 a {
   text-decoration: none;
 }
-h2,
+/* h2,
 h3,
 p { 
   color: black !important;
-}
+} */
 /* @font-face {
   font-family: Inter fonts;
   src: url(../../public/fonts/Inter/static/Inter-Light.ttf);

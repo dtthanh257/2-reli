@@ -10,7 +10,7 @@
       <div class="nav-icon flex-row">
         <button class="nav-notif-icon icon"></button>
         <button class="nav-message-icon icon"></button>
-        <button class="nav-cart-icon icon"></button>
+        <a href="/productmanage" class="nav-cart-icon icon"></a>
         <a :href="linkToCart" class="nav-bx-cart icon"></a>
       </div>
       <div class="nav-activities flex-row" v-if="checkjwt">

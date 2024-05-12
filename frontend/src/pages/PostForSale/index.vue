@@ -1,6 +1,16 @@
 <template>
   <div>
     <Navbar></Navbar>
+    <Popup
+      style="z-index: 100"
+      v-if="this.validate == true"
+      :title="this.popup.title"
+      :content="this.popup.content"
+      :btn="this.popup.btn"
+      :success="this.popup.success"
+      @close="this.closePopup"
+      @action="this.reloadPage"
+    ></Popup>
     <div class="grid-12">
       <div class="home-cate flex-row gap-20">
         <div class="post-for-sale-title">
@@ -8,7 +18,7 @@
           <h3>THÊM HÌNH ẢNH SẢN PHẨM</h3>
           <p>Đăng từ 1 - 6 ảnh</p>
           <div class="flex-column post-for-sale-img">
-            <div class="flex-row jc-sb">
+            <div class="flex-row" style="gap: 30px">
               <ImgSelect
                 v-for="(imgSelectIndex, index) in imgSelects.slice(0, 3)"
                 :key="index"
@@ -18,7 +28,7 @@
                 size="120"
               ></ImgSelect>
             </div>
-            <div class="flex-row jc-sb">
+            <div class="flex-row" style="gap: 30px">
               <ImgSelect
                 v-for="(imgSelectIndex, index) in imgSelects.slice(3, 6)"
                 :key="index"
@@ -57,11 +67,13 @@
               label="PHÂN LOẠI SẢN PHẨM"
               :options="options"
               :items="classify"
+              @input-value-changed="handleProductType"
             ></Combobox>
             <Combobox
               label="KÍCH CỠ SẢN PHẨM"
               :options="options"
               :items="size"
+              @input-value-changed="handleProductSize"
             ></Combobox>
           </div>
           <div class="flex-row gap-20">
@@ -72,6 +84,7 @@
               height="40"
             ></Textfield>
             <Textfield
+              v-model:input="this.productForm.product_brand"
               label="THƯƠNG HIỆU  "
               placeholder="Nhập thương hiệu (nếu có)"
               height="40"
@@ -87,7 +100,14 @@
             <div style="flex: 1">
               <div for="" style="height: 32px"></div>
               <div class="flex-row" style="align-items: center">
-                <b style="display: flex; align-items: center; height: 40px">
+                <b
+                  style="
+                    display: flex;
+                    align-items: center;
+                    height: 40px;
+                    color: #28a24f;
+                  "
+                >
                   VNĐ</b
                 >
               </div>
@@ -168,9 +188,11 @@ import Combobox from "@/components/Combobox/index.vue";
 import ImgSelect from "@/components/ImgSellect/index.vue";
 import ProductService from "@/views/productServices.js";
 import UserService from "@/views/userServices.js";
+import Popup from "../../components/Popup/index.vue";
 const Postforsale = {
   data() {
     return {
+      validate: false,
       productForm: {
         product_name: "",
         product_descr: "",
@@ -181,6 +203,7 @@ const Postforsale = {
         product_price: "",
         user_id: "",
         sell_status: 0,
+        product_brand: "",
       },
       userInfo: {
         userName: "",
@@ -208,13 +231,12 @@ const Postforsale = {
         { id: 7, name: "XXL" },
         { id: 8, name: "Khác" },
       ],
-      options: [
-        { label: "Option 1", value: "option-1" },
-        { label: "Option 2", value: "option-2" },
-        { label: "Option 3", value: "option-3" },
-        { label: "Option 4", value: "option-4" },
-        { label: "Option 5", value: "option-5" },
-      ],
+      popup: {
+        title: "",
+        content: "",
+        btn: "",
+        success: false,
+      },
       imageUrls: [],
     };
   },
@@ -226,6 +248,7 @@ const Postforsale = {
     // Textarea,
     Combobox,
     ImgSelect,
+    Popup,
   },
   created() {
     // Kiểm tra xem có id trong localStorage không
@@ -255,12 +278,34 @@ const Postforsale = {
       }
     },
     async addProduct() {
-      var raw = JSON.stringify(this.productForm);
-      console.log(raw);
-      await ProductService.addProduct(raw).then(() => {
-        console.log("Đăng sản phẩm thành công");
-        this.addProductImg();
-      });
+      if (
+        !this.productForm.product_name ||
+        !this.productForm.product_descr ||
+        !this.productForm.product_status ||
+        !this.productForm.product_type ||
+        !this.productForm.product_size ||
+        !this.productForm.product_quantity ||
+        !this.productForm.product_price
+      ) {
+        this.popup.btn = "Đóng";
+        this.popup.title = "Thất bại";
+        this.popup.content =
+          "Hãy điền đầy đủ thông tin cần thiết của sản phẩm!";
+        this.popup.success = false;
+        this.validate = true;
+      } else {
+        var raw = JSON.stringify(this.productForm);
+        console.log(raw);
+        await ProductService.addProduct(raw).then(() => {
+          console.log("Đăng sản phẩm thành công");
+          this.addProductImg();
+          this.popup.btn = "TIếp tục";
+          this.popup.title = "Thành công";
+          this.popup.content = "Đăng bán sản phẩm thành công.";
+          this.popup.success = true;
+          this.validate = true;
+        });
+      }
     },
     addImageUrl(imageUrl) {
       const imageData = { imageData: imageUrl };
@@ -277,6 +322,21 @@ const Postforsale = {
       } catch (error) {
         console.log(error);
       }
+    },
+    handleProductType(value) {
+      this.productForm.product_type = value;
+      console.log(this.productForm.product_type);
+    },
+    handleProductSize(value) {
+      this.productForm.product_size = value;
+      console.log(this.productForm.product_size);
+    },
+    closePopup() {
+      this.validate = false;
+      console.log("Đóng");
+    },
+    reloadPage() {
+      window.location.reload();
     },
   },
 };

@@ -66,7 +66,7 @@ const Popup = {
       this.$emit("close");
     },
     loginAcc() {
-      this.$emit("login");
+      this.$emit("action");
     },
   },
 };

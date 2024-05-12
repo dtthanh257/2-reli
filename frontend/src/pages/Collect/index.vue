@@ -1,6 +1,16 @@
 <template>
   <div class="collect-page">
     <Navbar></Navbar>
+    <Popup
+      style="z-index: 100"
+      v-if="this.validate == true"
+      :title="this.popup.title"
+      :content="this.popup.content"
+      :btn="this.popup.btn"
+      :success="this.popup.success"
+      @close="this.closePopup"
+      @action="this.reloadPage"
+    ></Popup>
     <div class="grid-12">
       <div class="home-cate">
         <h2 style="font-size: 28px; font-weight: 600; margin-bottom: 30px">
@@ -265,12 +275,14 @@ import ImgSelect from "@/components/ImgSellect/index.vue";
 import Textfield from "@/components/TextField/index.vue";
 import UserService from "@/views/userServices";
 import CollectService from "@/views/collectServices.js";
+import Popup from "../../components/Popup/index.vue";
 const Collect = {
   components: {
     Navbar,
     ImgSelect,
     Footer,
     Textfield,
+    Popup,
   },
   mounted() {
     this.shipMoney = this.formatCurrency(60000);
@@ -295,7 +307,14 @@ const Collect = {
         product_name: "",
         user_id: "",
       },
+      popup: {
+        title: "",
+        content: "",
+        btn: "",
+        success: false,
+      },
       imageUrls: [],
+      validate: false,
     };
   },
 
@@ -339,10 +358,27 @@ const Collect = {
     async addCollectProduct() {
       this.collectForm.price = this.totalMoney;
       this.collectForm.user_id = localStorage.getItem("id");
-      const raw = JSON.stringify(this.collectForm);
-      await CollectService.addCollectProduct(raw);
-      console.log("Đăng sản phẩm thu gom thành công");
-      this.addProductImg();
+      if (
+        this.collectForm.product_name == "" ||
+        this.collectForm.product_name == null
+      ) {
+        this.popup.btn = "Đóng";
+        this.popup.title = "Thất bại";
+        this.popup.content =
+          "Hãy điền đầy đủ thông tin cần thiết của sản phẩm!";
+        this.popup.success = false;
+        this.validate = true;
+      } else {
+        const raw = JSON.stringify(this.collectForm);
+        await CollectService.addCollectProduct(raw);
+        console.log("Đăng sản phẩm thu gom thành công");
+        this.addProductImg();
+        this.popup.btn = "Tiếp tục";
+        this.popup.title = "Thành công";
+        this.popup.content = "Đăng sản phẩm thu gom thành công";
+        this.popup.success = true;
+        this.validate = true;
+      }
     },
     addImageUrl(imageUrl) {
       const imageData = { imageData: imageUrl };
@@ -360,6 +396,13 @@ const Collect = {
       } catch (error) {
         console.log(error);
       }
+    },
+    closePopup() {
+      this.validate = false;
+      console.log("Đóng");
+    },
+    reloadPage() {
+      window.location.reload();
     },
   },
 };

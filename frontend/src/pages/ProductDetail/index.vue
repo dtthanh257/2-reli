@@ -161,6 +161,7 @@ export default {
       var userId = res.user_id;
       const res2 = await UserService.getUserById(userId);
       const sellerAvaRes = await UserService.getUserAva(userId);
+      console.log(res2);
       this.sellerAva = sellerAvaRes.data;
       this.sellerName = res2.data.name;
       this.sellerNickname = res2.data.nickname;
@@ -171,8 +172,8 @@ export default {
       this.productBrand = res.product_brand;
       this.productType = res.product_type;
       this.productSize = res.product_size;
-      this.productAddress = res.product_addr;
-      this.productQuantity = parseInt(res.product_quantity) - this.buyQuantity;
+      this.productAddress = res2.data.ward + ", " + res2.data.province;
+      this.productQuantity = parseInt(res.product_quantity);
       this.singlePrice = this.formatCurrency(this.productPrice);
     },
     // Lấy thông tin về ảnh của sản phẩm
@@ -189,13 +190,11 @@ export default {
     plusQuantity() {
       if (this.productQuantity > 0) {
         this.buyQuantity += 1;
-        this.productQuantity -= 1;
       }
     },
     minusQuantity() {
       if (this.buyQuantity > 1) {
         this.buyQuantity -= 1;
-        this.productQuantity += 1;
       }
     },
     formatCurrency(number) {

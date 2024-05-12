@@ -41,6 +41,49 @@
   font-size: 20px;
   color: black;
 }
+.reli-account-img {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  height: 102px;
+  width: 102px;
+}
+.reli-account-content{    display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: start;}
+  .reli-account-name {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .reli-account-nickname {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .reli-account-score {
+    font-size: 17px;
+    font-weight: 600;
+    color: #28A24F;
+  }
+.acc-1 {
+  background-image: url(../../public/img/assets/vanpham.png)
+}
+.acc-2 {
+  background-image: url(../../public/img/assets/minhnguyen.png)
+}
+.acc-3 {
+  background-image: url(../../public/img/assets/dragonsea.png)
+}
+.acc-4 {
+  background-image: url(../../public/img/assets/minhtrang.png)
+}
+.acc-5 {
+  background-image: url(../../public/img/assets/hanguyen.png)
+}
+.acc-6 {
+  background-image: url(../../public/img/assets/quochuy.png)
+}
 .show-more {
   color: var(--primary-color);
   gap: 16px;
