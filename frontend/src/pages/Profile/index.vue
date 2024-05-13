@@ -1,6 +1,16 @@
 <template>
   <div>
     <Navbar></Navbar>
+    <Popup
+      style="z-index: 100"
+      v-if="this.validate == true"
+      :title="this.popup.title"
+      :content="this.popup.content"
+      :btn="this.popup.btn"
+      :success="this.popup.success"
+      @close="this.closePopup"
+      @action="this.reloadPage"
+    ></Popup>
     <div class="grid-12" style="background-color: #f5f5f5">
       <div class="home-cate profile-page">
         <h2>Hồ sơ của tôi</h2>
@@ -90,9 +100,28 @@
           </div>
           <div class="profile-dob flex-row">
             <label>Ngày sinh</label>
-            <Combobox isV3="true" width="120" :items="date"></Combobox>
-            <Combobox isV3="true" width="120"></Combobox>
-            <Combobox isV3="true" width="120"></Combobox>
+            <Combobox
+              isV3="true"
+              width="120"
+              :items="date"
+              @input-value-changed="handleDate"
+              :fetchValue="userDate"
+              @fetch-data="fetchDate"
+            ></Combobox>
+            <Combobox
+              isV3="true"
+              width="120"
+              :items="month"
+              @input-value-changed="handleMonth"
+              :fetchValue="userMonth"
+            ></Combobox>
+            <Combobox
+              isV3="true"
+              width="120"
+              :items="year"
+              @input-value-changed="handleYear"
+              :fetchValue="userYear"
+            ></Combobox>
           </div>
           <div class="profile-save-btn">
             <button class="pri-btn nor-btn" @click="updateProfile(this.userId)">
@@ -126,7 +155,12 @@
                 src="../../../public/img/assets/ava-acc-icon.png"
                 alt=""
               />
-              <img id="newAva" :src="imageUrl" alt="" style="display: none; object-fit:cover"/>
+              <img
+                id="newAva"
+                :src="imageUrl"
+                alt=""
+                style="display: none; object-fit: cover"
+              />
             </div>
             <input
               type="file"
@@ -152,23 +186,118 @@ import Textfield from "@/components/TextField/index.vue";
 import Combobox from "@/components/Combobox/index.vue";
 import Footer from "@/components/Footer/index.vue";
 import UserService from "@/views/userServices";
+import moment from "moment";
+import Popup from "../../components/Popup/index.vue";
 export default {
   components: {
     Navbar,
     Textfield,
     Combobox,
     Footer,
+    Popup,
   },
+
   name: "ProfilePage",
   data() {
     return {
       imageUrl: "",
+      userDate: "",
+      userMonth: "",
+      userYEar: "",
+      dob: "",
       date: [
         { id: 1, name: 1 },
         { id: 1, name: 2 },
         { id: 1, name: 3 },
         { id: 1, name: 4 },
         { id: 1, name: 5 },
+        { id: 1, name: 6 },
+        { id: 1, name: 7 },
+        { id: 1, name: 8 },
+        { id: 1, name: 9 },
+        { id: 1, name: 10 },
+        { id: 1, name: 11 },
+        { id: 1, name: 12 },
+        { id: 1, name: 13 },
+        { id: 1, name: 14 },
+        { id: 1, name: 15 },
+        { id: 1, name: 16 },
+        { id: 1, name: 17 },
+        { id: 1, name: 18 },
+        { id: 1, name: 19 },
+        { id: 1, name: 20 },
+        { id: 1, name: 21 },
+        { id: 1, name: 22 },
+        { id: 1, name: 23 },
+        { id: 1, name: 24 },
+        { id: 1, name: 25 },
+        { id: 1, name: 26 },
+        { id: 1, name: 27 },
+        { id: 1, name: 28 },
+        { id: 1, name: 29 },
+        { id: 1, name: 30 },
+        { id: 1, name: 31 },
+      ],
+      month: [
+        { id: 1, name: 1 },
+        { id: 1, name: 2 },
+        { id: 1, name: 3 },
+        { id: 1, name: 4 },
+        { id: 1, name: 5 },
+        { id: 1, name: 6 },
+        { id: 1, name: 7 },
+        { id: 1, name: 8 },
+        { id: 1, name: 9 },
+        { id: 1, name: 10 },
+        { id: 1, name: 11 },
+        { id: 1, name: 12 },
+      ],
+      year: [
+        { id: 1, name: 1980 },
+        { id: 1, name: 1981 },
+        { id: 1, name: 1982 },
+        { id: 1, name: 1983 },
+        { id: 1, name: 1984 },
+        { id: 1, name: 1985 },
+        { id: 1, name: 1986 },
+        { id: 1, name: 1987 },
+        { id: 1, name: 1988 },
+        { id: 1, name: 1989 },
+        { id: 1, name: 1990 },
+        { id: 1, name: 1991 },
+        { id: 1, name: 1992 },
+        { id: 1, name: 1993 },
+        { id: 1, name: 1994 },
+        { id: 1, name: 1995 },
+        { id: 1, name: 1996 },
+        { id: 1, name: 1997 },
+        { id: 1, name: 1998 },
+        { id: 1, name: 1999 },
+        { id: 1, name: 2000 },
+        { id: 1, name: 2001 },
+        { id: 1, name: 2002 },
+        { id: 1, name: 2003 },
+        { id: 1, name: 2004 },
+        { id: 1, name: 2005 },
+        { id: 1, name: 2006 },
+        { id: 1, name: 2007 },
+        { id: 1, name: 2008 },
+        { id: 1, name: 2009 },
+        { id: 1, name: 2010 },
+        { id: 1, name: 2011 },
+        { id: 1, name: 2012 },
+        { id: 1, name: 2013 },
+        { id: 1, name: 2014 },
+        { id: 1, name: 2015 },
+        { id: 1, name: 2016 },
+        { id: 1, name: 2017 },
+        { id: 1, name: 2018 },
+        { id: 1, name: 2019 },
+        { id: 1, name: 2020 },
+        { id: 1, name: 2021 },
+        { id: 1, name: 2022 },
+        { id: 1, name: 2023 },
+        { id: 1, name: 2024 },
       ],
       userInfo: {
         name: "",
@@ -180,15 +309,24 @@ export default {
         ward: "",
         address: "",
         gender: "",
-        dob: "2024-04-24T23:33:27.609Z",
+        dob: "",
       },
       isReadonly: true,
       userId: "",
+      popup: {
+        title: "",
+        content: "",
+        btn: "",
+        success: false,
+      },
+      validate: false,
     };
+  },
+  created() {
+    this.fetchUserInfo();
   },
   mounted() {
     // Gọi hàm fetchUserInfo khi component được mounted
-    this.fetchUserInfo();
     this.userId = localStorage.getItem("id");
   },
   methods: {
@@ -212,7 +350,6 @@ export default {
       }
     },
     async fetchUserInfo() {
-      // Kiểm tra xem có jwt trong localStorage không
       const jwt = localStorage.getItem("jwt");
       if (jwt) {
         const id = localStorage.getItem("id");
@@ -228,36 +365,120 @@ export default {
         this.userInfo.address = res.data.address;
         this.userInfo.gender = res.data.gender;
         this.userInfo.dob = res.data.dob;
+        this.parseDatetimeFromDB();
       }
     },
     updateProfile(userId) {
-      const updatedUser = {
-        name: this.userInfo.name,
-        nickname: this.userInfo.nickname,
-        email: this.userInfo.email,
-        phone_number: this.userInfo.phone_number,
-        province: this.userInfo.province,
-        district: this.userInfo.district,
-        ward: this.userInfo.ward,
-        address: this.userInfo.address,
-        dob: "2024-04-24T23:36:35.207Z",
-        gender: this.userInfo.gender,
-      };
-      const updateAva = {
-        user_id: userId,
-        user_ava: this.imageUrl,
-      };
-      UserService.changeUserAva(updateAva);
-      UserService.updateUser(userId, updatedUser)
-        .then((response) => {
-          console.log(response.data);
-          console.log("Cập nhật thông tin thành công");
-          console.log(this.userInfo);
-        })
-        .catch((error) => {
-          console.error(error);
-          // Xử lý khi có lỗi xảy ra
-        });
+      if (
+        !this.userInfo.name ||
+        !this.userInfo.nickname ||
+        !this.userInfo.email ||
+        !this.userInfo.phone_number ||
+        !this.userInfo.province ||
+        !this.userInfo.district ||
+        !this.userInfo.ward ||
+        !this.userInfo.address ||
+        !this.userDate ||
+        !this.userMonth ||
+        !this.userYear ||
+        !this.userInfo.gender
+      ) {
+        this.popup.btn = "Đóng";
+        this.popup.title = "Cập nhật thông tin thất bại";
+        this.popup.content = "Hãy điền đầy đủ thông tin cá nhân!";
+        this.popup.success = false;
+        this.validate = true;
+      } else {
+        const updatedUser = {
+          name: this.userInfo.name,
+          nickname: this.userInfo.nickname,
+          email: this.userInfo.email,
+          phone_number: this.userInfo.phone_number,
+          province: this.userInfo.province,
+          district: this.userInfo.district,
+          ward: this.userInfo.ward,
+          address: this.userInfo.address,
+          dob: this.dob,
+          gender: this.userInfo.gender,
+        };
+        const updateAva = {
+          user_id: userId,
+          user_ava: this.imageUrl,
+        };
+        UserService.changeUserAva(updateAva);
+        UserService.updateUser(userId, updatedUser)
+          .then((response) => {
+            console.log(response.data);
+            console.log("Cập nhật thông tin thành công");
+            console.log(this.userInfo);
+            this.popup.btn = "Tiếp tục";
+            this.popup.title = "Thành công";
+            this.popup.content = "Cập nhật thông tin thành công.";
+            this.popup.success = true;
+            this.validate = true;
+          })
+          .catch((error) => {
+            console.error(error);
+            // Xử lý khi có lỗi xảy ra
+          });
+      }
+    },
+    handleDate(value) {
+      this.userDate = value;
+      this.handleDatetime();
+    },
+    handleMonth(value) {
+      this.userMonth = value;
+      this.handleDatetime();
+    },
+    handleYear(value) {
+      this.userYear = value;
+      this.handleDatetime();
+    },
+    handleDatetime() {
+      if (!this.userDate || !this.userMonth || !this.userYear) {
+        console.log("Hãy nhập đủ thông tin ngày sinh");
+      } else {
+        const date = parseInt(this.userDate);
+        const month = parseInt(this.userMonth);
+        const year = parseInt(this.userYear);
+        if (date && month && year) {
+          const datetime = moment({ year, month: month - 1, date }).format(
+            "YYYY-MM-DDTHH:mm:ss"
+          );
+          console.log(datetime);
+          this.dob = datetime;
+        } else {
+          console.log("Vui lòng chọn đầy đủ ngày, tháng và năm.");
+        }
+      }
+    },
+    parseDatetimeFromDB() {
+      if (this.userInfo.dob != null) {
+        const datetime = new Date(this.userInfo.dob);
+
+        console.log(this.dob);
+        this.userDate = datetime.getDate().toString().padStart("0"); // Lấy ngày và đảm bảo định dạng là hh
+        this.userMonth = (datetime.getMonth() + 1).toString().padStart("0"); // Lấy tháng và đảm bảo định dạng là hh
+        this.userYear = datetime.getFullYear().toString(); // Lấy năm
+        const date = parseInt(this.userDate);
+        const month = parseInt(this.userMonth);
+        const year = parseInt(this.userYear);
+        const datetimeParsed = moment({ year, month: month - 1, date }).format(
+          "YYYY-MM-DDTHH:mm:ss"
+        );
+        this.dob = datetimeParsed;
+        console.log(
+          this.userDate + ", " + this.userMonth + ", " + this.userYear
+        );
+      }
+    },
+    closePopup() {
+      this.validate = false;
+      console.log("Đóng");
+    },
+    reloadPage() {
+      window.location.reload();
     },
   },
 };

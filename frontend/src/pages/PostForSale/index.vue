@@ -189,6 +189,7 @@ import ImgSelect from "@/components/ImgSellect/index.vue";
 import ProductService from "@/views/productServices.js";
 import UserService from "@/views/userServices.js";
 import Popup from "../../components/Popup/index.vue";
+
 const Postforsale = {
   data() {
     return {

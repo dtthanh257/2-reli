@@ -43,7 +43,12 @@
         ></i>
       </div>
     </div>
-    <div class="combobox-dropdown" v-show="isDropdownVisible">
+    <div
+      class="combobox-dropdown"
+      v-show="isDropdownVisible"
+      :style="{ 'max-height': dropdownMaxHeight }"
+      ref="dropdown"
+    >
       <div
         v-for="item in items"
         :key="item.id"
@@ -64,16 +69,23 @@ export default {
     return {
       isDropdownVisible: false,
       inputValue: null,
+      dropdownMaxHeight: "auto",
     };
   },
+
   props: {
     items: {
       type: Array,
+      fetchValue: String,
       required: true,
     },
     label: {
       type: String,
       required: true,
+    },
+    fetchValue: {
+      type: String,
+      default: "",
     },
     options: {
       type: Array,
@@ -100,14 +112,29 @@ export default {
   //     },
   //   },
   // },
+  watch: {
+    fetchValue(newValue) {
+      this.inputValue = newValue; // Theo dõi sự thay đổi của fetchValue từ props và cập nhật vào biến local inputValue
+    },
+  },
   mounted() {
     document.addEventListener("click", this.closeDropdownOnClickOutside);
+    this.inputValue = this.fetchValue;
+    this.$emit("fetch-data", this.inputValue);
   },
   methods: {
     toggleDropdown() {
       this.isDropdownVisible = !this.isDropdownVisible;
       console.log(this.items);
       console.log(this.isDropdownVisible);
+      this.$nextTick(() => {
+        const dropdownHeight = this.$refs.dropdown.clientHeight;
+        if (dropdownHeight > 120) {
+          this.dropdownMaxHeight = "244px";
+        } else {
+          this.dropdownMaxHeight = "auto";
+        }
+      });
     },
 
     closeDropdownOnClickOutside(event) {
@@ -130,4 +157,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.combobox-dropdown {
+  overflow-y: auto;
+}
+</style>
