@@ -1,7 +1,7 @@
 /* eslint-disable */
 <template>
   <div class="product">
-    <router-link :to="'/productdetail/' + productId">
+    <router-link style="width: 100%" :to="'/productdetail/' + productId">
       <img
         style="object-fit: cover"
         :src="thumbnailUrl"
