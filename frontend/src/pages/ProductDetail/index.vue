@@ -87,14 +87,27 @@
           ></div>
           <div class="flex-column jc-sb gap-12">
             <div class="flex-row gap-8">
-              <div class="seller-name">{{ this.sellerName }}</div>
-              <div
+              <router-link
+                :to="'/profileAccount/' + this.sellerId"
+                class="seller-name"
+                style="color: black"
+              >
+                {{ this.sellerName }}</router-link
+              >
+
+              <router-link
+                :to="'/profileAccount/' + this.sellerId"
                 v-if="this.sellerNickname === '2reli'"
                 class="icon icon-tick"
                 style="height: 90%; aspect-ratio: 1/1"
-              ></div>
+              ></router-link>
             </div>
-            <div class="seller-nickname">@{{ this.sellerNickname }}</div>
+            <router-link
+              :to="'/profileAccount/' + this.sellerId"
+              class="seller-nickname"
+              style="color: black"
+              >@{{ this.sellerNickname }}</router-link
+            >
             <button class="seller-message">Chat ngay</button>
           </div>
         </div>
@@ -115,6 +128,7 @@ export default {
   data() {
     return {
       singlePrice: "",
+      sellerId: "",
       sellerName: "Tên người bán",
       sellerNickname: "nickname",
       sellerAva: "",
@@ -151,9 +165,10 @@ export default {
       default: 1,
     },
   },
-  mounted() {
+  async mounted() {
     const productId = this.id;
-    this.getProductInfo(productId);
+    await this.getProductInfo(productId);
+    console.log(this.sellerId);
     this.getProductImage(productId);
   },
   components: {
@@ -168,6 +183,7 @@ export default {
       const res2 = await UserService.getUserById(userId);
       const sellerAvaRes = await UserService.getUserAva(userId);
       console.log(res2);
+      this.sellerId = userId;
       this.sellerAva = sellerAvaRes.data;
       this.sellerName = res2.data.name;
       this.sellerNickname = res2.data.nickname;

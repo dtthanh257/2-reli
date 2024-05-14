@@ -47,14 +47,17 @@
         </div>
       </div>
     </div>
-    <div class="grid-12" style="background-color: #f3f2f2">
+    <div
+      class="grid-12"
+      style="background-color: #f3f2f2; padding-bottom: 60px"
+    >
       <div class="home-cate product-list flex-row">
         <Product
           v-for="product in productDemo"
           :key="product.id"
           :productId="product.id"
           :name="product.product_name"
-          :price="product.product_price"
+          :price="formatPrice(product.product_price)"
         ></Product>
       </div>
     </div>
@@ -109,6 +112,12 @@ export default {
       this.totalProduct = ProductRes.data.length;
       this.productDemo = ProductRes.data;
       console.log(ProductRes.data);
+    },
+    formatPrice(price) {
+      const formattedPrice = price
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return formattedPrice + " VNĐ";
     },
   },
 };
