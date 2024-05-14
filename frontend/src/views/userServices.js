@@ -56,6 +56,20 @@ class UserService {
       url: ` http://89.116.121.36:5000/api/Users/${userId}/avatar`,
     });
   }
+  //Trả về tổng số sản phẩm đã đăng
+  async getTotalProduct(userId) {
+    return await axios({
+      method: "get",
+      url: ` http://89.116.121.36:5000/api/Users/total/${userId}`,
+    });
+  }
+  //Trả về id người dùng theo nickname
+  async getUseridByNickname(nickname) {
+    return await axios({
+      method: "get",
+      url: `http://89.116.121.36:5000/api/Users/getIdByNickname/${nickname}`,
+    });
+  }
 }
 
 export default new UserService();

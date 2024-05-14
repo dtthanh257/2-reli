@@ -71,7 +71,16 @@ class ProductService {
       console.log("Sản phẩm chưa có ảnh nào");
     }
   }
-
+  async getAllProductByUserId(userid) {
+    try {
+      const response = await axios.get(
+        `http://89.116.121.36:5000/api/SellProduct/product/${userid}`
+      );
+      return response;
+    } catch (error) {
+      console.log("Chưa có sản phẩm nào");
+    }
+  }
   //   // Phương thức tải lên tệp lên Google Drive
   //   async uploadFileToDrive(filePath, fileName) {
   //     // Thông tin xác thực OAuth 2.0 của bạn
