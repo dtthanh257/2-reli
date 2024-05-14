@@ -176,6 +176,28 @@ namespace _2reli_api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error adding product image: {ex.Message}");
             }
         }
-        
+        /// <summary>
+        /// Lấy ra toàn bộ product theo user id
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("product/{userId}")]
+        public async Task<IActionResult> GetProductsByUserId(int userId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var sql = "SELECT * FROM sell_product WHERE user_id = @UserId";
+                    var result = await connection.QueryAsync<SellProduct>(sql, new { UserId = userId });
+
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error fetching products by user ID: {ex.Message}");
+            }
+        }
     }
 }

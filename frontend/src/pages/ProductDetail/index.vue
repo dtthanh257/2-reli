@@ -78,7 +78,12 @@
         <div class="seller-account flex-row gap-20">
           <div
             class="seller-ava"
-            :style="{ backgroundImage: 'url(' + sellerAva + ')' }"
+            :style="{
+              backgroundImage:
+                'url(' +
+                (sellerAva || require('/public/img/assets/ava-acc-icon.png')) +
+                ')',
+            }"
           ></div>
           <div class="flex-column jc-sb gap-12">
             <div class="flex-row gap-8">
@@ -104,6 +109,7 @@ import Navbar from "@/components/Navbar/index.vue";
 import ProductService from "@/views/productServices";
 import UserService from "@/views/userServices";
 import CartService from "@/views/cartServices.js";
+
 export default {
   name: "ProductDetail",
   data() {

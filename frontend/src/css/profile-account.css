@@ -1,0 +1,35 @@
+.account-ava {
+    background-image: url(../../public/img/assets/ava-acc-icon.png);
+    border-radius: 50%;
+    height: 142px;
+    aspect-ratio: 1/1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.profile-accout-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start; 
+    width: 100%;
+}
+.profile-account-btn {
+ width: 50%; 
+ padding: 12px ; 
+ background-color: white;
+ border: 1px solid #28A24F; 
+}.profile-account-btn:hover {
+    background-color: #ccc;
+}
+.profile-account-name {
+    font-size: 20px;
+    font-weight: 500;
+}
+.profile-account-nickname {
+    font-size: 16px;
+}
+.profile-account-type {
+    font-size: 16px;
+    color: #5C5D5C;
+}

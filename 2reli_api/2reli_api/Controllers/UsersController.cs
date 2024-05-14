@@ -189,5 +189,28 @@ namespace _2reli_api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error fetching avatar: " + ex.Message);
             }
         }
+        /// <summary>
+        /// Lấy ra số sản phẩm đã đăng
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpGet("total/{userId}")]
+        public async Task<IActionResult> GetTotalProductsByUserId(int userId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var sql = "SELECT COUNT(*) FROM sell_product WHERE user_id = @UserId";
+                    var totalProducts = await connection.ExecuteScalarAsync<int>(sql, new { UserId = userId });
+
+                    return Ok(totalProducts);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error fetching total products: {ex.Message}");
+            }
+        }
     }
 }

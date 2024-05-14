@@ -11,6 +11,7 @@ import Collect from "@/pages/Collect/index.vue";
 import BuyInfo from "@/pages/BuyInfo/index.vue";
 import ProductDetail from "@/pages/ProductDetail/index.vue";
 import Cart from "@/pages/Cart/index.vue";
+import ProfileAccount from '@/pages/ProfileAccount/index.vue';
 const routes = [
 
   {
@@ -84,6 +85,14 @@ const routes = [
     component: Cart,
     name: "Cart",
     props: true,
+  },
+  {
+    path: '/ProfileAccount/:userId', // the colon indicates a parameter
+    name: 'ProfileAccount',
+    component: ProfileAccount,
+    props: true,
+    meta: { title: '2Reli | Thông tin tài khoản' }
+
   },
 ];
 

@@ -300,7 +300,7 @@ const Postforsale = {
         await ProductService.addProduct(raw).then(() => {
           console.log("Đăng sản phẩm thành công");
           this.addProductImg();
-          this.popup.btn = "TIếp tục";
+          this.popup.btn = "Tiếp tục";
           this.popup.title = "Thành công";
           this.popup.content = "Đăng bán sản phẩm thành công.";
           this.popup.success = true;
