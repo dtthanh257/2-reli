@@ -111,5 +111,53 @@ namespace _2reli_api.Controllers
                 return StatusCode(500, $"Error retrieving collect product images: {ex.Message}");
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllProcurements()
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var sql = "SELECT * FROM procurement_product";
+                    var procurements = await connection.QueryAsync<Procurement>(sql);
+
+                    return Ok(procurements);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error fetching procurements: {ex.Message}");
+            }
+        }
+        [HttpPut("{productId}")]
+        public async Task<IActionResult> UpdateProductHandle(int productId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    // Lấy thông tin sản phẩm từ database
+                    var getProductSql = "SELECT * FROM procurement_product WHERE id = @ProductId";
+                    var product = await connection.QueryFirstOrDefaultAsync<Procurement>(getProductSql, new { ProductId = productId });
+
+                    if (product == null)
+                    {
+                        return NotFound("Product not found");
+                    }
+
+                    // Cập nhật product_handle
+                    var updatedProductHandle = product.Product_handle + 1;
+
+                    var updateSql = "UPDATE procurement_product SET product_handle = @ProductHandle WHERE id = @ProductId";
+                    await connection.ExecuteAsync(updateSql, new { ProductHandle = updatedProductHandle, ProductId = productId });
+
+                    return Ok($"Product handle for product with ID {productId} updated successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error updating product handle: {ex.Message}");
+            }
+        }
     }
 }

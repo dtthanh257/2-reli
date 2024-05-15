@@ -43,5 +43,27 @@ class ProcurementService {
       console.log("Cannot find cart item");
     }
   }
+  async getAllProcurementProduct() {
+    try {
+      return await axios({
+        method: "get",
+        url: `http://89.116.121.36:5000/api/Procurement`,
+        headers: { accepts: "*/*", "Content-Type": "application/json" },
+      });
+    } catch (error) {
+      console.log("Cannot find cart item");
+    }
+  }
+  async updateProcurementProductStatus(productid) {
+    try {
+      return await axios({
+        method: "put",
+        url: `http://89.116.121.36:5000/api/Procurement/${productid}`,
+        headers: { accepts: "*/*", "Content-Type": "application/json" },
+      });
+    } catch (error) {
+      console.log("Cannot find cart item");
+    }
+  }
 }
 export default new ProcurementService();

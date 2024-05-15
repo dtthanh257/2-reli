@@ -11,8 +11,8 @@ namespace _2reli_api.Controllers
     {
         private readonly string _connectionString = "Server=srv515925;Port=3306;Database=2reli_database;Uid=root;Pwd=ubuntu123;";
 
-        [HttpPost] // Đánh dấu phương thức là HTTP POST
-        public async Task<IActionResult> AddToBuyOderList(BuyOrderItem buyOrderItem) // Chỉnh sửa kiểu trả về và tham số
+        [HttpPost] 
+        public async Task<IActionResult> AddToBuyOderList(BuyOrderItem buyOrderItem) 
         {
             try
             {
@@ -93,8 +93,6 @@ namespace _2reli_api.Controllers
                 using (var connection = new MySqlConnection(_connectionString))
                 {
                     await connection.OpenAsync();
-
-                    // Truy vấn để cập nhật product_status của đơn hàng mua
                     var sql = @"UPDATE buy_order 
                                 SET product_status = product_status + 1 
                                 WHERE id = @Id";

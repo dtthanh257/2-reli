@@ -7,7 +7,7 @@
         public int User_id { get; set; }
         public string Price { get; set; }
         public string Product_name { get; set; }
-
+        public int Product_status { get; set; }
 
     }
 }

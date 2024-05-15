@@ -46,8 +46,6 @@
           :product_price="this.formatCurrency(index.product_price)"
           :imgUrl="this.imgUrl[i]"
         ></ProductCard>
-        <!-- <ProductCard></ProductCard>
-        <ProductCard></ProductCard> -->
       </div>
       <div id="donbanTrue" class="flex-column home-cate gap-20">
         <div class="flex-row reli-acti">
@@ -61,11 +59,29 @@
           <button
             class="reli-acti-thumua"
             :class="{ isTrue: thumua }"
+            @click="toggleThumuaAdmin"
+            v-if="this.user_name == '2reli'"
+          >
+            Thu mua
+          </button>
+          <button
+            v-else
+            class="reli-acti-thumua"
+            :class="{ isTrue: thumua }"
             @click="toggleThuMua"
           >
             Thu mua
           </button>
           <button
+            v-if="this.user_name == '2reli'"
+            class="reli-acti-thugom"
+            :class="{ isTrue: thugom }"
+            @click="toggleThuGomAdmin"
+          >
+            Thu gom
+          </button>
+          <button
+            v-else
             class="reli-acti-thugom"
             :class="{ isTrue: thugom }"
             @click="toggleThuGom"
@@ -160,8 +176,41 @@
             </div>
           </div>
         </div>
-
-        <div id="thumuaTrue" style="display: none">
+        <div id="thumuaTrue" v-if="this.user_name == '2reli' && thumua == true">
+          <div
+            class="flex-row"
+            v-if="this.allProcurementProduct.length == 0"
+            style="display: flex; justify-content: center; padding: 100px 0"
+          >
+            Chưa có đơn thu mua nào
+          </div>
+          <ProductCard
+            v-else
+            style="margin-top: 30px"
+            v-for="(index, i) in allProcurementProduct"
+            :key="index"
+            :order_id="index.id"
+            :product_name="index.product_name"
+            :product_status="index.product_handle"
+            :quantity="1"
+            :product_price="formatCurrency(index.product_price)"
+            :imgUrl="this.allProcurementImgUrl[i]"
+            :collect_way="index.collect_way"
+            :procurement_product="true"
+            :single_price="false"
+            :buttonLabel="
+              index.product_handle === 0
+                ? 'Xác nhận'
+                : index.product_handle === 2
+                ? 'Đã hoàn thành'
+                : ''
+            "
+            @updateCollectProductStatus="
+              updateProcurementtProductStatusAdmin(index.id)
+            "
+          ></ProductCard>
+        </div>
+        <div id="thumuaTrue" style="display: none" v-else>
           <div
             class="flex-row"
             v-if="this.procurementItem.length == 0"
@@ -169,80 +218,70 @@
           >
             Bạn chưa có đơn thu mua nào
           </div>
-          <div
+
+          <ProductCard
             v-else
-            class="product-card flex-column"
             style="margin-top: 30px"
             v-for="(index, i) in procurementItem"
             :key="index"
-          >
-            <div class="product-card-code">Mã đơn hàng {{ index.id }}</div>
-
-            <div class="flex-column">
-              <div
-                class="flex-row gap-20"
-                style="padding-left: 40px; padding: 45px 40px"
-              >
-                <div
-                  class="product-card-img"
-                  :style="{
-                    'background-image': 'url(' + procurementImgUrl[i] + ')',
-                  }"
-                ></div>
-                <div class="product-card-info flex-column">
-                  <div class="product-card-name">{{ index.product_name }}</div>
-                  <div class="product-card-quantity">
-                    x {{ index.product_quantity }}
-                  </div>
-                  <div class="product-card-status">
-                    Trạng thái:
-                    <span v-if="index.product_handle == 0"
-                      >Đã gửi yêu cầu / Đang kiểm định</span
-                    >
-                    <span v-if="index.product_handle != 0"
-                      >Đã kiểm định, chờ xác nhận</span
-                    >
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex-row"
-                style="
-                  border-top: 1px solid var(--border-color);
-                  align-items: center;
-                  justify-content: space-between;
-                "
-              >
-                <div class="product-card-payload gap-8">
-                  <p style="padding: 0">Thành tiền:</p>
-                  <div class="product-card-pay">--</div>
-                </div>
-                <button
-                  class="product-card-btn nor-btn"
-                  v-if="index.product_handle == 1"
-                  @click="this.updateProductStatus(index.id)"
-                >
-                  XÁC NHẬN
-                </button>
-                <button
-                  class="product-card-btn nor-btn"
-                  v-if="index.product_handle == 1"
-                  @click="this.updateProductStatus(index.id)"
-                >
-                  ĐÃ CHUẨN BỊ HÀNG
-                </button>
-                <button
-                  class="product-card-btn nor-btn"
-                  v-if="index.product_status == 2"
-                  @click="this.updateProductStatus(index.id)"
-                >
-                  GIAO HÀNG THÀNH CÔNG
-                </button>
-              </div>
-            </div>
-          </div>
+            :order_id="index.id"
+            :product_name="index.product_name"
+            :product_status="index.product_handle"
+            :quantity="1"
+            :product_price="
+              formatCurrency(
+                index.product_handle != 0 ? index.product_price : ''
+              )
+            "
+            :imgUrl="this.procurementImgUrl[i]"
+            :collect_way="index.collect_way"
+            :single_price="false"
+            :procurement_product="true"
+            :buttonLabel="
+              index.product_handle === 0
+                ? ''
+                : index.product_handle === 1
+                ? 'Xác nhận'
+                : ''
+            "
+            @updateCollectProductStatus="
+              updateProcurementtProductStatus(index.id)
+            "
+          ></ProductCard>
         </div>
-        <div id="thugomTrue" style="display: none">
+        <div id="thugomTrue" v-if="this.user_name == '2reli' && thugom">
+          <div
+            class="flex-row"
+            v-if="this.allCollectProduct.length == 0"
+            style="display: flex; justify-content: center; padding: 100px 0"
+          >
+            Bạn chưa có đơn thu gom nào
+          </div>
+          <ProductCard
+            v-else
+            style="margin-top: 30px"
+            v-for="(index, i) in allCollectProduct"
+            :key="index"
+            :order_id="index.id"
+            :product_name="index.product_name"
+            :product_status="index.product_status"
+            :quantity="1"
+            :product_price="index.price"
+            :imgUrl="this.allCollectImgUrl[i]"
+            :collect_product="true"
+            :collect_way="index.collect_way"
+            :single_price="false"
+            :buttonLabel="
+              index.product_status === 0
+                ? 'Xác nhận'
+                : index.product_status === 1
+                ? 'Đã hoàn thành'
+                : ''
+            "
+            @updateCollectProductStatus="updateCollectProductStatus(index.id)"
+          ></ProductCard>
+        </div>
+        <div id="thugomTrue" style="display: none" v-else>
           <div
             class="flex-row"
             v-if="this.collectItem.length == 0"
@@ -257,10 +296,13 @@
             :key="index"
             :order_id="index.id"
             :product_name="index.product_name"
-            :product_status="0"
+            :product_status="index.product_status"
             :quantity="1"
             :product_price="index.price"
             :imgUrl="this.collectImgUrl[i]"
+            :collect_product="true"
+            :single_price="false"
+            :collect_way="index.collect_way"
           ></ProductCard>
         </div>
       </div>
@@ -298,13 +340,18 @@ export default {
       thugomTrue: null,
       buyOderItem: [],
       imgUrl: [],
-      user_name: "",
+      user_name: "2reli",
       sellOrderItem: [],
       procurementItem: [],
       collectItem: [],
       sellImgUrl: [],
       collectImgUrl: [],
+      allCollectImgUrl: [],
       procurementImgUrl: [],
+      allProcurementImgUrl: [],
+      allCollectProduct: [],
+      allProcurementProduct: [],
+      user_id: 0,
     };
   },
   components: {
@@ -320,6 +367,7 @@ export default {
     this.thugomTrue = document.querySelector("#thugomTrue");
     await this.getOrderList();
     await this.getUserInfo();
+    console.log(this.user_name);
   },
   methods: {
     toggleActiBuy() {
@@ -378,6 +426,7 @@ export default {
         this.thugomTrue.style.display = "block";
       }
       this.getCollectProductById();
+      console.log(this.user_name == "2reli");
     },
     async getOrderList(userId) {
       userId = localStorage.getItem("id");
@@ -395,21 +444,25 @@ export default {
     },
     formatCurrency(amount) {
       amount = amount.toString();
-      let parts = amount.split(".");
-      let currency = parts[0];
-      // Định dạng số tiền
-      currency = currency.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Thêm dấu chấm phân cách giữa mỗi hàng nghìn
+      if (amount != "") {
+        let parts = amount.split(".");
+        let currency = parts[0];
+        // Định dạng số tiền
+        currency = currency.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Thêm dấu chấm phân cách giữa mỗi hàng nghìn
 
-      if (parts.length === 2) {
-        currency += "," + parts[1];
+        if (parts.length === 2) {
+          currency += "," + parts[1];
+        }
+        return currency + " VNĐ";
       }
-      return currency + " VNĐ";
     },
     async getUserInfo() {
       const userId = localStorage.getItem("id");
       const res = await UserService.getUserById(userId);
       console.log(res.data.nickname);
       this.user_name = res.data.nickname;
+      console.log(this.user_name);
+      this.user_id = userId;
       return res.data;
     },
     async getSellOrder() {
@@ -458,6 +511,75 @@ export default {
       console.log(productId);
       console.log(res.data[0]);
       this.procurementImgUrl.push(res.data[0]);
+    },
+    toggleThuGomAdmin() {
+      this.thugom = true;
+      this.dangban = false;
+      this.thumua = false;
+      if (this.thugom == true) {
+        this.dangbanTrue.style.display = "none";
+        this.thumuaTrue.style.display = "none";
+        this.thugomTrue.style.display = "block";
+      }
+      this.getAllCollectProduct();
+      console.log("Tài khoản admin");
+      console.log(this.user_name == "2reli");
+    },
+    toggleThumuaAdmin() {
+      this.thumua = true;
+      this.dangban = false;
+      this.thugom = false;
+      if (this.thumua == true) {
+        this.dangbanTrue.style.display = "none";
+        this.thumuaTrue.style.display = "block";
+        this.thugomTrue.style.display = "none";
+      }
+      this.getAllProcurementProduct();
+    },
+    async getAllCollectProduct() {
+      const res = await CollectService.getAllCollectProduct();
+      this.allCollectProduct = res.data;
+      console.log(this.allCollectProduct);
+      for (let i = 0; i < this.allCollectProduct.length; i++) {
+        await this.getAllCollectProductImgUrl(this.allCollectProduct[i].id);
+      }
+      console.log(this.user_name == "2reli");
+    },
+
+    async getAllCollectProductImgUrl(productId) {
+      const res = await CollectService.getCollectProductImg(productId);
+
+      this.allCollectImgUrl.push(res.data[0]);
+    },
+    async updateCollectProductStatus(collect_product_id) {
+      await CollectService.updateCollecProductStatus(collect_product_id);
+      const res = await CollectService.getAllCollectProduct();
+      this.allCollectProduct = res.data;
+    },
+    async getAllProcurementProduct() {
+      const res = await ProcurementService.getAllProcurementProduct();
+      this.allProcurementProduct = res.data;
+      console.log(this.allProcurementProduct);
+      for (let i = 0; i < this.allProcurementProduct.length; i++) {
+        await this.getAllProcurementProductImg(
+          this.allProcurementProduct[i].id
+        );
+      }
+    },
+    async getAllProcurementProductImg(productId) {
+      const res = await ProcurementService.getProcurementProductImg(productId);
+      this.allProcurementImgUrl.push(res.data[0]);
+    },
+    async updateProcurementtProductStatusAdmin(procurementid) {
+      await ProcurementService.updateProcurementProductStatus(procurementid);
+      const res = await ProcurementService.getAllProcurementProduct();
+      this.allProcurementProduct = res.data;
+    },
+    async updateProcurementtProductStatus(procurementid) {
+      await ProcurementService.updateProcurementProductStatus(procurementid);
+      const id = localStorage.getItem("id");
+      const res2 = await ProcurementService.getProcurementProduct(id);
+      this.procurementItem = res2.data;
     },
   },
 };

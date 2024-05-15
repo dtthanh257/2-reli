@@ -19,15 +19,16 @@ namespace _2reli_api.Controllers
                 {
                     await connection.OpenAsync();
 
-                    var sql = @"INSERT INTO collect_product (collect_way, user_id, price, product_name) 
-                                VALUES (@Collect_way, @User_id, @Price, @Product_name)";
+                    var sql = @"INSERT INTO collect_product (collect_way, user_id, price, product_name, product_status) 
+                                VALUES (@Collect_way, @User_id, @Price, @Product_name, @Product_status)";
                     var parameters = new
                     {
                         collectProduct.Collect_way,
                         collectProduct.User_id,
                         collectProduct.Price,
-                        collectProduct.Product_name
-                    };
+                        collectProduct.Product_name,
+                        collectProduct.Product_status
+                        };
 
                     await connection.ExecuteAsync(sql, parameters);
 
@@ -108,6 +109,58 @@ namespace _2reli_api.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"Error retrieving collect product images: {ex.Message}");
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllCollectProducts()
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    var sql = "SELECT * FROM collect_product";
+
+                    var collectProducts = await connection.QueryAsync(sql);
+                    return Ok(collectProducts);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error retrieving all collect products: {ex.Message}");
+            }
+        }
+        /// <summary>
+        /// Cập nhật product_status của sản phẩm bằng cách tăng lên 1
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [HttpPatch("{productId}/increment-status")]
+        public async Task<IActionResult> IncrementProductStatus(int productId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+
+                    var sql = "UPDATE collect_product SET product_status = product_status + 1 WHERE id = @ProductId";
+                    var parameters = new { ProductId = productId };
+
+                    var rowsAffected = await connection.ExecuteAsync(sql, parameters);
+
+                    if (rowsAffected == 0)
+                    {
+                        return NotFound($"Product with id {productId} not found.");
+                    }
+
+                    return Ok($"Product status for product id {productId} incremented successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error incrementing product status: {ex.Message}");
             }
         }
     }

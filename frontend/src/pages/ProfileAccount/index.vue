@@ -96,9 +96,10 @@ export default {
     Navbar,
     Product,
   },
-  mounted() {
+  async mounted() {
     const userid = this.userId;
-    this.getUserInfo(userid);
+    await this.getUserInfo(userid);
+    this.fetchUserAva(userid);
   },
   methods: {
     async getUserInfo(userid) {
@@ -106,8 +107,7 @@ export default {
       console.log(res.data);
       this.userInfo.name = res.data.name;
       this.userInfo.nickname = res.data.nickname;
-      const sellerAvaRes = await UserService.getUserAva(userid);
-      this.sellerAva = sellerAvaRes.data;
+
       const ProductRes = await ProductService.getAllProductByUserId(userid);
       this.totalProduct = ProductRes.data.length;
       this.productDemo = ProductRes.data;
@@ -118,6 +118,10 @@ export default {
         .toString()
         .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
       return formattedPrice + " VNĐ";
+    },
+    async fetchUserAva(userid) {
+      const sellerAvaRes = await UserService.getUserAva(userid);
+      this.sellerAva = sellerAvaRes.data;
     },
   },
 };

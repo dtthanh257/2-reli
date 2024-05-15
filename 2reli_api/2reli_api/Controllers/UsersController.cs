@@ -212,5 +212,28 @@ namespace _2reli_api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error fetching total products: {ex.Message}");
             }
         }
+        [HttpGet("getIdByNickname/{nickname}")]
+        public async Task<IActionResult> GetUserIdByNickname(string nickname)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    var sql = "SELECT id FROM user WHERE nickname = @Nickname";
+                    var userId = await connection.QueryFirstOrDefaultAsync<int?>(sql, new { Nickname = nickname });
+
+                    if (userId == null)
+                    {
+                        return NotFound("User not found");
+                    }
+
+                    return Ok(userId);
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error fetching user ID: {ex.Message}");
+            }
+        }
     }
 }

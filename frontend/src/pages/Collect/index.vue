@@ -306,6 +306,7 @@ const Collect = {
         price: "",
         product_name: "",
         user_id: "",
+        product_status: 0,
       },
       popup: {
         title: "",
