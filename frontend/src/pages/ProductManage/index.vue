@@ -123,8 +123,8 @@
                   </div>
                   <div class="product-card-status">
                     Trạng thái:
-                    <span v-if="index.product_status == 0">Đang đăng bán</span>
-                    <span v-if="index.product_status != 0">Đã bán</span>
+                    <span v-if="index.sell_status == 0">Đang đăng bán</span>
+                    <span v-if="index.sell_status != 0">Đã bán</span>
                   </div>
                   <div class="product-card-price">
                     Đơn giá: {{ index.product_price }}
@@ -153,21 +153,21 @@
                 </div>
                 <button
                   class="product-card-btn nor-btn"
-                  v-if="index.product_status == 0"
+                  v-if="index.sell_status == 1"
                   @click="this.updateProductStatus(index.id)"
                 >
                   XÁC NHẬN
                 </button>
                 <button
                   class="product-card-btn nor-btn"
-                  v-if="index.product_status == 1"
+                  v-if="index.sell_status == 2"
                   @click="this.updateProductStatus(index.id)"
                 >
                   ĐÃ CHUẨN BỊ HÀNG
                 </button>
                 <button
                   class="product-card-btn nor-btn"
-                  v-if="index.product_status == 2"
+                  v-if="index.sell_status == 3"
                   @click="this.updateProductStatus(index.id)"
                 >
                   GIAO HÀNG THÀNH CÔNG
@@ -466,11 +466,12 @@ export default {
       return res.data;
     },
     async getSellOrder() {
-      const res = await BuyOrderService.getByOrderBySellerName(this.user_name);
+      const userId = localStorage.getItem("id");
+      const res = await ProductService.getAllProductByUserId(userId);
       console.log(res.data);
       this.sellOrderItem = res.data;
       for (let i = 0; i < this.sellOrderItem.length; i++) {
-        await this.getSellOrderImg(this.sellOrderItem[i].product_id);
+        await this.getSellOrderImg(this.sellOrderItem[i].id);
       }
     },
     async getSellOrderImg(productId) {
@@ -479,7 +480,7 @@ export default {
       return res.data[0];
     },
     async updateProductStatus(id) {
-      await BuyOrderService.updateStatus(id);
+      await ProductService.updateStatus(id);
       this.getSellOrder();
     },
     async getCollectProductById() {

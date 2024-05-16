@@ -316,6 +316,7 @@ const Cart = {
             this.buyOderForm.product_id = item.product_id;
             // Gọi API để thêm vào danh sách đơn hàng
             await this.addToBuyOderListAPI(this.buyOderForm);
+            ProductService.updateStatus(item.product_id);
           }
         }
         // Sau khi thêm vào danh sách đơn hàng thành công, làm các việc khác nếu cần

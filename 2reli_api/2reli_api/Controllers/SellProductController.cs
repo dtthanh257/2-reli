@@ -199,5 +199,34 @@ namespace _2reli_api.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error fetching products by user ID: {ex.Message}");
             }
         }
-    }
+        /// <summary>
+        /// Cập nhật sell_status cộng thêm 1
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        [HttpPut("updateSellStatus/{productId}")]
+        public async Task<IActionResult> UpdateSellStatus(int productId)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    // Tăng giá trị của sell_status lên 1
+                    var sql = "UPDATE sell_product SET sell_status = sell_status + 1 WHERE id = @ProductId";
+                    var affectedRows = await connection.ExecuteAsync(sql, new { ProductId = productId });
+
+                    if (affectedRows == 0)
+                    {
+                        return NotFound($"Product with ID {productId} not found.");
+                    }
+
+                    return Ok("Sell status updated successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error updating sell status: {ex.Message}");
+            }
+        }
+}
 }
