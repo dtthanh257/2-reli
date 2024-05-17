@@ -8,6 +8,8 @@
         alt="Product Thumbnail"
       />
       <h3 style="font-weight: 500">{{ name }}</h3>
+      <div v-if="product_quantity == 0" class="blur-bg"></div>
+      <div v-if="product_quantity == 0" class="sold-out"></div>
       <p>{{ price }}</p>
     </router-link>
   </div>
@@ -33,6 +35,9 @@ const Product = {
     productId: {
       type: Number,
       required: true,
+    },
+    product_quantity: {
+      type: Number,
     },
   },
   data() {

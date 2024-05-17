@@ -378,9 +378,6 @@ export default {
         !this.userInfo.district ||
         !this.userInfo.ward ||
         !this.userInfo.address ||
-        !this.userDate ||
-        !this.userMonth ||
-        !this.userYear ||
         !this.userInfo.gender
       ) {
         this.popup.btn = "Đóng";
@@ -388,6 +385,7 @@ export default {
         this.popup.content = "Hãy điền đầy đủ thông tin cá nhân!";
         this.popup.success = false;
         this.validate = true;
+        console.log(this.userDate + " " + this.userMonth + " " + this.userYear);
       } else {
         const updatedUser = {
           name: this.userInfo.name,
@@ -419,7 +417,6 @@ export default {
           })
           .catch((error) => {
             console.error(error);
-            // Xử lý khi có lỗi xảy ra
           });
       }
     },

@@ -129,6 +129,7 @@
               :productId="product.id"
               :name="product.product_name"
               :price="formatPrice(product.product_price)"
+              :product_quantity="product.product_quantity"
             ></Product>
           </div>
         </div>
